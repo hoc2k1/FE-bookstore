@@ -11,7 +11,7 @@
 									<li><i className='fas fa-map-marker-alt'></i><a href="#">Hà Nội City</a></li>
 									<li><i className='far fa-envelope'></i><a href="#">dimdimliulo@gmail.com</a></li>
 									<li><i className='fas fa-phone-volume'></i><a href="#">+84 234 567 89</a></li>
-									<li><i class="fab fa-facebook-f"></i><a href="#">dimdimliulo</a></li>
+									<li><i className="fab fa-facebook-f"></i><a href="#">dimdimliulo</a></li>
 									
 								</ul>
 							</div>

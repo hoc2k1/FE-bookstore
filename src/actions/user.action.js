@@ -1,4 +1,4 @@
-import { userTypes } from '../constants/action.types'
+import { userTypes, url } from '../constants/action.types'
 import storeConfig from '../config/storage.config'
 import axios from 'axios'
 
@@ -12,7 +12,7 @@ export const loginSuccess = (token, user) => async (dispatch, getState) => {
     if(cart !== null) {
         let res
         try {
-            res = await axios.post('http://localhost:8080/cart/addtocard', {
+            res = await axios.post(`${url.URL_BE}cart/addtocard`, {
                 id_user: user.id,
                 products: cart
             })
@@ -33,7 +33,7 @@ export const auth = () => async (dispatch, getState)  => {
     let token = storeConfig.getToken()
     let res
     try {
-        res = await axios.post('http://localhost:8080/auth', {
+        res = await axios.post(`${url.URL_BE}auth`, {
             email: email,
             token: token,
         })
@@ -81,7 +81,7 @@ export const setEmailForgotPassword = (email) => ({
 export const submitForgotPassword = (email) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/user/request/forgotpassword/' +email)
+        res = await axios.get(`${url.URL_BE}user/request/forgotpassword/` +email)
     }
     catch (err) {
         dispatch(forgotEmailFail())
@@ -93,7 +93,7 @@ export const submitForgotPassword = (email) => async (dispatch, getState) => {
 export const submitOTP = (otp) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.post('http://localhost:8080/user/verify/forgotpassword', {
+        res = await axios.post(`${url.URL_BE}user/verify/forgotpassword`, {
             email: getState().userReducers.forgotPassword.email,
             otp: otp,
         })
@@ -116,7 +116,7 @@ export const verifyOTPFAIL = () => ({
 export const submitEnterNewPassword = (newPassword) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.post('http://localhost:8080/user/forgotpassword', {
+        res = await axios.post(`${url.URL_BE}user/forgotpassword`, {
             email: getState().userReducers.forgotPassword.email,
             otp: getState().userReducers.forgotPassword.otp,
             newPassword: newPassword

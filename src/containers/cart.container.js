@@ -7,9 +7,6 @@ import * as homeActions from "../actions/home.action";
 import * as userActions from "../actions/user.action";
 import * as cartActions from '../actions/cart.action'
 class CartContainer extends Component {
-  constructor() {
-    super();
-  }
   componentWillMount() {
     this.props.actions.auth()
     this.props.cartActions.getCart()

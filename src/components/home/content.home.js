@@ -43,6 +43,7 @@ class ContentHome extends Component {
               return (
                 <li
                   className="active"
+                  key={index}
                   onClick={() => this.props.setPage(element)}
                 >
                   <Link to="/">{element}</Link>
@@ -50,7 +51,7 @@ class ContentHome extends Component {
               );
             } else {
               return (
-                <li onClick={() => this.props.setPage(element)}>
+                <li key={index} onClick={() => this.props.setPage(element)}>
                   <Link to="/">{element}</Link>
                 </li>
               );
@@ -118,7 +119,7 @@ class ContentHome extends Component {
                         <input
                           type="radio"
                           name="optradio"
-                          checked={this.state.check_1}
+                          defaultChecked={this.state.check_1}
                         />ALl price
                       </label>
                     </div>
@@ -133,7 +134,7 @@ class ContentHome extends Component {
                         <input
                           type="radio"
                           name="optradio"
-                          checked={this.state.check_2}
+                          defaultChecked={this.state.check_2}
                         />0 ---- 50.000
                       </label>
                     </div>
@@ -148,7 +149,7 @@ class ContentHome extends Component {
                         <input
                           type="radio"
                           name="optradio"
-                          checked={this.state.check_3}
+                          defaultChecked={this.state.check_3}
                         />50.000 ---- 100.000 
                       </label>
                     </div>
@@ -163,7 +164,7 @@ class ContentHome extends Component {
                         <input
                           type="radio"
                           name="optradio"
-                          checked={this.state.check_4}
+                          defaultChecked={this.state.check_4}
                         />100.000 ---- 150.000
                       </label>
                     </div>
@@ -178,9 +179,8 @@ class ContentHome extends Component {
                         <input
                           type="radio"
                           name="optradio"
-                          checked={this.state.check_5}
-                        />{" "}
-                        >= 150.000
+                          defaultChecked={this.state.check_5}
+                        />>= 150.000
                       </label>
                     </div>
                   </div>
@@ -197,6 +197,7 @@ class ContentHome extends Component {
                   return (
                     <ProductItem
                       book={element}
+                      key={index}
                       urlImg={element.img}
                       price={element.price}
                       describe={element.describe}

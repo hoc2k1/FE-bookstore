@@ -7,6 +7,7 @@ import * as userActions from "../actions/user.action";
 import * as profileActions from "../actions/profile.action";
 import Loading from "../components/loading/loading";
 import storeConfig from "../config/storage.config";
+import { url } from "../constants/action.types";
 class ProfileContainer extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,7 @@ class ProfileContainer extends Component {
   updatePassword = async (oldpassword, newpassword) => {
     let res = null;
     try {
-      res = await axios.post("http://localhost:8080/user/updatepassword", {
+      res = await axios.post(`${url.URL_BE}user/updatepassword`, {
         email: storeConfig.getUser().email,
         oldpassword: oldpassword,
         newpassword: newpassword

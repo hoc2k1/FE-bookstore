@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { productTypes } from '../constants/action.types'
+import { productTypes, url } from '../constants/action.types'
 import storeConfig from '../config/storage.config'
 export const getBookDetail = (id) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/book/' + id)
+        res = await axios.get(`${url.URL_BE}book/` + id)
     }
     catch (err) {
         return
@@ -15,7 +15,7 @@ export const getBookDetail = (id) => async (dispatch, getState) => {
 export const getBookRelated = (id) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/book/related/' + id)
+        res = await axios.get(`${url.URL_BE}book/related/` + id)
     }
     catch (err) {
         return
@@ -25,7 +25,7 @@ export const getBookRelated = (id) => async (dispatch, getState) => {
 export const getNameCategoryByID = (id) => async (dispatch) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/category/name/' + id)
+        res = await axios.get(`${url.URL_BE}category/name/` + id)
     }
     catch (err) {
         return
@@ -35,7 +35,7 @@ export const getNameCategoryByID = (id) => async (dispatch) => {
 export const getNamePubliserByID = (id) => async (dispatch) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/publisher/name/' + id)
+        res = await axios.get(`${url.URL_BE}publisher/name/` + id)
     }
     catch (err) {
         return
@@ -46,7 +46,7 @@ export const getNamePubliserByID = (id) => async (dispatch) => {
 export const getNameAuthorByID = (id) => async (dispatch) => {
     let res
     try {
-        res = await axios.get('http://localhost:8080/author/name/' + id)
+        res = await axios.get(`${url.URL_BE}author/name/` + id)
     }
     catch (err) {
         return
@@ -82,7 +82,7 @@ export const submitComment = (name, email, comment, id_book) => async (dispatch,
         id = storeConfig.getUser().id
     let res
     try {
-        res = await axios.post('http://localhost:8080/comment', {
+        res = await axios.post(`${url.URL_BE}comment`, {
             id_user: id,
             id_book: id_book,
             name: name,
@@ -105,7 +105,7 @@ export const setPage = (page) => ({
 })
 export const backPage = () => (dispatch, getState) => {
     let page = getState().productReducers.product.page
-    if(page > 1) {
+    if (page > 1) {
         dispatch(setPage(parseInt(page) - 1))
     }
 }
@@ -113,17 +113,17 @@ export const backPage = () => (dispatch, getState) => {
 export const nextPage = () => (dispatch, getState) => {
     let page = getState().productReducers.product.page
     let totalpage = getState().productReducers.product.totalpage
-    if(page < totalpage) {
+    if (page < totalpage) {
         dispatch(setPage(parseInt(page) + 1))
     }
 }
 export const getCommentByIDBook = (id) => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.post('http://localhost:8080/comment/book', {
-             id_book: id,
-             page: getState().productReducers.product.page
-            })
+        res = await axios.post(`${url.URL_BE}comment/book`, {
+            id_book: id,
+            page: getState().productReducers.product.page
+        })
     }
     catch (err) {
         console.log(JSON.stringify(err.response))
@@ -141,7 +141,7 @@ export const addToCart = (product) => async (dispatch, getState) => {
     if (getState().userReducers.login.islogin) {
         let res
         try {
-            res = await axios.post('http://localhost:8080/cart/addtocard', {
+            res = await axios.post(`${url.URL_BE}cart/addtocard`, {
                 id_user: storeConfig.getUser().id,
                 products: [product]
             })

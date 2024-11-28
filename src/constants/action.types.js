@@ -71,5 +71,8 @@ export const cartTypes = {
 }
 export const purchaseHistoryTypes = {
     SET_PURCHASED_HISTORY: 'SET_PURCHASED_HISTORY',
-    
+}
+
+export const url = {
+    URL_BE: 'http://localhost:8080/'
 }

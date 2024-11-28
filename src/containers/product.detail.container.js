@@ -7,10 +7,6 @@ import * as homeActions from '../actions/home.action'
 import * as userActions from '../actions/user.action'
 import Loading from '../components/loading/loading'
 class ProductDetailContainer extends Component {
-    constructor(props) {
-        super(props)
-
-    }
     componentWillMount() {
         this.props.actions.auth()
         this.props.homeActions.getCategory()
