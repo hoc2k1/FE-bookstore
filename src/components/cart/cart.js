@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HeaderMiddle from "../header/header.middle";
+import Header from "../header/header"
 import FooterTop from "../footer/footer.top";
 import FooterMiddle from "../footer/footer.middle";
 import FooterBottom from "../footer/footer.bottom";
@@ -11,14 +11,11 @@ class Cart extends Component {
   render() {
     return (
       <div>
-        <header id="header">
-        
-          <HeaderMiddle
-            islogin={this.props.islogin}
-            logout={() => this.props.logout()}
-            history={this.props.history}
-          />
-        </header>
+        <Header
+          islogin={this.props.islogin}
+          logout={() => this.props.logout()}
+          history={this.props.history}
+        />
         <ContentCart
           islogin={this.props.islogin}
           cart={this.props.cart}

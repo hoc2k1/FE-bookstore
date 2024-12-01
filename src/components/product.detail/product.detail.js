@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import HeaderMiddle from "../header/header.middle";
-import HeaderBottom from "../header/header.bottom";
+import Header from "../header/header"
 import FooterTop from "../footer/footer.top";
 import FooterMiddle from "../footer/footer.middle";
 import FooterBottom from "../footer/footer.bottom";
@@ -12,20 +11,12 @@ class ProductDetail extends Component {
   render() {
     return (
       <div>
-        <header id="header">
-      
-          <HeaderMiddle
-            islogin={this.props.islogin}
-            logout={() => this.props.logout()}
-            history={this.props.history}
-          />
-          <HeaderBottom
-            sortType={this.props.sortType}
-            setSortType={value => this.props.setSortType(value)}
-            setSearchText={value => this.props.setSearchText(value)}
-            searchTextSubmit={() => this.props.searchTextSubmit()}
-          />
-        </header>
+
+        <Header
+          islogin={this.props.islogin}
+          logout={() => this.props.logout()}
+          history={this.props.history}
+        />
         <ContentProductDetail
           category={this.props.category}
           publisher={this.props.publisher}

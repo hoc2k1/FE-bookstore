@@ -38,7 +38,7 @@ class HeaderMiddle extends Component {
           }}
         >
           <a>
-            <i className="fa fa-lock" />Logout
+            <i class="fa fa-user icon-header" aria-hidden="true"></i>
           </a>
         </li>
       );
@@ -46,7 +46,7 @@ class HeaderMiddle extends Component {
       return (
         <li>
           <Link to="/login_register">
-            <i className="fa fa-lock" />Login
+            <i class="fa fa-user icon-header" aria-hidden="true"></i>
           </Link>
         </li>
       );
@@ -56,57 +56,37 @@ class HeaderMiddle extends Component {
     if (this.state.email === "Account") {
       return;
     } else {
-        
+
       this.props.history.push("/profile/" + this.state.email);
     }
   };
-  hoverlogin = () =>{
-    if(this.props.islogin){
-      return (
-        <ul className='sub-menu'>
-
-              <li   onClick={() => this.handleProfile()}>
-                <Link to={"/"}  >Hồ Sơ </Link>
-              </li>
-              <li><Link to='/purchase_history' >Đơn Hàng </Link></li>
-          
-          </ul>
-      );
-    }
-  }
   render() {
     return (
-      <div className="header">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-4">
-              <div className="logo pull-left">
-                <a href="/">
-                  <img src="/assets/images/home/logo.png" alt="" />
-                </a>
-              </div>
+      <header id="header" className="sticky-top header ">
+        <div className="container py-2">
+          <div className="d-flex justify-content-between align-items-center">
+            <div className="logo">
+              <a href="/">
+                <img src="/assets/images/home/logo.png" alt="" />
+              </a>
             </div>
-            <div className="col-sm-8">
-              <div className="shop-menu pull-right">
-                <ul className="nav navbar-nav collapse navbar-collapse">
-                <li className='dropdown'>
-                    <a className='Setting-item'>
-                      <i className="fa fa-user dropbtn"></i>
-                    </a>
-                      {this.hoverlogin()}
+            <div className="flex-grow-1">
+              <ul className="d-flex flex-row list-unstyled gap-3 justify-content-end align-items-center mb-0">
+                <li className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
+                  <input type="" id="" name="" placeholder="Tìm kiếm" className="w-100 header-search-input px-3 py-2 border-0" />
+                  <i class="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
                 </li>
-                  <li>
-                    <Link to={"/cart"}>
-                      <i className="fa fa-shopping-cart" />
-                    </Link>
-                  </li>
-                  {this.handlelogin()}
-                </ul>
-              </div>
+                <li>
+                  <Link to={"/cart"}>
+                    <i className="fa fa-shopping-cart icon-header" />
+                  </Link>
+                </li>
+                {this.handlelogin()}
+              </ul>
             </div>
           </div>
         </div>
-      </div>
+      </header>
     );
   }
 }
