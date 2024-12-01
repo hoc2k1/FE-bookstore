@@ -4,7 +4,7 @@ const OTP = ({ setOTP, submitOTP, notificationOTP }) => (
     <div className="container text-center">
         <div className="logo-404">
         <div className='null-cart'>
-			<Link to="/"><img src="/assets/images/home/logo1.gif" alt="" /></Link>
+			<Link to="/"><img src="/assets/images/home/logo.png" alt="" /></Link>
             
           </div>
         </div>

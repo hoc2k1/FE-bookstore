@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import HeaderTop from '../header/header.top'
 import HeaderMiddle from '../header/header.middle'
 import HeaderBottom from '../header/header.bottom'
 import ContentHome from './content.home'
@@ -14,7 +13,6 @@ const Home = ({ islogin, logout, category,
     searchTextSubmit, addToCart }) => (
         <div>
             <header id="header">
-     
                 <HeaderMiddle
                     islogin={islogin}
                     logout={() => logout()}

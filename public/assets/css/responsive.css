@@ -125,16 +125,6 @@
 /* xs */
 @media (max-width: 767px) {
 
-.header_top .col-sm-6:first-child{
-	display: inline-block;
-	float: left;
-}
-
-.header_top .col-sm-6:last-child{
-	display: inline-block;
-	float: right;
-}
-
 .header-middle .col-sm-4 {
 	display: inline-block;
 	overflow: inherit;
@@ -302,16 +292,6 @@ ul.sub-menu{
 .media.commnets .pull-left,
 .media-list .pull-left{
 	float: none !important;
-}
-
-.header_top .col-sm-6:first-child{
-	display: block;
-	float: none;
-}
-
-.header_top .col-sm-6:last-child{
-	display: block;
-	float: none;
 }
 
 .contactinfo .nav.nav-pills, .social-icons .nav.navbar-nav{

@@ -65,10 +65,9 @@ class HeaderMiddle extends Component {
       return (
         <ul className='sub-menu'>
 
-<li   onClick={() => this.handleProfile()}>
+              <li   onClick={() => this.handleProfile()}>
                 <Link to={"/"}  >Hồ Sơ </Link>
               </li>
-
               <li><Link to='/purchase_history' >Đơn Hàng </Link></li>
           
           </ul>
@@ -77,7 +76,7 @@ class HeaderMiddle extends Component {
   }
   render() {
     return (
-      <div className="header-middle">
+      <div className="header">
         <div className="container">
           <div className="row">
             <div className="col-sm-4">
@@ -86,7 +85,6 @@ class HeaderMiddle extends Component {
                   <img src="/assets/images/home/logo.png" alt="" />
                 </a>
               </div>
-             
             </div>
             <div className="col-sm-8">
               <div className="shop-menu pull-right">
@@ -97,8 +95,6 @@ class HeaderMiddle extends Component {
                     </a>
                       {this.hoverlogin()}
                 </li>
-                 
-                 
                   <li>
                     <Link to={"/cart"}>
                       <i className="fa fa-shopping-cart" />
