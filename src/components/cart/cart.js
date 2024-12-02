@@ -23,10 +23,10 @@ class Cart extends Component {
             this.props.updateProductInCart(product)
           }
           deteleProductInCart={(id_product) => this.props.deteleProductInCart(id_product)}
-    
-       
-          payment={( address, phone, name,total) => 
-            this.props.payment( address, phone, name,total)}
+
+
+          payment={(address, phone, name, total) =>
+            this.props.payment(address, phone, name, total)}
           ispay={this.props.ispay}
         />
         <footer id="footer">

@@ -1671,7 +1671,8 @@ h2.title {
   background-color: var(--color-bg);
 }
 
-.icon-header:hover, .icon-header-search:hover {
+.icon-header:hover,
+.icon-header-search:hover {
   opacity: 1
 }
 
@@ -2903,9 +2904,11 @@ textarea {
   overflow: hidden;
   text-align: center;
 }
+
 .header-search-input {
   background-color: var(--color-bg);
 }
+
 .header-search-input:focus-visible {
   outline: none;
 }

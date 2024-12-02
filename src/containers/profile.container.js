@@ -54,12 +54,12 @@ class ProfileContainer extends Component {
       return false;
     }
 
-    this.setState({notiupdatePassword: true})
+    this.setState({ notiupdatePassword: true })
   };
   resetUpdatePassword = () => {
-      this.setState({
-          notiupdatePassword: null
-      })
+    this.setState({
+      notiupdatePassword: null
+    })
   }
   render() {
     if (this.props.islogin) {

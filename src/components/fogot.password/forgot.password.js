@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom'
 const ForgotPassword = ({ setEmail, submit, notification }) => (
 	<div className="container text-center">
 		<div className="logo-404">
-		<div className='null-cart'>
-			<Link to="/"><img src="/assets/images/home/logo.png" alt="" /></Link>
-            
-          </div>
-			
+			<div className='null-cart'>
+				<Link to="/"><img src="/assets/images/home/logo.png" alt="" /></Link>
+
+			</div>
+
 		</div>
 		<div className="content-404 forgotpass">
 			<h1><b>FORGOT PASSWORD
 			</b></h1>
 			<span>{notification}</span>
 			<input
-			type="email"
+				type="email"
 				placeholder="Email"
 				onChange={e => setEmail(e.target.value)}
 			/>

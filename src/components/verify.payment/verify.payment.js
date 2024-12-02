@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const VerifyPayment = () => (
-    <div className="container text-center">
+	<div className="container text-center">
 		<div className="logo-404">
-		<div className='null-cart'>
-            <img src="/assets/images/home/logo.png" alt="" />
-            
-          </div>
+			<div className='null-cart'>
+				<img src="/assets/images/home/logo.png" alt="" />
+
+			</div>
 		</div>
 		<div className="content-404">
 			<h1><b>Congratulations!!!

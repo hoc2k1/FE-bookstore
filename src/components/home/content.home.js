@@ -87,7 +87,7 @@ class ContentHome extends Component {
                       <div
                         key={index}
                         onClick={() => {
-                        this.resetCheck()
+                          this.resetCheck()
                           this.props.setTitle(element.name);
                           this.props.setBranch("category");
                           this.props.setIDBranch(element._id);
@@ -104,7 +104,7 @@ class ContentHome extends Component {
                     );
                   })}
                 </div>
-            
+
                 <div className="price-range">
                   <h2>Giá tiền</h2>
                   <div className="well ">
@@ -150,7 +150,7 @@ class ContentHome extends Component {
                           type="radio"
                           name="optradio"
                           defaultChecked={this.state.check_3}
-                        />50.000 ---- 100.000 
+                        />50.000 ---- 100.000
                       </label>
                     </div>
                     <div className="radio ">
