@@ -1,5 +1,17 @@
 import axios from 'axios'
 import { homeTypes, sortTypes, url } from '../constants/action.types'
+
+export const getBanner = () => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.get(`${url.URL_BE}banner/all`)
+  }
+  catch (err) {
+    return
+  }
+  dispatch(setBanner(res.data.data))
+}
+
 export const getCategory = () => async (dispatch, getState) => {
   let res
   try {
@@ -89,6 +101,10 @@ export const getBook = () => async (dispatch, getState) => {
   dispatch(setTotalPage(res.data.totalPage))
 }
 
+export const setBanner = (data) => ({
+  type: homeTypes.SET_BANNER,
+  data
+})
 export const setBook = (data) => ({
   type: homeTypes.SET_BOOK,
   data
@@ -248,7 +264,6 @@ export const setRangeType = (range) => async (dispatch, getState) => {
     console.log(err.response)
     return
   }
-  console.log(JSON.stringify(res))
   dispatch(setRange(range))
   dispatch(setBook(res.data.data))
   dispatch(setTotalPage(res.data.totalPage))

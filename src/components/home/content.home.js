@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProductItem from "./product.item";
 import { Link } from "react-router-dom";
+import Banner from "./banner.home";
 class ContentHome extends Component {
   constructor(props) {
     super(props);
@@ -76,6 +77,7 @@ class ContentHome extends Component {
   render() {
     return (
       <section>
+        <Banner banner={this.props.banner} />
         <div className="container">
           <div className="row content-home">
             <div className="col-sm-3">
@@ -180,7 +182,7 @@ class ContentHome extends Component {
                           type="radio"
                           name="optradio"
                           defaultChecked={this.state.check_5}
-                        />>= 150.000
+                        />= 150.000
                       </label>
                     </div>
                   </div>

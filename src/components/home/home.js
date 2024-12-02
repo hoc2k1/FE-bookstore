@@ -9,7 +9,7 @@ const Home = ({ islogin, logout, category,
   nextPage, setPage, page, sortType, setSortType,
   setRangeType, title, setTitle, setBranch, branch,
   setSearchText, author, setIDBranch, branchClick, history,
-  searchTextSubmit, addToCart }) => (
+  searchTextSubmit, addToCart, banner }) => (
   <div>
     <Header
       islogin={islogin}
@@ -20,6 +20,7 @@ const Home = ({ islogin, logout, category,
       category={category}
       publisher={publisher}
       book={book}
+      banner={banner}
       totalpage={totalpage}
       backPage={() => backPage()}
       nextPage={() => nextPage()}

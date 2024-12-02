@@ -14,6 +14,7 @@ class HomeContainer extends React.Component {
   componentWillMount() {
     this.props.actions.auth()
     this.props.homeActions.getCategory()
+    this.props.homeActions.getBanner()
     this.props.homeActions.getPublisher()
     this.props.homeActions.getBook()
     this.props.homeActions.getAuthor()
@@ -34,6 +35,7 @@ class HomeContainer extends React.Component {
             logout={() => this.props.actions.logout()}
             category={this.props.category}
             publisher={this.props.publisher}
+            banner={this.props.banner}
             book={this.props.book}
             totalpage={this.props.totalpage}
             backPage={() => this.props.homeActions.backPage()}
@@ -69,6 +71,7 @@ const mapStateToProps = state => ({
   islogin: state.userReducers.login.islogin,
   category: state.homeReducers.category.data,
   publisher: state.homeReducers.publisher.data,
+  banner: state.homeReducers.banner.data,
   author: state.homeReducers.author.data,
   book: state.homeReducers.book.data,
   totalpage: state.homeReducers.book.totalpage,

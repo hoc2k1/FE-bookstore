@@ -28,7 +28,8 @@ export const homeTypes = {
     SET_SEARCH_TEXT: 'SET_SEARCH_TEXT',
     SET_AUTHOR: 'SET_AUTHOR',
     SET_ID_BRANCH: 'SET_ID_BRANCH',
-    SET_HOME_PAGE: 'SET_HOME_PAGE'
+    SET_HOME_PAGE: 'SET_HOME_PAGE',
+    SET_BANNER: 'SET_BANNER'
 }
 
 export const productTypes = {

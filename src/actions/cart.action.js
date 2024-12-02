@@ -74,10 +74,6 @@ export const resetPayment = () => ({
 export const payment = (address, phone, name, total) => async (dispatch, getState) => {
   let res = null
   try {
-    console.log(total);
-    console.log(address)
-    console.log(phone);
-    console.log(name)
     res = await axios.post(`${url.URL_BE}bill/add`, {
       id_user: storeConfig.getUser().id,
       address: address,
