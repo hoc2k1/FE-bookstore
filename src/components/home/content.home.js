@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ProductItem from "./product.item";
 import { Link } from "react-router-dom";
 import Banner from "./banner.home";
+import Categories from "./categories.home";
 class ContentHome extends Component {
   constructor(props) {
     super(props);
@@ -77,8 +78,9 @@ class ContentHome extends Component {
   render() {
     return (
       <section>
-        <Banner banner={this.props.banner} />
         <div className="container">
+        <Banner banners={this.props.banner} />
+        <Categories categories={this.props.category}/>
           <div className="row content-home">
             <div className="col-sm-3">
               <div className="left-sidebar">

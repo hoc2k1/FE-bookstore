@@ -11,7 +11,6 @@ class ProductDetail extends Component {
   render() {
     return (
       <div>
-
         <Header
           islogin={this.props.islogin}
           logout={() => this.props.logout()}

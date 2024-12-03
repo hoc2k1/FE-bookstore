@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import storeConfig from "../../config/storage.config";
 import { Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 class ContentProductDetail extends Component {
   constructor(props) {
     super(props);

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-const Loading = () => (
-  <div className="spinner">
-    <div className="double-bounce1"></div>
-    <div className="double-bounce2"></div>
-  </div>
-)
+const Loading = () => {
+  return (
+    <div className="spinner">
+      <img className='loading-gif' src='../../../assets/images/shop/loading.gif'></img>
+    </div>
+  )
+}
 export default Loading

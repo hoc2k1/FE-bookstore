@@ -5,8 +5,14 @@ export const getBanner = () => async (dispatch, getState) => {
   let res
   try {
     res = await axios.get(`${url.URL_BE}banner/all`)
+    res.data.data = res.data.data.sort((a, b) => {
+      if (a.position == null) return 1;
+      if (b.position == null) return -1; 
+      return a.position - b.position;
+   });
   }
   catch (err) {
+    console.error('error: ', err )
     return
   }
   dispatch(setBanner(res.data.data))
@@ -15,7 +21,7 @@ export const getBanner = () => async (dispatch, getState) => {
 export const getCategory = () => async (dispatch, getState) => {
   let res
   try {
-    res = await axios.get(`${url.URL_BE}category`)
+    res = await axios.get(`${url.URL_BE}category/all`)
   }
   catch (err) {
     return
