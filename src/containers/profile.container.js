@@ -23,10 +23,6 @@ class ProfileContainer extends Component {
   async componentWillMount() {
     let res = await this.props.actions.auth();
     if (res === false) this.props.history.push("/");
-    // console.log(this.props.params.email)
-    //console.log(storeConfig.getUser().email)
-    // if(this.props.match.params.email !==  storeConfig.getUser().email)
-    //     this.props.history.push('/')
     if (storeConfig.getUser() !== null) {
       this.setState({
         email: storeConfig.getUser().email,

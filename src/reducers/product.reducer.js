@@ -1,4 +1,3 @@
-import { userTypes } from '../constants/action.types'
 import { combineReducers } from 'redux'
 import { productTypes } from '../constants/action.types'
 const product = (state = { productDetail: null, bookrelated: [], comment: [], page: 1, totalpage: null }, action) => {

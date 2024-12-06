@@ -1,12 +1,17 @@
 import React from "react";
-import 'react-slideshow-image/dist/styles.css'
 import SlideCustom from "../slide.custom/slide.custom";
 import { Link } from "react-router-dom";
 
 const Banner = ({ banners }) => {
   return (
-    <div className="slide-container">
-      <SlideCustom>
+    <div className="banner-container">
+      <SlideCustom 
+        arrows
+        showIndicators
+        autoplay
+        infinite
+        canSwipe
+      >
         {banners.map((banner, index)=> {
           if (!banner.type) {
             if (banner.url && /^(https?:\/\/[^\s$.?#].[^\s]*)$/.test(banner.url)) {

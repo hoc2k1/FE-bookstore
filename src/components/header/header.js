@@ -1,12 +1,34 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import storeConfig from "../../config/storage.config";
-class HeaderMiddle extends Component {
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as userActions from '../../actions/user.action'
+
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "Account"
     };
+    this.menu = [
+      {
+        name: 'Trang chủ',
+        path: '/'
+      },
+      {
+        name: 'Sản phẩm',
+        path: 'products/'
+      },
+      {
+        name: 'Danh mục',
+        path: '/category'
+      },
+      {
+        name: 'Liên hệ',
+        path: 'Contact'
+      }
+    ]
   }
   componentWillMount() {
     if (storeConfig.getUser() !== null) {
@@ -33,12 +55,11 @@ class HeaderMiddle extends Component {
           className="btn-custom"
           onClick={() => {
             window.location.reload();
-            this.props.logout();
-            this.props.history.push("/");
+            this.props.actions.logout();
           }}
         >
           <a>
-            <i class="fa fa-user icon-header" aria-hidden="true"></i>
+            <i className="fa fa-user icon-header" aria-hidden="true"></i>
           </a>
         </li>
       );
@@ -46,7 +67,7 @@ class HeaderMiddle extends Component {
       return (
         <li>
           <Link to="/login_register">
-            <i class="fa fa-user icon-header" aria-hidden="true"></i>
+            <i className="fa fa-user icon-header" aria-hidden="true"></i>
           </Link>
         </li>
       );
@@ -56,7 +77,6 @@ class HeaderMiddle extends Component {
     if (this.state.email === "Account") {
       return;
     } else {
-
       this.props.history.push("/profile/" + this.state.email);
     }
   };
@@ -64,7 +84,7 @@ class HeaderMiddle extends Component {
     return (
       <header id="header" className="sticky-top header ">
         <div className="container py-2">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center gap-3">
             <div className="logo">
               <a href="/">
                 <img src="/assets/images/home/logo.png" alt="" />
@@ -72,10 +92,23 @@ class HeaderMiddle extends Component {
             </div>
             <div className="flex-grow-1">
               <ul className="d-flex flex-row list-unstyled gap-3 justify-content-end align-items-center mb-0">
-                <li className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
-                  <input type="" id="" name="" placeholder="Tìm kiếm" className="w-100 header-search-input px-3 py-2 border-0" />
-                  <i class="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
-                </li>
+                <ul className="d-flex flex-row list-unstyled gap-4 justify-content-center align-items-center mb-0 w-100">
+                  {
+                    this.menu.map((item, index) => {
+                      return (
+                        <li key={index}>
+                          <Link to={item.path} className="heading text-link">
+                            {item.name}
+                          </Link>
+                        </li>
+                      )
+                    }) 
+                  }
+                  <div className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
+                    <input type="" id="" name="" placeholder="Tìm kiếm" className="w-100 header-search-input px-3 py-2 border-0" />
+                    <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
+                  </div>
+                </ul>
                 <li>
                   <Link to={"/cart"}>
                     <i className="fa fa-shopping-cart icon-header" />
@@ -91,4 +124,17 @@ class HeaderMiddle extends Component {
   }
 }
 
-export default HeaderMiddle;
+const mapStateToProps = state => ({
+  islogin: state.userReducers.login.islogin,
+})
+
+const mapDispatchToProps = dispatch => {
+  return ({
+    actions: bindActionCreators(userActions, dispatch),
+  })
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import ProductItem from "./product.item";
+import ProductItem from "../product/product.item";
 import { Link } from "react-router-dom";
-import Banner from "./banner.home";
-import Categories from "./categories.home";
-class ContentHome extends Component {
+class ContentProducts extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,8 +77,6 @@ class ContentHome extends Component {
     return (
       <section>
         <div className="container">
-        <Banner banners={this.props.banner} />
-        <Categories categories={this.props.category}/>
           <div className="row content-home">
             <div className="col-sm-3">
               <div className="left-sidebar">
@@ -220,4 +216,4 @@ class ContentHome extends Component {
     );
   }
 }
-export default ContentHome;
+export default ContentProducts;

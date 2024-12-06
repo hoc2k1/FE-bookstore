@@ -1,46 +1,134 @@
-/* lg */
-@media (min-width: 1200px) {
-	.banner-image {
-		height: 400px;
-	}
+.social-icons ul li a i {
+	padding: 8px 10px;
 }
 
-/* md */
-@media (min-width: 992px) and (max-width: 1199px) {
-	.banner-image {
-		height: 400px;
-	}
-
-	.usa {
-		margin-right: 0;
-	}
-
-	.shipping img {
-		width: 100%;
-	}
-
-	.searchform input {
-		width: 160px;
-	}
-
-	.product-information span span {
-		width: 100%;
-	}
-
-	#similar-product .carousel-inner .item img {
-		width: 65px;
-	}
-
-	#cart_items .cart_info .cart_description h4,
-	#cart_items .cart_info .cart_description p {
-		text-align: center;
-	}
-
+.shop-menu.pull-right {
+	float: none !important;
 }
 
+.shop-menu .nav.navbar-nav {
+	margin-left: -30px;
+}
 
-/* sm */
-@media (min-width: 768px) and (max-width: 991px) {
+.mainmenu {
+	width: 100%;
+}
+
+.mainmenu ul li {
+	background: rgba(0, 0, 0, 0.5);
+	padding-top: 15px;
+	padding-bottom: 0;
+}
+
+.mainmenu ul li:last-child {
+	padding-bottom: 15px;
+}
+
+.mainmenu ul li a {
+	color: #fff;
+}
+
+.navbar-collapse.in {
+	overflow: inherit;
+}
+
+.mainmenu ul li a.active {
+	padding-left: 15px;
+}
+
+.dropdown .fa-angle-down {
+	display: none;
+}
+
+ul.sub-menu {
+	position: relative;
+	width: auto;
+	display: block;
+	background: transparent;
+	box-shadow: none;
+	top: 0;
+}
+
+.sub-menu li {
+	background: transparent;
+}
+
+.mainmenu .navbar-nav li ul.sub-menu li {
+	background: transparent;
+	padding-bottom: 0;
+}
+
+.nav.navbar-nav>li:hover>ul.sub-menu {
+	-webkit-animation: none;
+	-moz-animation: none;
+	-ms-animation: none;
+	-o-animation: none;
+	animation: none;
+	box-shadow: none;
+}
+
+#slider-carousel .item {
+	padding-left: 0;
+}
+
+.shipping {
+	margin-bottom: 25px;
+}
+
+.pricing {
+	width: 100px;
+}
+
+.footer-top .col-sm-7 .col-sm-3 {
+	width: 50%;
+	float: left;
+}
+
+.footer-widget .col-sm-2 {
+	width: 28%;
+	display: flex;
+	margin-bottom: 50px;
+	margin-top: 0;
+	float: left;
+	margin-left: 30px;
+}
+
+.companyinfo {
+	text-align: center;
+}
+
+.footer-widget .col-sm-3 {
+	display: inline-block;
+}
+
+.single-widget {}
+
+.product-information span {
+	display: block;
+}
+
+#similar-product {
+	margin-bottom: 40px;
+}
+
+.well {
+	display: inline-block;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1432px;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+@media (min-width: 768px) {
+	.container {
+		padding-left: 32px;
+		padding-right: 32px;
+	}
+	
 	.banner-image {
 		height: 400px;
 	}
@@ -131,124 +219,8 @@
 
 }
 
-/* xs */
-@media (max-width: 767px) {
-
-	.social-icons ul li a i {
-		padding: 8px 10px;
+@media (min-width: 1200px) {
+	.banner-image {
+		height: 400px;
 	}
-
-	.shop-menu.pull-right {
-		float: none !important;
-	}
-
-	.shop-menu .nav.navbar-nav {
-		margin-left: -30px;
-	}
-
-	.mainmenu {
-		width: 100%;
-	}
-
-	.mainmenu ul li {
-		background: rgba(0, 0, 0, 0.5);
-		padding-top: 15px;
-		padding-bottom: 0;
-	}
-
-	.mainmenu ul li:last-child {
-		padding-bottom: 15px;
-	}
-
-	.mainmenu ul li a {
-		color: #fff;
-	}
-
-	.navbar-collapse.in {
-		overflow: inherit;
-	}
-
-	.mainmenu ul li a.active {
-		padding-left: 15px;
-	}
-
-	.dropdown .fa-angle-down {
-		display: none;
-	}
-
-	ul.sub-menu {
-		position: relative;
-		width: auto;
-		display: block;
-		background: transparent;
-		box-shadow: none;
-		top: 0;
-	}
-
-	.sub-menu li {
-		background: transparent;
-	}
-
-	.mainmenu .navbar-nav li ul.sub-menu li {
-		background: transparent;
-		padding-bottom: 0;
-	}
-
-	.nav.navbar-nav>li:hover>ul.sub-menu {
-		-webkit-animation: none;
-		-moz-animation: none;
-		-ms-animation: none;
-		-o-animation: none;
-		animation: none;
-		box-shadow: none;
-	}
-
-	#slider-carousel .item {
-		padding-left: 0;
-	}
-
-	.shipping {
-		margin-bottom: 25px;
-	}
-
-	.pricing {
-		width: 100px;
-	}
-
-	.footer-top .col-sm-7 .col-sm-3 {
-		width: 50%;
-		float: left;
-	}
-
-	.footer-widget .col-sm-2 {
-		width: 28%;
-		display: flex;
-		margin-bottom: 50px;
-		margin-top: 0;
-		float: left;
-		margin-left: 30px;
-	}
-
-	.companyinfo {
-		text-align: center;
-	}
-
-	.footer-widget .col-sm-3 {
-		display: inline-block;
-	}
-
-	.single-widget {}
-
-	.product-information span {
-		display: block;
-	}
-
-	#similar-product {
-		margin-bottom: 40px;
-	}
-
-	.well {
-		display: inline-block;
-	}
-
 }

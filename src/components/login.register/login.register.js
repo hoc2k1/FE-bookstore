@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Header from '../header/header'
 import FooterTop from '../footer/footer.top'
 import FooterMiddle from '../footer/footer.middle'

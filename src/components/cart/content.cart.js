@@ -24,6 +24,7 @@ class ContentCart extends Component {
       total +=
         Number(this.props.cart[i].price) * Number(this.props.cart[i].count);
     }
+    this.setState({ total: total });
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.cart !== this.props.cart) {

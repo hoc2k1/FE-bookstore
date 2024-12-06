@@ -43,7 +43,7 @@ class LoginRegisterContainer extends Component {
     return true
   }
   isvalidConfirm = (password, confirm) => {
-    if (confirm != password)
+    if (confirm !== password)
       return false
     return true
   }

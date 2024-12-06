@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import HomeContainer from './home.container'
 import LoginRegisterContainer from './login.register.container'
@@ -9,6 +9,7 @@ import ProfileContainer from './profile.container'
 import CartContainer from './cart.container'
 import VerifyPaymentContainer from './verify.payment.container'
 import HistoryPurchase from './history.purchase.container'
+import productsContainer from './products.container'
 const App = () => (
   <Router>
     <Switch>
@@ -21,6 +22,7 @@ const App = () => (
       <Route exact path='/cart' component={CartContainer} />
       <Route exact path='/payment/:token' component={VerifyPaymentContainer} />
       <Route exact path='/purchase_history' component={HistoryPurchase} />
+      <Route exact path='/products' component={productsContainer} />
     </Switch>
   </Router>
 )

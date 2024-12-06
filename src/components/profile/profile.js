@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import FooterBottom from "../footer/footer.bottom";
 import FooterMiddle from "../footer/footer.middle";
 import FooterTop from "../footer/footer.top";
