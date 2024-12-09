@@ -50,6 +50,18 @@ const product = (state = { productDetail: null, bookrelated: [], comment: [], pa
         totalpage: action.totalpage
       }
     }
+    case productTypes.SET_FILTER: {
+      return {
+        ...state,
+        filter: action.data
+      }
+    }
+    case productTypes.SET_ALL_BOOK: {
+      return {
+        ...state,
+        books: action.data
+      }
+    }
     default: return state
   }
 }

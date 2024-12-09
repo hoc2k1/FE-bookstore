@@ -1,9 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import storeConfig from "../../config/storage.config";
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as userActions from '../../actions/user.action'
 
 const Breadcrumb = ({ history }) => {
   if (history) {

@@ -86,13 +86,6 @@ class ContentProducts extends Component {
                     return (
                       <div
                         key={index}
-                        onClick={() => {
-                          this.resetCheck()
-                          this.props.setTitle(element.name);
-                          this.props.setBranch("category");
-                          this.props.setIDBranch(element._id);
-                          this.props.branchClick("category", element._id);
-                        }}
                         className="panel panel-default"
                       >
                         <div className="panel-heading">
@@ -193,7 +186,7 @@ class ContentProducts extends Component {
                 <h2 className="title text-center">
                   {this.props.title}
                 </h2>
-                {this.props.book.map((element, index) => {
+                {this.props.books.map((element, index) => {
                   return (
                     <ProductItem
                       book={element}

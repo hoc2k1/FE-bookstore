@@ -9,19 +9,34 @@ import Loading from '../components/loading/loading'
 import Header from '../components/header/header'
 import Footer from '../components/footer/footer'
 import Breadcrumb from '../components/header/breadcrumd'
+import { baseFilter } from '../constants/values'
 
 class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
-
   }
   componentWillMount() {
+    const filterData = baseFilter
+    if(this.props.location.search) {
+      const searchURI = this.props.location.search[0] == '?' ? decodeURI(this.props.location.search.slice(1)) : decodeURI(this.props.location.search);
+      searchURI.split('&').map((item, index) => {
+        if (item.split('=') && item.split('=')[0] && item.split('=')[1]) {
+          const key = item.split('=')[0]
+          let listValue;
+          if (item.split('=')[1].split(',,').length > 1) {
+            listValue = item.split('=')[1].split(',,')
+          }
+          else listValue = item.split('=')[1]
+          filterData[key] = listValue
+        }
+      })
+    }
+    this.props.productActions.setFilter(filterData)
     this.props.actions.auth()
     this.props.homeActions.getCategory()
-    this.props.homeActions.getBanner()
     this.props.homeActions.getPublisher()
-    this.props.homeActions.getBook()
     this.props.homeActions.getAuthor()
+    this.props.productActions.getAllBook()
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.props.page) {
@@ -39,8 +54,7 @@ class HomeContainer extends React.Component {
           <Products
             category={this.props.category}
             publisher={this.props.publisher}
-            banner={this.props.banner}
-            book={this.props.book}
+            books={this.props.books}
             totalpage={this.props.totalpage}
             backPage={() => this.props.homeActions.backPage()}
             nextPage={() => this.props.homeActions.nextPage()}
@@ -56,9 +70,7 @@ class HomeContainer extends React.Component {
             setSearchText={(value) => this.props.homeActions.setSearchText(value)}
             author={this.props.author}
             setIDBranch={(id) => this.props.homeActions.setIDBranch(id)}
-            branchClick={(branch, id) => this.props.homeActions.branchClick(branch, id)}
             history={this.props.history}
-            searchTextSubmit={() => this.props.homeActions.searchTextSubmit()}
             addToCart={(product) => this.props.productActions.addToCart(product)}
           />
           <Footer />
@@ -77,8 +89,8 @@ const mapStateToProps = state => ({
   publisher: state.homeReducers.publisher.data,
   banner: state.homeReducers.banner.data,
   author: state.homeReducers.author.data,
-  book: state.homeReducers.book.data,
-  totalpage: state.homeReducers.book.totalpage,
+  books: state.productReducers.product.books,
+  totalpage: state.productReducers.product.totalpage,
   page: state.homeReducers.book.page,
   sortType: state.homeReducers.book.sortType,
   title: state.homeReducers.book.title,

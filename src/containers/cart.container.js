@@ -18,7 +18,6 @@ class CartContainer extends Component {
         islogin={this.props.islogin}
         logout={() => this.props.actions.logout()}
 
-        searchTextSubmit={() => this.props.homeActions.searchTextSubmit()}
         setSearchText={value => this.props.homeActions.setSearchText(value)}
         history={this.props.history}
         cart={this.props.cart}

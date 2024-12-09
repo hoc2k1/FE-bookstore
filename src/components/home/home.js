@@ -9,8 +9,8 @@ class ContentHome extends Component {
     return (
       <section>
         <div className="container">
-        <Banner banners={this.props.banner} />
-        <Categories categories={this.props.category}/>
+          <Banner banners={this.props.banner} />
+          <Categories categories={this.props.category}/>
         </div>
       </section>
     );

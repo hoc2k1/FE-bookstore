@@ -25,8 +25,8 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { category, totalpage, banner } = this.props
-    if (category && banner && totalpage ) {
+    const { category, banner, totalpage } = this.props
+    if (category && banner, totalpage ) {
       return (
         <div>
           <Header history={this.props.history}/>

@@ -95,6 +95,26 @@ export const submitComment = (name, email, comment, id_book) => async (dispatch,
   }
   dispatch(getCommentByIDBook(id_book))
 }
+
+export const getAllBook = () => async (dispatch, getState) => {
+  let filterData = getState().productReducers.product.filter
+  let _link = `${url.URL_BE}book/allbook`
+  let res
+  try {
+    res = await axios.post(_link, filterData)
+  }
+  catch (err) {
+    console.log(err.response)
+    return
+  }
+  dispatch(setAllBook(res.data.data))
+  dispatch(setTotalPage(res.data.totalPage))
+}
+
+export const setAllBook = (data) => ({
+  type: productTypes.SET_ALL_BOOK,
+  data
+})
 export const setTotalPage = (totalpage) => ({
   type: productTypes.SET_TOTAL_PAGE,
   totalpage
@@ -134,6 +154,11 @@ export const getCommentByIDBook = (id) => async (dispatch, getState) => {
 }
 export const setComment = (data) => ({
   type: productTypes.SET_COMMENT,
+  data
+})
+
+export const setFilter = (data) => ({
+  type: productTypes.SET_FILTER,
   data
 })
 

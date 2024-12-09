@@ -8,7 +8,7 @@ const Home = ({ setEmailogin, setPasswordlogin, setEmail,
   setFirstname, setLastname, setAddress, setPhone, setPassword, setConfirm,
   notificationRegister, notificationLogin, registerSubmit,
   loginSubmit, islogin, logout, sortType, setSortType, setSearchText,
-  searchTextSubmit, history }) => (
+  history }) => (
   <div>
 
     <Header
