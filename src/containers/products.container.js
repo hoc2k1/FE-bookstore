@@ -8,6 +8,7 @@ import * as productActions from '../actions/product.action'
 import Loading from '../components/loading/loading'
 import Header from '../components/header/header'
 import Footer from '../components/footer/footer'
+import Breadcrumb from '../components/header/breadcrumd'
 
 class HomeContainer extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class HomeContainer extends React.Component {
       return (
         <div>
           <Header history={this.props.history}/>
+          <Breadcrumb history={this.props.history}/>
           <Products
             category={this.props.category}
             publisher={this.props.publisher}

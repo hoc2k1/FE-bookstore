@@ -18,7 +18,7 @@ class Header extends Component {
       },
       {
         name: 'Sản phẩm',
-        path: 'products/'
+        path: '/products'
       },
       {
         name: 'Danh mục',
@@ -26,7 +26,7 @@ class Header extends Component {
       },
       {
         name: 'Liên hệ',
-        path: 'Contact'
+        path: '/contact'
       }
     ]
   }
@@ -95,9 +95,13 @@ class Header extends Component {
                 <ul className="d-flex flex-row list-unstyled gap-4 justify-content-center align-items-center mb-0 w-100">
                   {
                     this.menu.map((item, index) => {
+                      let is_active = false
+                      if (this.props.history && this.props.history.location.pathname == item.path) {
+                        is_active = true
+                      }
                       return (
                         <li key={index}>
-                          <Link to={item.path} className="heading text-link">
+                          <Link to={item.path} className={`heading text-link ${is_active ? 'active' : ''} `}>
                             {item.name}
                           </Link>
                         </li>
