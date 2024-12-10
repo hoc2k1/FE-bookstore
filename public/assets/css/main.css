@@ -20,6 +20,10 @@
   max-width: 1432px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .footer, .breadcrumb {
   background-color: var(--color-bg-footer);
   width: 100%;
@@ -35,6 +39,9 @@
 body {
   color: var(--color-text);
   font-size: var(--font-size-text);
+}
+.select {
+  background-color: var(--color-bg);
 }
 
 .text-link {
@@ -123,6 +130,15 @@ body {
   background-color: var(--color-bg);
   position: relative;
   font-weight: 400px;
+}
+.filter-option {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height ease-in-out 0.3s;
+}
+.filter-option.active {
+  max-height: 1000px;
+  transition: max-height ease-in-out 0s;
 }
 
 .btn-custom {

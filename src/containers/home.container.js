@@ -8,10 +8,6 @@ import Loading from '../components/loading/loading'
 import Header from '../components/header/header'
 import Footer from '../components/footer/footer'
 class HomeContainer extends Component {
-  constructor(props) {
-    super(props)
-
-  }
   componentWillMount() {
     this.props.actions.auth()
     this.props.homeActions.getCategory()
@@ -26,7 +22,7 @@ class HomeContainer extends Component {
 
   render() {
     const { category, banner, totalpage } = this.props
-    if (category && banner, totalpage ) {
+    if (category && banner && totalpage ) {
       return (
         <div>
           <Header history={this.props.history}/>

@@ -18,7 +18,7 @@ const Banner = ({ banners }) => {
               return (
                 <div key={index}>
                   <a href={banner.url} target="_blank" rel="noopener noreferrer">
-                    <img src={banner.image} className="w-100 banner-image" />
+                    <img alt="" src={banner.image} className="w-100 banner-image" />
                   </a>
                 </div>
               )

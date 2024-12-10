@@ -62,6 +62,12 @@ const product = (state = { productDetail: null, bookrelated: [], comment: [], pa
         books: action.data
       }
     }
+    case productTypes.SET_LOADING_PRODUCTS_DATA: {
+      return {
+        ...state,
+        loadingProducts: action.data
+      }
+    }
     default: return state
   }
 }

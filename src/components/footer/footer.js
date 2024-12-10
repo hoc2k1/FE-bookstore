@@ -76,7 +76,7 @@ const Footer = () => {
                 <div key={index} className='col-md-4'>
                   <p className='heading-small'>{item.title}</p>
                   {item.childrens.map((children, index1) => (
-                    <Link to={children.link} className='text-link d-flex mb-3'>
+                    <Link to={children.link} key={index1} className='text-link d-flex mb-3'>
                       {children.name}
                       <br/>
                     </Link>

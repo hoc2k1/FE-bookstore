@@ -4,12 +4,14 @@ import storeConfig from "../../config/storage.config";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../../actions/user.action'
+import { keyFilter } from "../../constants/values"; 
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "Account"
+      email: "Account",
+      searchText: ''
     };
     this.menu = [
       {
@@ -96,7 +98,7 @@ class Header extends Component {
                   {
                     this.menu.map((item, index) => {
                       let is_active = false
-                      if (this.props.history && this.props.history.location.pathname == item.path) {
+                      if (this.props.history && this.props.history.location.pathname === item.path) {
                         is_active = true
                       }
                       return (
@@ -109,8 +111,17 @@ class Header extends Component {
                     }) 
                   }
                   <div className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
-                    <input type="" id="" name="" placeholder="Tìm kiếm" className="w-100 header-search-input px-3 py-2 border-0" />
-                    <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
+                    <input
+                      type="" 
+                      id=""
+                      name=""
+                      placeholder="Tìm kiếm"
+                      className="w-100 header-search-input px-3 py-2 border-0"
+                      onChange={e => this.setState({searchText: e.target.value})}
+                    />
+                    <Link to={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
+                      <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
+                    </Link>
                   </div>
                 </ul>
                 <li>

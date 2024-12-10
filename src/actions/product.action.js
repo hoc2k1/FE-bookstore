@@ -97,6 +97,7 @@ export const submitComment = (name, email, comment, id_book) => async (dispatch,
 }
 
 export const getAllBook = () => async (dispatch, getState) => {
+  dispatch(setLoadingProductsData(true))
   let filterData = getState().productReducers.product.filter
   let _link = `${url.URL_BE}book/allbook`
   let res
@@ -107,6 +108,7 @@ export const getAllBook = () => async (dispatch, getState) => {
     console.log(err.response)
     return
   }
+  dispatch(setLoadingProductsData(false))
   dispatch(setAllBook(res.data.data))
   dispatch(setTotalPage(res.data.totalPage))
 }
@@ -161,6 +163,13 @@ export const setFilter = (data) => ({
   type: productTypes.SET_FILTER,
   data
 })
+
+export const setLoadingProductsData = (data) => ({
+  type: productTypes.SET_LOADING_PRODUCTS_DATA,
+  data
+})
+
+setLoadingProductsData
 
 export const addToCart = (product) => async (dispatch, getState) => {
   if (getState().userReducers.login.islogin) {

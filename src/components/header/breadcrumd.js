@@ -8,7 +8,7 @@ const Breadcrumb = ({ history }) => {
       case 'products':
         screenName = 'Danh sách sản phẩm';
         break;
-      case 'products':
+      case 'product':
         screenName = 'Thông tin sản phẩm';
         break;
       default:

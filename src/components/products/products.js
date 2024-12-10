@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProductItem from "../product/product.item";
 import { Link } from "react-router-dom";
+import Filter from "./filter.products";
 class ContentProducts extends Component {
   constructor(props) {
     super(props);
@@ -77,6 +78,7 @@ class ContentProducts extends Component {
     return (
       <section>
         <div className="container">
+          <Filter />
           <div className="row content-home">
             <div className="col-sm-3">
               <div className="left-sidebar">
