@@ -45,8 +45,8 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    const { category, publisher, book, totalpage } = this.props
-    if (category !== null && publisher !== null && book !== null && totalpage !== null) {
+    const { category, publisher, books, totalpage } = this.props
+    if (category && publisher && books && totalpage) {
       return (
         <div className="overflow-hidden">
           <Header history={this.props.history}/>

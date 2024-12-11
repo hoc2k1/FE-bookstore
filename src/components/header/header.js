@@ -94,8 +94,8 @@ class Header extends Component {
             </div>
             <div className="flex-grow-1">
               <ul className="d-flex flex-row list-unstyled gap-3 justify-content-end align-items-center mb-0">
-                <ul className="d-flex flex-row list-unstyled gap-4 justify-content-center align-items-center mb-0 w-100">
-                  <div className="d-none d-md-flex">
+                <ul className="d-flex flex-row list-unstyled justify-content-center align-items-center mb-0 w-100">
+                  <div className="d-none d-md-flex gap-4">
                     {
                       this.menu.map((item, index) => {
                         let is_active = false
@@ -112,7 +112,7 @@ class Header extends Component {
                       }) 
                     }
                   </div>
-                  <div className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
+                  <div className="d-none d-md-flex flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
                     <input
                       type="" 
                       id=""
@@ -134,6 +134,19 @@ class Header extends Component {
                 {this.handlelogin()}
               </ul>
             </div>
+          </div>
+          <div className="d-flex d-md-none flex-grow-1 mx-3 border-bottom d-flex justify-content-between align-items-center">
+            <input
+              type="" 
+              id=""
+              name=""
+              placeholder="Tìm kiếm"
+              className="w-100 header-search-input px-3 py-2 border-0"
+              onChange={e => this.setState({searchText: e.target.value})}
+            />
+            <Link to={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
+              <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
+            </Link>
           </div>
         </div>
       </header>

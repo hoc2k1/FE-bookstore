@@ -12,7 +12,12 @@
   --font-size-heading: calc(1.125rem * 0.8);
   --font-size-text: calc(0.875rem * 0.8);
   --color-bg-footer: #efefef;
-  --color-button-text: #FFFFFF
+  --color-button-text: #FFFFFF;
+  --color-secondary-bg: rgb(251, 246, 237)
+}
+.filter-item-selected {
+  background-color: var(--color-secondary-bg);
+  border-radius: 10px;
 }
 
 .a {
