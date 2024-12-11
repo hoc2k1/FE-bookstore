@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Loading = () => {
+const Loading = ({isFull}) => {
   return (
-    <div className="spinner">
+    <div className={`${isFull ? 'full-spinner' : 'spinner'}`}>
       <img className='loading-gif' alt="" src='../../../assets/images/shop/loading.gif'></img>
     </div>
   )

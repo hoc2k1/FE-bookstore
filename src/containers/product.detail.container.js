@@ -61,7 +61,7 @@ class ProductDetailContainer extends Component {
     }
     else {
       return (
-        <Loading />
+        <Loading isFull={true}/>
       )
     }
 

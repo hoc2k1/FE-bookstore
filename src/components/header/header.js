@@ -121,9 +121,9 @@ class Header extends Component {
                       className="w-100 header-search-input px-3 py-2 border-0"
                       onChange={e => this.setState({searchText: e.target.value})}
                     />
-                    <Link to={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
+                    <a href={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
                       <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
-                    </Link>
+                    </a>
                   </div>
                 </ul>
                 <li>
@@ -144,9 +144,9 @@ class Header extends Component {
               className="w-100 header-search-input px-3 py-2 border-0"
               onChange={e => this.setState({searchText: e.target.value})}
             />
-            <Link to={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
+            <a href={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
               <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
-            </Link>
+            </a>
           </div>
         </div>
       </header>

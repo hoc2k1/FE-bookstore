@@ -5,6 +5,9 @@
 .shop-menu.pull-right {
 	float: none !important;
 }
+.gap-y-grid {
+	row-gap: 0.5rem;
+}
 
 .shop-menu .nav.navbar-nav {
 	margin-left: -30px;
@@ -133,6 +136,10 @@ ul.sub-menu {
 		padding-right: 32px;
 	}
 
+	.gap-y-grid {
+		row-gap: 1rem;
+	}
+
 	.range-price-input {
 		width: 5rem;
 	}
@@ -230,6 +237,9 @@ ul.sub-menu {
 @media (min-width: 1200px) {
 	.banner-image {
 		height: 400px;
+	}
+	.gap-y-grid {
+		row-gap: 2rem;
 	}
 	.range-price-input {
 		width: 10rem;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as userActions from '../../actions/user.action'
 import * as productActions from '../../actions/product.action'
 import { bindActionCreators } from 'redux'
-import { sortProducts, filterOptions, currency } from '../../constants/values'
+import { sortProducts, filterOptions, currency, keyFilter } from '../../constants/values'
 import Button from '../button/button'
 
 const Filter = (props) => {
@@ -23,9 +23,9 @@ const Filter = (props) => {
     objRange: false
   }
   const baseSelectedFilter = {
-    searchPublisher: [],
-    searchCategory: [],
-    searchAuthor: [],
+    searchPublisher: props.disableFilter == keyFilter.SEARCH_PUBLISHER ? props.filter[props.disableFilter]: [],
+    searchCategory: props.disableFilter == keyFilter.SEARCH_CATEGORY ? props.filter[props.disableFilter]: [],
+    searchAuthor: props.disableFilter == keyFilter.SEARCH_AUTHOR ? props.filter[props.disableFilter]: [],
     objRange: null
   }
   const [showFilterOptions, setShowFilterOptions] = useState(baseShowFilterOptions)
@@ -76,14 +76,15 @@ const Filter = (props) => {
   }
   const clearAll = () => {
     const newFilterData = props.filter
+    const valueDisableFilter = props.filter[props.disableFilter]
     newFilterData.objRange = null
     newFilterData.searchPublisher = ''
     newFilterData.searchAuthor = ''
     newFilterData.searchCategory = ''
+    newFilterData[props.disableFilter] = valueDisableFilter
 
     props.productActions.setFilter(newFilterData)
     props.productActions.getAllBook()
-
     setSelectedFilter(baseSelectedFilter);
   }
   const chooseOption = (keyFilter, item) => {
@@ -259,29 +260,31 @@ const Filter = (props) => {
       <div className={`filter-option ${showFilter && 'active'}`}>
         <div className="d-flex flex-wrap mt-2 gap-2 align-items-center">
           {filterOptions.map((item, index) => {
-            return (
-              <div key={index}>
-                {renderFilterOptions(item.title, item.key)}
-              </div>
-            )
+            if (item.key != props.disableFilter) {
+              return (
+                <div key={index}>
+                  {renderFilterOptions(item.title, item.key)}
+                </div>
+              )
+            }
           })}
         </div>
         <div className="d-flex flex-wrap mt-2 gap-2 align-items-center">
-          { selectedFilter.searchPublisher.map((item, index) => {
+          { props.disableFilter != 'searchPublisher' && selectedFilter.searchPublisher.map((item, index) => {
             return (
               <div key={`pub-${index}`}>
                 {renderFilterSelected('searchPublisher', 'Nhà sản xuất', item)}
               </div>
             )
           })}
-          { selectedFilter.searchCategory.map((item, index) => {
+          { props.disableFilter != 'searchCategory' && selectedFilter.searchCategory.map((item, index) => {
             return (
               <div key={`cate-${index}`}>
                 {renderFilterSelected('searchCategory', 'Thể loại', item)}
               </div>
             )
           })}
-          { selectedFilter.searchAuthor.map((item, index) => {
+          { props.disableFilter != 'searchAuthor' && selectedFilter.searchAuthor.map((item, index) => {
             return (
               <div key={`author-${index}`}>
                 {renderFilterSelected('searchAuthor', 'Tác giả', item)}
@@ -293,7 +296,11 @@ const Filter = (props) => {
               {renderFilterSelected('objRange', 'Giá', selectedFilter.objRange)}
             </div>
           )}
-          {(selectedFilter.objRange || selectedFilter.searchPublisher.length > 0 || selectedFilter.searchCategory.length > 0 || selectedFilter.searchAuthor.length > 0) && (
+          {(selectedFilter.objRange 
+            || (selectedFilter[keyFilter.SEARCH_PUBLISHER].length > 0 && keyFilter.SEARCH_PUBLISHER != props.disableFilter) 
+            || (selectedFilter[keyFilter.SEARCH_CATEGORY].length > 0 && keyFilter.SEARCH_CATEGORY != props.disableFilter) 
+            || (selectedFilter[keyFilter.SEARCH_AUTHOR].length > 0 && keyFilter.SEARCH_AUTHOR != props.disableFilter) 
+            ) && (
             <div>
               <span className="text-link cursor-pointer" onClick={() => clearAll()}>Xoá tất cả</span>
             </div>
@@ -320,6 +327,6 @@ return ({
 })
 }
 export default connect(
-mapStateToProps,
-mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Filter)
