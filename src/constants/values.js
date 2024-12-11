@@ -20,6 +20,25 @@ export const keyFilter = {
   PAGE: 'page'
 }
 
+export const filterOptions = [
+  {
+    key: 'searchPublisher',
+    title: 'Nhà sản xuất'
+  },
+  {
+    key: 'searchCategory',
+    title: 'Thể loại'
+  },
+  {
+    key: 'searchAuthor',
+    title: 'Tác giả'
+  },
+  {
+    key: 'objRange',
+    title: 'Giá'
+  }
+]
+
 export const LIMIT_NUMBER_OF_PRODUCTS = 30
 
 export const sortProducts = [
@@ -60,3 +79,5 @@ export const sortProducts = [
     label: 'Thời gian ⬇'
   }
 ]
+
+export const currency = 'đ'

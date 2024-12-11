@@ -10,6 +10,10 @@
 	margin-left: -30px;
 }
 
+.range-price-input {
+	width: 5rem;
+}
+
 .mainmenu {
 	width: 100%;
 }
@@ -128,6 +132,10 @@ ul.sub-menu {
 		padding-left: 32px;
 		padding-right: 32px;
 	}
+
+	.range-price-input {
+		width: 5rem;
+	}
 	
 	.banner-image {
 		height: 400px;
@@ -222,5 +230,8 @@ ul.sub-menu {
 @media (min-width: 1200px) {
 	.banner-image {
 		height: 400px;
+	}
+	.range-price-input {
+		width: 10rem;
 	}
 }

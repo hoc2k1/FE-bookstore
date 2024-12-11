@@ -48,7 +48,7 @@ class HomeContainer extends React.Component {
     const { category, publisher, book, totalpage } = this.props
     if (category !== null && publisher !== null && book !== null && totalpage !== null) {
       return (
-        <div>
+        <div className="overflow-hidden">
           <Header history={this.props.history}/>
           <Breadcrumb history={this.props.history}/>
           <Products

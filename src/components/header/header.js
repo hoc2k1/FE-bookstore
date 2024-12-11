@@ -95,21 +95,23 @@ class Header extends Component {
             <div className="flex-grow-1">
               <ul className="d-flex flex-row list-unstyled gap-3 justify-content-end align-items-center mb-0">
                 <ul className="d-flex flex-row list-unstyled gap-4 justify-content-center align-items-center mb-0 w-100">
-                  {
-                    this.menu.map((item, index) => {
-                      let is_active = false
-                      if (this.props.history && this.props.history.location.pathname === item.path) {
-                        is_active = true
-                      }
-                      return (
-                        <li key={index}>
-                          <Link to={item.path} className={`heading text-link ${is_active ? 'active' : ''} `}>
-                            {item.name}
-                          </Link>
-                        </li>
-                      )
-                    }) 
-                  }
+                  <div className="d-none d-md-flex">
+                    {
+                      this.menu.map((item, index) => {
+                        let is_active = false
+                        if (this.props.history && this.props.history.location.pathname === item.path) {
+                          is_active = true
+                        }
+                        return (
+                          <li key={index}>
+                            <Link to={item.path} className={`heading text-link ${is_active ? 'active' : ''} `}>
+                              {item.name}
+                            </Link>
+                          </li>
+                        )
+                      }) 
+                    }
+                  </div>
                   <div className="flex-grow-1 mx-5 border-bottom d-flex justify-content-between align-items-center">
                     <input
                       type="" 

@@ -24,7 +24,7 @@ class HomeContainer extends Component {
     const { category, banner, totalpage } = this.props
     if (category && banner && totalpage ) {
       return (
-        <div>
+        <div className="overflow-hidden">
           <Header history={this.props.history}/>
           <Home
             category={this.props.category}

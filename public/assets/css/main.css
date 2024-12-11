@@ -12,6 +12,7 @@
   --font-size-heading: calc(1.125rem * 0.8);
   --font-size-text: calc(0.875rem * 0.8);
   --color-bg-footer: #efefef;
+  --color-button-text: #FFFFFF
 }
 
 .a {
@@ -20,8 +21,52 @@
   max-width: 1432px;
 }
 
+.button {
+  background-color: var(--color-theme);
+  color: var(--color-button-text);
+  overflow: hidden;
+  padding: 10px;
+  opacity: var(--icon-opacity);
+}
+.button-content {
+  transition: transform 0.2s ease-in-out;
+}
+.button:hover {
+  opacity: 1;
+}
+.button:active .button-content {
+  transform: scale(0.95);
+}
+
+.list-options-filter {
+  top: calc(100% + 1rem);
+  left: 0;
+  z-index: 99;
+}
+.icon-checkbox {
+  width: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  height: 20px;
+  font-size: 20px;
+  margin-right: 6px;
+}
+.icon_filter_aimation {
+  margin-left: 6px;
+  transition: transform ease-in-out 0.3s;
+}
+.icon_filter_aimation.is_open_filter {
+  transform: rotate(180deg);
+}
+
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .footer, .breadcrumb {
@@ -36,7 +81,7 @@
   }
 }
 
-body {
+body, input {
   color: var(--color-text);
   font-size: var(--font-size-text);
 }
@@ -133,12 +178,15 @@ body {
 }
 .filter-option {
   max-height: 0px;
-  overflow: hidden;
-  transition: max-height ease-in-out 0.3s;
+  pointer-events: none;
+  opacity: 0;
+  transition: all ease-in-out 0.3s;
 }
 .filter-option.active {
-  max-height: 1000px;
-  transition: max-height ease-in-out 0s;
+  max-height: 500px;
+  pointer-events: unset;
+  opacity: 1;
+  overflow: none;
 }
 
 .btn-custom {
@@ -3031,11 +3079,11 @@ textarea {
   text-align: center;
 }
 
-.header-search-input {
+.header-search-input, .color-bg, input {
   background-color: var(--color-bg);
 }
 
-.header-search-input:focus-visible {
+.header-search-input:focus-visible, input {
   outline: none;
 }
 
