@@ -15,14 +15,18 @@ class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      disableFilter: ''
+      disableFilter: '',
+      urlParam: {
+        key: null,
+        value: null
+      }
     }
   }
   componentWillMount() {
     const filterData = baseFilter
     const arrayDisableFilter = [keyFilter.SEARCH_AUTHOR, keyFilter.SEARCH_CATEGORY, keyFilter.SEARCH_PUBLISHER]
     if(this.props.location.search) {
-      const searchURI = this.props.location.search[0] == '?' ? decodeURI(this.props.location.search.slice(1)) : decodeURI(this.props.location.search);
+      const searchURI = this.props.location.search[0] === '?' ? decodeURI(this.props.location.search.slice(1)) : decodeURI(this.props.location.search);
       searchURI.split('&').map((item, index) => {
         if (item.split('=') && item.split('=')[0] && item.split('=')[1]) {
           const key = item.split('=')[0]
@@ -35,6 +39,12 @@ class HomeContainer extends React.Component {
           }
           else listValue = item.split('=')[1]
           filterData[key] = listValue
+          if (key !== 'page') {
+            this.state.urlParam = {
+              key: key,
+              value: listValue
+            }
+          }
         }
       })
     }
@@ -54,7 +64,7 @@ class HomeContainer extends React.Component {
           <Header history={this.props.history}/>
           <div className="d-flex flex-column flex-grow-1">
             <Breadcrumb history={this.props.history}/>
-            <Products disableFilter={this.state.disableFilter}/>
+            <Products history={this.props.history} disableFilter={this.state.disableFilter} urlParam={this.state.urlParam}/>
           </div>
           <Footer />
         </div>

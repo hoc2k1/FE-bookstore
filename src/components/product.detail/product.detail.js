@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Header from "../header/header"
-import FooterTop from "../footer/footer.top";
-import FooterMiddle from "../footer/footer.middle";
-import FooterBottom from "../footer/footer.bottom";
+import Footer from '../footer/footer'
 import ContentProductDetail from "./cotent.product.detail";
 class ProductDetail extends Component {
   constructor(props) {
@@ -19,7 +17,7 @@ class ProductDetail extends Component {
         <ContentProductDetail
           category={this.props.category}
           publisher={this.props.publisher}
-          mproductDetail={this.props.mproductDetail}
+          productDetail={this.props.productDetail}
           nameCategory={this.props.nameCategory}
           namePublicsher={this.props.namePublicsher}
           bookrelated={this.props.bookrelated}
@@ -37,11 +35,7 @@ class ProductDetail extends Component {
           nextPage={() => this.props.nextPage()}
           setPage={page => this.props.setPage(page)}
         />
-        <footer id="footer">
-          <FooterTop />
-          <FooterMiddle />
-          <FooterBottom />
-        </footer>
+        <Footer />
       </div>
     );
   }

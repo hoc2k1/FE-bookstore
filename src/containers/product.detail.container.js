@@ -17,10 +17,10 @@ class ProductDetailContainer extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.mproductDetail !== null) {
-      this.props.productActions.getNameCategoryByID(nextProps.mproductDetail.id_category)
-      this.props.productActions.getNamePubliserByID(nextProps.mproductDetail.id_nsx)
-      this.props.productActions.getNameAuthorByID(nextProps.mproductDetail.id_author)
+    if (nextProps.productDetail !== null) {
+      this.props.productActions.getNameCategoryByID(nextProps.productDetail.id_category)
+      this.props.productActions.getNamePubliserByID(nextProps.productDetail.id_nsx)
+      this.props.productActions.getNameAuthorByID(nextProps.productDetail.id_author)
     }
     if (nextProps.page !== this.props.page) {
       this.props.productActions.getCommentByIDBook(this.props.match.params.id)
@@ -29,13 +29,13 @@ class ProductDetailContainer extends Component {
   }
 
   render() {
-    if (this.props.mproductDetail && this.props.nameCategory && this.props.namePublicsher && this.props.nameAuthor) {
+    if (this.props.productDetail && this.props.nameCategory && this.props.namePublicsher && this.props.nameAuthor) {
       return (
         <div>
           <ProductDetail
             category={this.props.category}
             publisher={this.props.publisher}
-            mproductDetail={this.props.mproductDetail}
+            productDetail={this.props.productDetail}
             nameCategory={this.props.nameCategory}
             namePublicsher={this.props.namePublicsher}
             islogin={this.props.islogin}
@@ -71,7 +71,7 @@ class ProductDetailContainer extends Component {
 const mapStateToProps = state => ({
   category: state.homeReducers.category.data,
   publisher: state.homeReducers.publisher.data,
-  mproductDetail: state.productReducers.product.productDetail,
+  productDetail: state.productReducers.product.productDetail,
   nameCategory: state.productReducers.product.nameCategory,
   namePublicsher: state.productReducers.product.namePublicsher,
   nameAuthor: state.productReducers.product.nameAuthor,

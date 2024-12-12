@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import FooterBottom from "../footer/footer.bottom";
-import FooterMiddle from "../footer/footer.middle";
-import FooterTop from "../footer/footer.top";
+import Footer from '../footer/footer'
 import Header from "../header/header"
 class HistoryPurchase extends Component {
   constructor(props) {
@@ -312,11 +310,7 @@ class HistoryPurchase extends Component {
             </div>
           </section>
         </div>
-        <footer id="footer">
-          <FooterTop />
-          <FooterMiddle />
-          <FooterBottom />
-        </footer>
+        <Footer />
       </div>
     );
   }

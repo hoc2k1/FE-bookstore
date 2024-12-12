@@ -115,7 +115,7 @@ class ContentProductDetail extends Component {
     } else {
       this.setState({ noti: true });
     }
-    let product = this.props.mproductDetail;
+    let product = this.props.productDetail;
     product.count = this.state.quantity;
     this.props.addToCart(product);
   };
@@ -166,7 +166,7 @@ class ContentProductDetail extends Component {
               <div className="product-details">
                 <div className="col-sm-5">
                   <div className="view-product">
-                    <img src={this.props.mproductDetail.img} alt="" />
+                    <img src={this.props.productDetail.img} alt="" />
                   </div>
 
                 </div>
@@ -177,14 +177,14 @@ class ContentProductDetail extends Component {
                       className="newarrival"
                       alt=""
                     />
-                    <h2>{this.props.mproductDetail.name}</h2>
+                    <h2>{this.props.productDetail.name}</h2>
 
                     <img src="images/product-details/rating.png" alt="" />
 
                     <span>
                       <div>
                         <span>Giá:</span>
-                        <span>{this.props.mproductDetail.price}</span>
+                        <span>{this.props.productDetail.price}</span>
 
                       </div>
                       <div className='count-product'>
@@ -214,7 +214,7 @@ class ContentProductDetail extends Component {
                     <p>
                       <b>Release date </b>{" "}
                       {new Date(
-                        this.props.mproductDetail.release_date
+                        this.props.productDetail.release_date
                       ).toDateString("yyyy-MM-dd")}
                     </p>
                     <p>

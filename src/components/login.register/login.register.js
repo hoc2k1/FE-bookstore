@@ -1,8 +1,6 @@
 import React from 'react'
 import Header from '../header/header'
-import FooterTop from '../footer/footer.top'
-import FooterMiddle from '../footer/footer.middle'
-import FooterBottom from '../footer/footer.bottom'
+import Footer from '../footer/footer'
 import ContentLoginRegister from './content.login.register'
 const Home = ({ setEmailogin, setPasswordlogin, setEmail,
   setFirstname, setLastname, setAddress, setPhone, setPassword, setConfirm,
@@ -32,11 +30,7 @@ const Home = ({ setEmailogin, setPasswordlogin, setEmail,
       registerSubmit={() => registerSubmit()}
       loginSubmit={() => loginSubmit()}
     />
-    <footer id="footer">
-      <FooterTop />
-      <FooterMiddle />
-      <FooterBottom />
-    </footer>
+    <Footer />
   </div>
 
 )

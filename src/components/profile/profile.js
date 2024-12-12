@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import FooterBottom from "../footer/footer.bottom";
-import FooterMiddle from "../footer/footer.middle";
-import FooterTop from "../footer/footer.top";
+import Footer from '../footer/footer'
 import Header from "../header/header"
 
 class Profile extends Component {
@@ -186,11 +184,7 @@ class Profile extends Component {
             </div>
           </div>
         </section>
-        <footer id="footer">
-          <FooterTop />
-          <FooterMiddle />
-          <FooterBottom />
-        </footer>
+        <Footer />
       </div>
     );
   }

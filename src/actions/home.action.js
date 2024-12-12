@@ -80,15 +80,7 @@ export const getBook = () => async (dispatch, getState) => {
     sorttype = 'view_counts'
     sortorder = '1'
   }
-  let branch = getState().homeReducers.book.branch
   let _link = `${url.URL_BE}book/allbook`
-  if (branch === 'category') {
-    _link = `${url.URL_BE}book/category`
-  } else if (branch === 'publisher') {
-    _link = `${url.URL_BE}book/publisher`
-  } else if (branch === 'author') {
-    _link = `${url.URL_BE}book/author`
-  }
   let res
   try {
     res = await axios.post(_link, {

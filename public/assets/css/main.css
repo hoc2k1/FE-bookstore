@@ -132,14 +132,12 @@ body, input {
 .heading-small {
   font-size: calc(var(--font-size-heading) * 0.8);
   font-weight: bold;
-  text-transform: capitalize;
   transition: all 0.3s;
 }
 
 .heading {
   font-size: var(--font-size-heading);
   font-weight: bold;
-  text-transform: capitalize;
   transition: all 0.3s;
 }
 

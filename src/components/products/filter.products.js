@@ -23,15 +23,15 @@ const Filter = (props) => {
     objRange: false
   }
   const baseSelectedFilter = {
-    searchPublisher: props.disableFilter == keyFilter.SEARCH_PUBLISHER ? props.filter[props.disableFilter]: [],
-    searchCategory: props.disableFilter == keyFilter.SEARCH_CATEGORY ? props.filter[props.disableFilter]: [],
-    searchAuthor: props.disableFilter == keyFilter.SEARCH_AUTHOR ? props.filter[props.disableFilter]: [],
+    searchPublisher: props.disableFilter === keyFilter.SEARCH_PUBLISHER ? props.filter[props.disableFilter]: [],
+    searchCategory: props.disableFilter === keyFilter.SEARCH_CATEGORY ? props.filter[props.disableFilter]: [],
+    searchAuthor: props.disableFilter === keyFilter.SEARCH_AUTHOR ? props.filter[props.disableFilter]: [],
     objRange: null
   }
   const [showFilterOptions, setShowFilterOptions] = useState(baseShowFilterOptions)
   const [selectedFilter, setSelectedFilter] = useState(baseSelectedFilter)
   useEffect(() => {
-    const keyFilterOptionOpened = Object.keys(showFilterOptions).filter(item => showFilterOptions[item] == true)[0]
+    const keyFilterOptionOpened = Object.keys(showFilterOptions).filter(item => showFilterOptions[item] === true)[0]
     if (keyFilterOptionOpened) {
       const popup = popupRef[keyFilterOptionOpened].current;
       const viewportWidth = window.innerWidth;
@@ -48,7 +48,7 @@ const Filter = (props) => {
   }, [showFilterOptions])
   const handleSort = (event) => {
     const newFilterData = props.filter
-    const newSort = sortProducts.filter(item => item.sortKey == event.target.value)[0]
+    const newSort = sortProducts.filter(item => item.sortKey === event.target.value)[0]
     newFilterData.sortType = newSort.sortType
     newFilterData.sortOrder = newSort.sortOrder
     props.productActions.setFilter(newFilterData)
@@ -56,7 +56,7 @@ const Filter = (props) => {
   }
 
   const removeOption = (keyFilter, value) => {
-    if (keyFilter == 'objRange') {
+    if (keyFilter === 'objRange') {
       const newFilterData = props.filter
       newFilterData.objRange = null
 
@@ -92,7 +92,7 @@ const Filter = (props) => {
     newFilterData[keyFilter] = []
 
     selectedFilter[keyFilter] && selectedFilter[keyFilter].map((option, index) => {
-      if (option._id != item._id) {
+      if (option._id !== item._id) {
         newFilterData[keyFilter].push(option._id)
       }
     })
@@ -119,7 +119,7 @@ const Filter = (props) => {
     });
   }
   const handleFilterPrice = () => {
-    if (lowPrice != null && lowPrice != '' && highPrice != null && highPrice != '' && !isNaN(lowPrice) && !isNaN(highPrice) && parseInt(lowPrice) <= parseInt(highPrice)) {
+    if (lowPrice !== null && lowPrice !== '' && highPrice !== null && highPrice !== '' && !isNaN(lowPrice) && !isNaN(highPrice) && parseInt(lowPrice) <= parseInt(highPrice)) {
       const newFilterData = props.filter
       newFilterData.objRange = {
         low: parseInt(lowPrice),
@@ -140,7 +140,7 @@ const Filter = (props) => {
       
     }
     else {
-      if (!(lowPrice != null && lowPrice != '' && highPrice != null && highPrice != '')) {
+      if (!(lowPrice !== null && lowPrice !== '' && highPrice !== null && highPrice !== '')) {
         alert('Hãy nhập đủ giá trị!')
       }
       else if (!(!isNaN(lowPrice) && !isNaN(highPrice))) {
@@ -181,7 +181,7 @@ const Filter = (props) => {
                   <div
                     key={index}
                     onClick={() => chooseOption(filterKey, item)}
-                    className={`d-flex p-2 align-items-center cursor-pointer ${(index != listData.length - 1) ? 'border-bottom' : '' }`}
+                    className={`d-flex p-2 align-items-center cursor-pointer ${(index !== listData.length - 1) ? 'border-bottom' : '' }`}
                   >
                     <i className={`icon-checkbox ${selectedFilter[filterKey].includes(item) ? 'fa fa-check-square' : 'border'}`}></i>
                     <span className="text-nowrap text-capitalize">{item.name}</span>
@@ -249,7 +249,7 @@ const Filter = (props) => {
           <span className='text-nowrap'>Sắp xếp: </span>
           <select className='select' onChange={handleSort}>
             {sortProducts.map((item, index) => {
-              const defaultValue = props.filter.sortType + (props.filter.sortOrder == '1' ? 'asc' : 'dec')
+              const defaultValue = props.filter.sortType + (props.filter.sortOrder === '1' ? 'asc' : 'dec')
               return (
                 <option key={index} defaultValue={defaultValue} value={item.sortKey}>{ item.label }</option>
               )
@@ -260,7 +260,7 @@ const Filter = (props) => {
       <div className={`filter-option ${showFilter && 'active'}`}>
         <div className="d-flex flex-wrap mt-2 gap-2 align-items-center">
           {filterOptions.map((item, index) => {
-            if (item.key != props.disableFilter) {
+            if (item.key !== props.disableFilter) {
               return (
                 <div key={index}>
                   {renderFilterOptions(item.title, item.key)}
@@ -270,21 +270,21 @@ const Filter = (props) => {
           })}
         </div>
         <div className="d-flex flex-wrap mt-2 gap-2 align-items-center">
-          { props.disableFilter != 'searchPublisher' && selectedFilter.searchPublisher.map((item, index) => {
+          { props.disableFilter !== 'searchPublisher' && selectedFilter.searchPublisher.map((item, index) => {
             return (
               <div key={`pub-${index}`}>
                 {renderFilterSelected('searchPublisher', 'Nhà sản xuất', item)}
               </div>
             )
           })}
-          { props.disableFilter != 'searchCategory' && selectedFilter.searchCategory.map((item, index) => {
+          { props.disableFilter !== 'searchCategory' && selectedFilter.searchCategory.map((item, index) => {
             return (
               <div key={`cate-${index}`}>
                 {renderFilterSelected('searchCategory', 'Thể loại', item)}
               </div>
             )
           })}
-          { props.disableFilter != 'searchAuthor' && selectedFilter.searchAuthor.map((item, index) => {
+          { props.disableFilter !== 'searchAuthor' && selectedFilter.searchAuthor.map((item, index) => {
             return (
               <div key={`author-${index}`}>
                 {renderFilterSelected('searchAuthor', 'Tác giả', item)}
@@ -297,9 +297,9 @@ const Filter = (props) => {
             </div>
           )}
           {(selectedFilter.objRange 
-            || (selectedFilter[keyFilter.SEARCH_PUBLISHER].length > 0 && keyFilter.SEARCH_PUBLISHER != props.disableFilter) 
-            || (selectedFilter[keyFilter.SEARCH_CATEGORY].length > 0 && keyFilter.SEARCH_CATEGORY != props.disableFilter) 
-            || (selectedFilter[keyFilter.SEARCH_AUTHOR].length > 0 && keyFilter.SEARCH_AUTHOR != props.disableFilter) 
+            || (selectedFilter[keyFilter.SEARCH_PUBLISHER].length > 0 && keyFilter.SEARCH_PUBLISHER !== props.disableFilter) 
+            || (selectedFilter[keyFilter.SEARCH_CATEGORY].length > 0 && keyFilter.SEARCH_CATEGORY !== props.disableFilter) 
+            || (selectedFilter[keyFilter.SEARCH_AUTHOR].length > 0 && keyFilter.SEARCH_AUTHOR !== props.disableFilter) 
             ) && (
             <div>
               <span className="text-link cursor-pointer" onClick={() => clearAll()}>Xoá tất cả</span>

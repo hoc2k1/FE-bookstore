@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Header from "../header/header"
-import FooterTop from "../footer/footer.top";
-import FooterMiddle from "../footer/footer.middle";
-import FooterBottom from "../footer/footer.bottom";
+import Footer from "../footer/footer";
 import ContentCart from "./content.cart";
 class Cart extends Component {
   constructor() {
@@ -29,11 +27,7 @@ class Cart extends Component {
             this.props.payment(address, phone, name, total)}
           ispay={this.props.ispay}
         />
-        <footer id="footer">
-          <FooterTop />
-          <FooterMiddle />
-          <FooterBottom />
-        </footer>
+        <Footer />
       </div>
     );
   }

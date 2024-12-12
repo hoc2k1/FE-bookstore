@@ -2,6 +2,7 @@ import React from 'react'
 import ProductCard from './product.card'
 import { connect } from 'react-redux'
 import Loading from '../loading/loading'
+import ProductsPagination from './products.pagination'
 
 const ProductGrid = (props) => {
   if (props.loadingData) {
@@ -39,7 +40,8 @@ const ProductGrid = (props) => {
 
 const mapStateToProps = state => ({
   books: state.productReducers.product.books,
-  loadingData: state.productReducers.product.loadingProducts
+  loadingData: state.productReducers.product.loadingProducts,
+  totalPage: state.productReducers.totalpage
 })
 
 export default connect(
