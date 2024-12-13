@@ -4,9 +4,10 @@ import storeConfig from '../config/storage.config'
 export const getBookDetail = (id) => async (dispatch, getState) => {
   let res
   try {
-    res = await axios.get(`${url.URL_BE}book/` + id)
+    res = await axios.get(`${url.URL_BE}book/id/` + id)
   }
   catch (err) {
+    console.error('error', err)
     return
   }
   dispatch(setProductDetail(res.data.data))

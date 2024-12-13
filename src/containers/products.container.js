@@ -80,7 +80,6 @@ class HomeContainer extends React.Component {
 const mapStateToProps = state => ({
   category: state.homeReducers.category.data,
   publisher: state.homeReducers.publisher.data,
-  banner: state.homeReducers.banner.data,
   author: state.homeReducers.author.data,
   books: state.productReducers.product.books,
   totalpage: state.productReducers.product.totalpage

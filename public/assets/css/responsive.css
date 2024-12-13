@@ -129,11 +129,17 @@ ul.sub-menu {
 	padding-left: 16px;
 	padding-right: 16px;
 }
+.add-to-card-icon {
+	height: 35px;
+}
 
 @media (min-width: 768px) {
 	.container {
 		padding-left: 32px;
 		padding-right: 32px;
+	}
+	.add-to-card-icon {
+		height: 39px;
 	}
 
 	.gap-y-grid {

@@ -6,56 +6,45 @@ import * as productActions from '../actions/product.action'
 import * as homeActions from '../actions/home.action'
 import * as userActions from '../actions/user.action'
 import Loading from '../components/loading/loading'
+import { checkEmpty } from '../config/identify'
+import Header from '../components/header/header'
+import Footer from '../components/footer/footer'
+
 class ProductDetailContainer extends Component {
   componentWillMount() {
     this.props.actions.auth()
     this.props.homeActions.getCategory()
     this.props.homeActions.getPublisher()
+    this.props.homeActions.getAuthor()
     this.props.productActions.getBookDetail(this.props.match.params.id)
     this.props.productActions.getBookRelated(this.props.match.params.id)
     this.props.productActions.getCommentByIDBook(this.props.match.params.id)
-
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.productDetail !== null) {
-      this.props.productActions.getNameCategoryByID(nextProps.productDetail.id_category)
-      this.props.productActions.getNamePubliserByID(nextProps.productDetail.id_nsx)
-      this.props.productActions.getNameAuthorByID(nextProps.productDetail.id_author)
-    }
-    if (nextProps.page !== this.props.page) {
-      this.props.productActions.getCommentByIDBook(this.props.match.params.id)
-    }
-
   }
 
   render() {
-    if (this.props.productDetail && this.props.nameCategory && this.props.namePublicsher && this.props.nameAuthor) {
+    if (checkEmpty(this.props.productDetail) && checkEmpty(this.props.category) && checkEmpty(this.props.author) && checkEmpty(this.props.publisher) ) {
       return (
-        <div>
-          <ProductDetail
-            category={this.props.category}
-            publisher={this.props.publisher}
-            productDetail={this.props.productDetail}
-            nameCategory={this.props.nameCategory}
-            namePublicsher={this.props.namePublicsher}
-            islogin={this.props.islogin}
-            setSearchText={(value) => this.props.homeActions.setSearchText(value)}
-            sortType={this.props.sortType}
-            setSortType={(value) => this.props.homeActions.setSortType(value)}
-            bookrelated={this.props.bookrelated}
-            logout={() => this.props.actions.logout()}
-            id_book={this.props.match.params.id}
-            submitComment={(name, email, comment, id_book) => this.props.productActions.submitComment(name, email, comment, id_book)}
-            comment={this.props.comment}
-            nameAuthor={this.props.nameAuthor}
-            addToCart={(product) => this.props.productActions.addToCart(product)}
-            totalpage={this.props.totalpage}
-            page={this.props.page}
-            backPage={() => this.props.productActions.backPage()}
-            nextPage={() => this.props.productActions.nextPage()}
-            setPage={(page) => this.props.productActions.setPage(page)}
-            history={this.props.history}
-          />
+        <div className="overflow-auto d-flex flex-column min-h-full">
+          <Header history={this.props.history}/>
+          <div className="d-flex flex-column flex-grow-1">
+            <ProductDetail
+              category={this.props.category}
+              publisher={this.props.publisher}
+              productDetail={this.props.productDetail}
+              nameCategory={this.props.category.filter(item => item._id == this.props.productDetail.id_category)[0].name}
+              namePublisher={this.props.publisher.filter(item => item._id == this.props.productDetail.id_nsx)[0].name}
+              nameAuthor={this.props.author.filter(item => item._id == this.props.productDetail.id_author)[0].name}
+              
+              islogin={this.props.islogin}
+              bookrelated={this.props.bookrelated}
+              id_book={this.props.match.params.id}
+              submitComment={(name, email, comment, id_book) => this.props.productActions.submitComment(name, email, comment, id_book)}
+              comment={this.props.comment}
+              addToCart={(product) => this.props.productActions.addToCart(product)}
+              history={this.props.history}
+            />
+          </div>
+          <Footer />
         </div>
       )
     }
@@ -71,15 +60,11 @@ class ProductDetailContainer extends Component {
 const mapStateToProps = state => ({
   category: state.homeReducers.category.data,
   publisher: state.homeReducers.publisher.data,
+  author: state.homeReducers.author.data,
   productDetail: state.productReducers.product.productDetail,
-  nameCategory: state.productReducers.product.nameCategory,
-  namePublicsher: state.productReducers.product.namePublicsher,
-  nameAuthor: state.productReducers.product.nameAuthor,
   islogin: state.userReducers.login.islogin,
   bookrelated: state.productReducers.product.bookrelated,
   comment: state.productReducers.product.comment,
-  totalpage: state.productReducers.product.totalpage,
-  page: state.productReducers.product.page,
 })
 const mapDispatchToProps = dispatch => {
   return ({

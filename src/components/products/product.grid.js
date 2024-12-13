@@ -2,7 +2,6 @@ import React from 'react'
 import ProductCard from './product.card'
 import { connect } from 'react-redux'
 import Loading from '../loading/loading'
-import ProductsPagination from './products.pagination'
 
 const ProductGrid = (props) => {
   if (props.loadingData) {

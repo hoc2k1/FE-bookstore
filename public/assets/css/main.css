@@ -13,15 +13,43 @@
   --font-size-text: calc(0.875rem * 0.8);
   --color-bg-footer: #efefef;
   --color-button-text: #FFFFFF;
-  --color-secondary-bg: rgb(251, 246, 237)
+  --color-price-after-sale: #CC0033;
+  --color-price-before-sale: #999999;
+  --color-secondary-bg: #FBF6ED;
+  --out-of-stock-button: #CCCCCC;
+}
+.add-to-card-button {
+  display: flex;
+  width: 100%;
+  background-color: var(--color-secondary-bg);
+  align-items: center;
+  justify-content: center;
+}
+.add-to-card-icon {
+	background-color: var(--color-secondary-bg);
+	cursor: pointer;
+	aspect-ratio: 1;
+	padding: 0.5rem;
+  margin-left: 0.5rem;
 }
 .filter-item-selected {
   background-color: var(--color-secondary-bg);
   border-radius: 10px;
 }
+.out-of-stock-button {
+  background-color: var(--out-of-stock-button);
+}
 .product-card {
   height: 100%;
   padding: 1rem
+}
+
+.color-price-after-sale {
+  color: var(--color-price-after-sale);
+}
+.color-price-before-sale {
+  color: var(--color-price-before-sale);
+  text-decoration: line-through;
 }
 
 .a {

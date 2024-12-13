@@ -17,7 +17,7 @@ const product = (state = { productDetail: null, bookrelated: [], comment: [], pa
     case productTypes.SET_NAME_PUBLICSHER: {
       return {
         ...state,
-        namePublicsher: action.name
+        namePublisher: action.name
       }
     }
     case productTypes.SET_NAME_AUTHOR: {
