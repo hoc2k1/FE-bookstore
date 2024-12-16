@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { productTypes } from '../constants/action.types'
-const product = (state = { productDetail: null, bookrelated: [], comment: [], page: 1, totalpage: null }, action) => {
+const product = (state = { productDetail: null, bookRelated: {}, comment: [], page: 1, totalpage: null }, action) => {
   switch (action.type) {
     case productTypes.SET_PRODUCT_DETAIL: {
       return {
@@ -29,7 +29,7 @@ const product = (state = { productDetail: null, bookrelated: [], comment: [], pa
     case productTypes.SET_BOOK_RELATED: {
       return {
         ...state,
-        bookrelated: action.bookrelated
+        bookRelated: action.bookRelated
       }
     }
     case productTypes.SET_COMMENT: {

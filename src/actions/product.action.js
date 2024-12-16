@@ -68,9 +68,9 @@ export const setNamePubliser = (name) => ({
   name
 })
 
-export const setBookRelated = (bookrelated) => ({
+export const setBookRelated = (bookRelated) => ({
   type: productTypes.SET_BOOK_RELATED,
-  bookrelated
+  bookRelated
 })
 export const setNameAuthor = (name) => ({
   type: productTypes.SET_NAME_AUTHOR,

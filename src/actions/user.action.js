@@ -2,26 +2,70 @@ import { userTypes, url } from '../constants/action.types'
 import storeConfig from '../config/storage.config'
 import axios from 'axios'
 
-export const loginSuccess = (token, user) => async (dispatch, getState) => {
-  storeConfig.setUser(user)
-  storeConfig.setToken(token)
-  dispatch(setLoginSuccess())
+export const register = (data) => async (dispatch, getState) => {
+  try {
+    await axios.post(`${url.URL_BE}user/register`, {
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName
+    })
+    dispatch(login({email: data.email, password: data.password}))
+    return true
+  }
+  catch (err) {
+    console.error(err)
+    return false
+    // if (err.response.data.msg === "Email already exist")
+    //   this.setState({ notificationRegister: 'Email already exist' })
+    // else
+    //   this.setState({ notificationRegister: 'Đăng Ký Thất Bại' })
+    // return
+  }
+}
 
-  let cart = storeConfig.getCart()
-  storeConfig.removeCart()
-  if (cart !== null) {
-    let res
-    try {
-      res = await axios.post(`${url.URL_BE}cart/addtocard`, {
-        id_user: user.id,
-        products: cart
-      })
-    }
-    catch (err) {
-      console.log(JSON.stringify(err.response))
-      return
-    }
+export const login = (data) => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}user/login`, {
+      email: data.email,
+      password: data.password
+    })
+    if(res) {
+      storeConfig.setUser(res.data.user)
+      storeConfig.setToken(res.data.token)
+      dispatch(setLoginSuccess())
 
+      let cart = storeConfig.getCart()
+      storeConfig.removeCart()
+      if (cart !== null) {
+        let res
+        try {
+          res = await axios.post(`${url.URL_BE}cart/addtocard`, {
+            id_user: res.data.user._id,
+            products: cart
+          })
+        }
+        catch (err) {
+          console.log(JSON.stringify(err.response))
+        }
+      }
+      return true
+    }
+  }
+  catch (err) {
+    console.error(err)
+    return false
+    // if (err.response !== undefined) {
+    //   if (err.response.data.msg === "no_registration_confirmation")
+    //     this.setState({ notificationLogin: 'Tài Khoản Chưa Được Kích Hoạt, Vui Lòng Vào mail Để Kích Hoạt' })
+    //   else {
+    //     this.setState({ notificationLogin: 'Email or password invalid' })
+    //   }
+    // }
+    // else {
+    //   this.setState({ notificationLogin: 'Some thing went wrong' })
+    // }
   }
 }
 export const auth = () => async (dispatch, getState) => {
@@ -39,11 +83,18 @@ export const auth = () => async (dispatch, getState) => {
     })
   }
   catch (err) {
+    console.log(888, err)
     dispatch(setLoginFail())
     return false
   }
-  dispatch(setLoginSuccess())
-  return true
+  if (res.error) {
+    dispatch(setLoginFail())
+    return false
+  }
+  else {
+    dispatch(setLoginSuccess())
+    return true
+  }
 }
 export const resetIsLogin = () => ({
   type: userTypes.RESET_IS_LOGIN
@@ -89,21 +140,6 @@ export const submitForgotPassword = (email) => async (dispatch, getState) => {
   }
   dispatch(setEmailForgotPassword(res.data.email))
   dispatch(forgotEmailSuccess())
-}
-export const submitOTP = (otp) => async (dispatch, getState) => {
-  let res
-  try {
-    res = await axios.post(`${url.URL_BE}user/verify/forgotpassword`, {
-      email: getState().userReducers.forgotPassword.email,
-      otp: otp,
-    })
-  }
-  catch (err) {
-    dispatch(verifyOTPFAIL())
-    return
-  }
-  dispatch(verifyOTPSuccess(otp))
-
 }
 export const verifyOTPSuccess = (otp) => ({
   type: userTypes.VERIFY_OTP_SUCCESS,

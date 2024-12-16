@@ -8,15 +8,6 @@ exports.removeToken = () => {
 exports.getToken = () => {
   return localStorage.getItem('token')
 }
-exports.setEmail = (email) => {
-  localStorage.setItem('email', email)
-}
-exports.removeEmail = () => {
-  localStorage.removeItem('email')
-}
-exports.getEmail = () => {
-  return localStorage.getItem('email')
-}
 exports.setUser = (user) => {
   localStorage.setItem("user", JSON.stringify(user))
 }

@@ -13,6 +13,10 @@
 	margin-left: -30px;
 }
 
+.normal-width-input {
+	width: 100%;
+}
+
 .range-price-input {
 	width: 5rem;
 }
@@ -137,6 +141,9 @@ ul.sub-menu {
 	.container {
 		padding-left: 32px;
 		padding-right: 32px;
+	}
+	.normal-width-input {
+		width: 768px;
 	}
 	.add-to-card-icon {
 		height: 39px;

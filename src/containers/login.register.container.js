@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginRegister from '../components/login.register/login.register'
 import * as userActions from '../actions/user.action'
-import * as homeActions from '../actions/home.action'
-import { url } from '../constants/action.types'
+import Header from '../components/header/header'
+import Footer from '../components/footer/footer'
+import { inputStatus, loginForm, registerForm  } from '../constants/values'
 class LoginRegisterContainer extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
+      login: {
+        values: [],
+        checkValidate: [],
+        buttonStatus: false
+      },
+      register: {
+        values: [],
+        checkValidate: [],
+        buttonStatus: false
+      },
       emailLogin: '',
       passwordLogin: '',
       email: '',
@@ -20,162 +31,96 @@ class LoginRegisterContainer extends Component {
       password: '',
       confirm: '',
       notificationRegister: '',
-      notificationLogin: '',
-
+      notificationLogin: ''
     }
+    loginForm.map((item) => {
+      if (item.inputKey) {
+        this.state.login.values[item.inputKey] = ''
+        if (item.isValidate) {
+          this.state.login.checkValidate[item.inputKey] = inputStatus.normal
+        }
+      }
+    })
+    registerForm.map((item) => {
+      if (item.inputKey) {
+        this.state.register.values[item.inputKey] = ''
+        if (item.isValidate) {
+          this.state.register.checkValidate[item.inputKey] = inputStatus.normal
+        }
+      }
+    })
+  }
+
+  onChangeFieldLogin(inputKey, text, newInputStatus) {
+    const newLoginState = this.state.login;
+    newLoginState.values[inputKey] = text;
+    newLoginState.checkValidate[inputKey] = newInputStatus;
+    let checkButtonStatus = true
+    loginForm.map((item) => {
+      if (item.isValidate && newLoginState.checkValidate[item.inputKey] != inputStatus.success) {
+        if (!(newLoginState.checkValidate[item.inputKey] == inputStatus.normal && this.state.login.values[item.inputKey])) {
+          checkButtonStatus = false
+        }
+      }
+    })
+    newLoginState.buttonStatus = checkButtonStatus
+    this.setState({login: newLoginState})
+  }
+  onChangeFieldRegister(inputKey, text, newInputStatus) {
+    const newRegisterState = this.state.register;
+    newRegisterState.values[inputKey] = text;
+    newRegisterState.checkValidate[inputKey] = newInputStatus;
+    let checkButtonStatus = true
+    registerForm.map((item) => {
+      if (item.isValidate && newRegisterState.checkValidate[item.inputKey] != inputStatus.success) {
+        if (!(newRegisterState.checkValidate[item.inputKey] == inputStatus.normal && this.state.register.values[item.inputKey])) {
+          checkButtonStatus = false
+        }
+      }
+    })
+    newRegisterState.buttonStatus = checkButtonStatus
+    this.setState({register: newRegisterState})
   }
   componentWillMount() {
     this.props.actions.auth()
   }
-  isvalidFirstName = (firstName) => {
-    if (firstName === '')
-      return false
-    return true
-  }
-  isvalidLastName = (lastname) => {
-    if (lastname === '')
-      return false
-    return true
-  }
-  isvalidPassword = (password) => {
-    if (password.length < 6)
-      return false
-    return true
-  }
-  isvalidConfirm = (password, confirm) => {
-    if (confirm !== password)
-      return false
-    return true
-  }
-  isvalidEmail = (email) => {
-    if (email === '' || email.indexOf('@') === -1 || email.indexOf('.') === -1)
-      return false
-    return true
-  }
   registerSubmit = async () => {
-    if (!this.isvalidEmail(this.state.email)) {
-      this.setState({ notificationRegister: "Email invalid" })
-      return
-    } else {
-      this.setState({ notificationRegister: '' })
+    const registerSuccess = this.props.actions.register(this.state.register.values)
+    if (registerSuccess) {
+      this.props.history.push('/')
     }
-    if (!this.isvalidPassword(this.state.password)) {
-      this.setState({ notificationRegister: 'Password invalid' })
-      return
-    } else {
-      this.setState({ notificationRegister: '' })
-    }
-    if (!this.isvalidConfirm(this.state.password, this.state.confirm)) {
-      this.setState({ notificationRegister: 'Confirm invalid' })
-      return
-    } else {
-      this.setState({ notificationRegister: '' })
-    }
-    if (!this.isvalidFirstName(this.state.firstname)) {
-      this.setState({ notificationRegister: 'Firstname invalid' })
-      return
-    } else {
-      this.setState({ notificationRegister: '' })
-    }
-    if (!this.isvalidLastName(this.state.lastname)) {
-      this.setState({ notificationRegister: 'Lastname invalid' })
-      return
-    } else {
-      this.setState({ notificationRegister: '' })
-    }
-    try {
-      await axios.post(`${url.URL_BE}user/register`, {
-        email: this.state.email,
-        password: this.state.password,
-        firstName: this.state.firstname,
-        lastName: this.state.lastname,
-        address: this.state.address,
-        phone_number: this.state.phone
-      })
-    }
-    catch (err) {
-      if (err.response.data.msg === "Email already exist")
-        this.setState({ notificationRegister: 'Email already exist' })
-      else
-        this.setState({ notificationRegister: 'Đăng Ký Thất Bại' })
-      return
-    }
-    this.setState({ notificationRegister: 'Đăng Ký Thành Công' })
   }
 
   loginSubmit = async () => {
-    if (!this.isvalidEmail(this.state.emailLogin)) {
-      this.setState({ notificationLogin: "Email invalid" })
-      return
-    } else {
-      this.setState({ notificationLogin: '' })
+    const loginSuccess = this.props.actions.login(this.state.login.values)
+    if (loginSuccess) {
+      this.props.history.push('/')
     }
-    let res
-    try {
-      res = await axios.post(`${url.URL_BE}user/login`, {
-        email: this.state.emailLogin,
-        password: this.state.passwordLogin,
-      })
-    }
-    catch (err) {
-      if (err.response !== undefined) {
-        if (err.response.data.msg === "no_registration_confirmation")
-          this.setState({ notificationLogin: 'Tài Khoản Chưa Được Kích Hoạt, Vui Lòng Vào mail Để Kích Hoạt' })
-        else {
-          this.setState({ notificationLogin: 'Email or password invalid' })
-        }
-      }
-      else {
-        this.setState({ notificationLogin: 'Some thing went wrong' })
-      }
-      return
-    }
-    this.props.actions.loginSuccess(res.data.token, res.data.user)
-    this.props.history.push('/')
-
   }
   render() {
     return (
       <div>
+        <Header history={this.props.history}/>
         <LoginRegister
-          setEmailogin={(value) => this.setState({ emailLogin: value })}
-          setPasswordlogin={(value) => this.setState({ passwordLogin: value })}
-          setEmail={(value) => this.setState({ email: value })}
-          setFirstname={(value) => this.setState({ firstname: value })}
-          setLastname={(value) => this.setState({ lastname: value })}
-          setAddress={(value) => this.setState({ address: value })}
-          setPhone={(value) => this.setState({ phone: value })}
-          notificationRegister={this.state.notificationRegister}
-          notificationLogin={this.state.notificationLogin}
-          setPassword={(value) => this.setState({ password: value })}
-          setConfirm={(value) => this.setState({ confirm: value })}
+          onChangeFieldLogin={(inputKey, text, newInputStatus) => this.onChangeFieldLogin(inputKey, text, newInputStatus)}
+          onChangeFieldRegister={(inputKey, text, newInputStatus) => this.onChangeFieldRegister(inputKey, text, newInputStatus)}
           registerSubmit={() => this.registerSubmit()}
           loginSubmit={() => this.loginSubmit()}
-          islogin={this.props.islogin}
-          logout={() => this.props.actions.logout()}
-          sortType={this.props.sortType}
-          setSortType={(value) => this.props.homeActions.setSortType(value)}
-          setRangeType={(range) => this.props.homeActions.setRangeType(range)}
-          setSearchText={(value) => this.props.homeActions.setSearchText(value)}
-          history={this.props.history}
+          state={this.state}
         />
+        <Footer />
       </div>
     )
 
   }
 }
 
-const mapStateToProps = state => ({
-  islogin: state.userReducers.login.islogin
-})
-
 const mapDispatchToProps = dispatch => {
   return ({
     actions: bindActionCreators(userActions, dispatch),
-    homeActions: bindActionCreators(homeActions, dispatch)
   })
 }
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(LoginRegisterContainer)

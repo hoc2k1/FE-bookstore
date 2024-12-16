@@ -1,10 +1,10 @@
 import React from "react"
 
 const Button = ({
-  children, onClick, customButton
+  children, onClick, customButton, buttonStatus = true
  }) => {
   return (
-    <div className={`button cursor-pointer ${customButton}`} onClick={onClick}>
+    <div className={`button ${buttonStatus ? 'active cursor-pointer' : 'cursor-not-allowed'} ${customButton}`} onClick={() => buttonStatus ? onClick() : null}>
       <div className='button-content'>
         {children}
       </div>

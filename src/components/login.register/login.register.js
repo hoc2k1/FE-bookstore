@@ -1,38 +1,66 @@
-import React from 'react'
-import Header from '../header/header'
-import Footer from '../footer/footer'
-import ContentLoginRegister from './content.login.register'
-const Home = ({ setEmailogin, setPasswordlogin, setEmail,
-  setFirstname, setLastname, setAddress, setPhone, setPassword, setConfirm,
-  notificationRegister, notificationLogin, registerSubmit,
-  loginSubmit, islogin, logout, sortType, setSortType, setSearchText,
-  history }) => (
-  <div>
+import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { loginForm, registerForm } from '../../constants/values';
+import FloatingInput from '../global/floating.input';
+import Button from '../button/button'
 
-    <Header
-      islogin={islogin}
-      logout={() => logout}
-      history={history}
-    />
-
-    <ContentLoginRegister
-      setEmailogin={(value) => setEmailogin(value)}
-      setPasswordlogin={(value) => setPasswordlogin(value)}
-      setEmail={(value) => setEmail(value)}
-      setFirstname={(value) => setFirstname(value)}
-      setLastname={(value) => setLastname(value)}
-      setAddress={(value) => setAddress(value)}
-      setPhone={(value) => setPhone(value)}
-      setPassword={(value) => setPassword(value)}
-      setConfirm={(value) => setConfirm(value)}
-      notificationRegister={notificationRegister}
-      notificationLogin={notificationLogin}
-      registerSubmit={() => registerSubmit()}
-      loginSubmit={() => loginSubmit()}
-    />
-    <Footer />
-  </div>
-
-)
-
-export default Home
+function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, registerSubmit, loginSubmit }) {
+  const [login, setLogin] = useState(true);
+  let xhtml = '';
+  if (login) {
+    xhtml =
+      <div className='login-form'>
+        { loginForm.map((item, index) => {
+          return (
+            <FloatingInput 
+              {...item}
+              key={index}
+              value={state.login.values[item.inputKey]}
+              checkValidate={state.login.checkValidate[item.inputKey]}
+              onChange={(inputKey, text, newInputStatus) => onChangeFieldLogin(inputKey, text, newInputStatus)}/>
+          )
+        }) }
+        <Button buttonStatus={state.login.buttonStatus} onClick={loginSubmit}><span className="heading">Đăng nhập</span></Button>
+        <div className='forgotpassword mt-md-4 mt-3'>
+          <Link to='/forgotpass/' className="text-link">Quên mật khẩu?</Link>
+        </div>
+      </div>
+  } else {
+    xhtml = 
+      <div className="signup-form">
+        { registerForm.map((item, index) => {
+          return (
+            <FloatingInput 
+              {...item}
+              key={index}
+              value={state.register.values[item.inputKey]}
+              fieldStatus={state.register.checkValidate[item.inputKey]}
+              password={item.inputKey == 'confirmPassword' ? state.register.values['password'] : ''}
+              checkValidate={state.register.checkValidate[item.inputKey]}
+              onChange={(inputKey, text, newInputStatus) => onChangeFieldRegister(inputKey, text, newInputStatus)}/>
+          )
+        }) }
+        <Button buttonStatus={state.register.buttonStatus} onClick={registerSubmit}><span className="heading">Đăng ký</span></Button>
+      </div>
+  }
+  return (
+    <section className='homePage'>
+      <div className="container login-register">
+        <div className='menu-profile'>
+          <ul className="d-flex p-0 normal-width-input mx-auto">
+            <li className={`header-login-register flex-grow-1 d-flex justify-content-center ${login ? 'active' : ''}`}>
+              <span onClick={() => {if (!login) setLogin(!login)}} className={`heading p-3 p-md-4 text-center ${login ? 'cursor-not-allowed' : 'cursor-pointer'}`}>Đăng Nhập</span>
+            </li>
+            <li className={`header-login-register flex-grow-1 d-flex justify-content-center ${!login ? 'active' : ''}`}>
+              <span onClick={() => {if (login) setLogin(!login)}} className={`heading p-3 p-md-4 text-center ${!login ? 'cursor-not-allowed' : 'cursor-pointer'}`}>Đăng Ký</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          {xhtml}
+        </div>
+      </div>
+    </section>
+  );
+}
+export default LoginRegister

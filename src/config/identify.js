@@ -1,4 +1,4 @@
-export const checkEmpty = (value, checkNumber = false) => {
+export const checkNotEmpty = (value, checkNumber = false) => {
   if (checkNumber && value == 0) {
     return true
   }

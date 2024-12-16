@@ -33,7 +33,7 @@ class Header extends Component {
     ]
   }
   componentWillMount() {
-    if (storeConfig.getUser() !== null) {
+    if (storeConfig.getUser()) {
       this.setState({
         email: storeConfig.getUser().email
       });
@@ -45,9 +45,11 @@ class Header extends Component {
         email: "Account"
       });
     } else {
-      this.setState({
-        email: storeConfig.getUser().email
-      });
+      if (storeConfig.getUser().email) {
+        this.setState({
+          email: storeConfig.getUser().email
+        });
+      }
     }
   }
   handlelogin = () => {

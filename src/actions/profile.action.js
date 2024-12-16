@@ -1,25 +1,6 @@
 import axios from 'axios'
 import storeConfig from '../config/storage.config'
 import { profileTypes, url } from '../constants/action.types'
-export const auth = () => async (dispatch, getState) => {
-  if (storeConfig.getUser() === null) {
-    dispatch(setAuthFail())
-    return false
-  }
-  const user = storeConfig.getUser()
-  try {
-    await axios.post(`${url.URL_BE}auth`, {
-      email: user.email,
-      token: storeConfig.getToken(),
-    })
-  }
-  catch (err) {
-    dispatch(setAuthFail())
-    return false
-  }
-  dispatch(setAuthSuccess())
-  return true
-}
 export const setAuthSuccess = () => ({
   type: profileTypes.SET_AUTH_LOGIN_SUCCESS
 })

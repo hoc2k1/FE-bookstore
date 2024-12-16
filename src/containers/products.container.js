@@ -60,7 +60,7 @@ class HomeContainer extends React.Component {
     const { category, publisher, books, totalpage } = this.props
     if (category && publisher && books && totalpage) {
       return (
-        <div className="overflow-auto d-flex flex-column min-h-full">
+        <div className="d-flex flex-column min-h-full">
           <Header history={this.props.history}/>
           <div className="d-flex flex-column flex-grow-1">
             <Breadcrumb history={this.props.history}/>

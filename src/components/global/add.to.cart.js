@@ -16,24 +16,24 @@ const AddToCart = ({product}) => {
         <div className="d-flex align-items-center">
           <span className="text-nowrap">Số lượng:&nbsp;</span>
           <input
-            type="number" 
+            type="number"
             id=""
             name=""
             value={qty}
             className={`header-search-input px-3 py-2 border`}
-            onChange={e => setQty({searchText: e.target.value})}
+            onChange={e => setQty(e.target.value)}
           />
         </div>
         <div onClick={() => addToCart()} style={{ marginTop: '0.5rem' }}>
-          <img className="add-to-card-icon" src="/assets/images/cart/add-to-cart.png"></img>
+          <span className="add-to-card-button heading">Thêm vào giỏ hàng</span>
         </div>
       </div>
     )
   }
   else {
     return (
-      <div className="w-100 out-of-stock-button">
-        Het hang
+      <div className="out-of-stock-button heading">
+        Hết hàng
       </div>
     )
   }

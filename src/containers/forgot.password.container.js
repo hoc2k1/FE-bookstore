@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../actions/user.action'
 import ForgotPassword from '../components/fogot.password/forgot.password'
-import OTP from '../components/fogot.password/otp'
 import Fail from '../components/status/fail'
 import Success from '../components/status/success'
 import EnterNewPassword from '../components/fogot.password/enter.new.password'
@@ -109,11 +108,7 @@ class ForgotPasswordContainer extends Component {
       else {
 
         return (
-          <OTP
-            setOTP={(value) => this.setState({ otp: value })}
-            submitOTP={() => this.props.actions.submitOTP(this.state.otp)}
-            notificationOTP={this.state.notificationOTP}
-          />
+          <div></div>
         )
       }
 
