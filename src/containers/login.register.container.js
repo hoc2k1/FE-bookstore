@@ -20,18 +20,7 @@ class LoginRegisterContainer extends Component {
         values: [],
         checkValidate: [],
         buttonStatus: false
-      },
-      emailLogin: '',
-      passwordLogin: '',
-      email: '',
-      firstname: '',
-      lastname: '',
-      address: '',
-      phone: '',
-      password: '',
-      confirm: '',
-      notificationRegister: '',
-      notificationLogin: ''
+      }
     }
     loginForm.map((item) => {
       if (item.inputKey) {

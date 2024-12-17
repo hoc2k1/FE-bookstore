@@ -14,6 +14,8 @@
   --font-size-text: calc(0.875rem * 0.8);
   --color-bg-footer: #efefef;
   --color-button-text: #FFFFFF;
+  --color-disable-button-text: #FFFFFF;
+  --color-disable-button-bg: #777777;
   --color-price-after-sale: #CC0033;
   --color-price-before-sale: #999999;
   --color-secondary-bg: #FBF6ED;
@@ -102,12 +104,35 @@
   max-width: 1432px;
 }
 
+.rs-picker-toggle-wrapper {
+  width: 100% !important;
+  border-radius: 0px !important;
+  --rs-listbox-option-selected-text: var(--color-theme);
+  --rs-listbox-option-selected-bg: var(--color-secondary-bg);
+  --rs-state-focus-shadow: var(--color-bg);
+  --rs-input-focus-border: var(--color-border);
+  --rs-picker-value: var(--color-text);
+  --rs-text-secondary: var(--color-text);
+}
+.rs-picker-popup {
+  --rs-listbox-option-selected-text: var(--color-theme);
+  --rs-listbox-option-selected-bg: var(--color-secondary-bg);
+  --rs-state-focus-shadow: var(--color-bg);
+  --rs-text-primary: var(--color-text);
+  --rs-listbox-option-hover-text: var(--color-theme);
+  --rs-listbox-option-hover-bg: var(--color-secondary-bg);
+  --rs-picker-value: var(--color-text);
+  --rs-text-secondary: var(--color-text);
+}
 .button {
-  background-color: var(--color-theme);
-  color: var(--color-button-text);
+  background-color: var(--color-disable-button-bg);
+  color: var(--color-disable-button-text);
   overflow: hidden;
   padding: 10px;
-  opacity: var(--icon-opacity);
+}
+.button.active {
+  background-color: var(--color-theme);
+  color: var(--color-button-text);
 }
 .button-content {
   transition: transform 0.2s ease-in-out;
@@ -163,8 +188,8 @@
 }
 
 body, input {
-  color: var(--color-text);
-  font-size: var(--font-size-text);
+  color: var(--color-text) !important;
+  font-size: var(--font-size-text) !important;
 }
 .select {
   background-color: var(--color-bg);
@@ -186,6 +211,12 @@ body, input {
 @media (min-width: 992px) {
   .icon-address {
     opacity: var(--icon-opacity);
+  }
+  .button {
+    opacity: var(--icon-opacity);
+  }
+  .button.active:hover {
+    opacity: 1;
   }
   .icon-address:hover {
     opacity: 1;

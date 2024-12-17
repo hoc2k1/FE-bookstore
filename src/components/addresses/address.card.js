@@ -26,7 +26,7 @@ const AddressCard = (props) => {
     props.actions.deleteAddress(props.address._id)
   }
   return (
-    <div className="p-md-3 p-2 shadow cursor-pointer d-flex">
+    <div className="p-md-3 p-2 shadow d-flex">
       <div className="flex-grow-1">
         {renderRow('Họ tên', props.address.firstName + ' ' + props.address.lastName)}
         {renderRow('Tỉnh/Thành phố', props.address.province)}
@@ -36,8 +36,8 @@ const AddressCard = (props) => {
         {renderRow('Số điện thoại', props.address.phoneNumber)}
       </div>
       <div className="d-flex flex-column gap-md-3 gap-2">
-        <i onClick={() => handleEdit()} className="fa fa-pencil-square-o icon-address p-md-2 p-1"></i>
-        <i onClick={() => handleDelete()} className="fa fa-times-circle icon-address p-md-2 p-1"></i>
+        <i onClick={() => handleDelete()} className="fa fa-times-circle icon-address p-md-2 p-1 cursor-pointer"></i>
+        <i onClick={() => handleEdit()} className="fa fa-pencil-square-o icon-address p-md-2 p-1 cursor-pointer"></i>
       </div>
     </div>
   )

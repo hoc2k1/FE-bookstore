@@ -10,7 +10,9 @@ import VerifyPaymentContainer from './verify.payment.container'
 import HistoryPurchase from './history.purchase.container'
 import productsContainer from './products.container'
 import { Toaster } from 'react-hot-toast';
-import addressesContainer from './addresses.container'
+import AddressesContainer from './addresses.container'
+import AddressContainer from './address.container'
+import 'rsuite/dist/rsuite.min.css';
 const App = () => (
   <div className="w-100 h-100">
     <Toaster position="top-center" toastOptions={{duration: 5000}}/>
@@ -21,7 +23,8 @@ const App = () => (
         <Route exact path='/forgotpass/' component={ForgotPasswordContainer} />
         <Route exact path='/product/:id' component={ProductDetailContainer} />
         <Route exact path='/profile/:email' component={ProfileContainer} />
-        <Route exact path='/addresses' component={addressesContainer} />
+        <Route exact path='/addresses' component={AddressesContainer} />
+        <Route exact path='/address' component={AddressContainer} />
         <Route exact path='/cart' component={CartContainer} />
         <Route exact path='/payment/:token' component={VerifyPaymentContainer} />
         <Route exact path='/purchase_history' component={HistoryPurchase} />

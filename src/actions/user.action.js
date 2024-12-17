@@ -123,6 +123,49 @@ export const deleteAddress = (idAddress) => async (dispatch, getState) => {
   toast.success("Xoá địa chỉ thành công!")
   dispatch(getAllAddresses())
 }
+export const addNewAddress = (data) => async (dispatch, getState) => {
+  let id = storeConfig.getUser().id
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}address/add`, {
+      id_user: id,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      province: data.province,
+      district: data.district,
+      commune: data.commune,
+      specificAddress: data.specificAddress,
+      phoneNumber: data.phoneNumber,
+    })
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    return false
+  }
+  toast.success("Thêm địa chỉ thành công!")
+  return true
+}
+export const editAddress = (data) => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}address/update`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      province: data.province,
+      district: data.district,
+      commune: data.commune,
+      specificAddress: data.specificAddress,
+      phoneNumber: data.phoneNumber,
+      id: data.id
+    })
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    return false
+  }
+  toast.success("Chỉnh sửa địa chỉ thành công!")
+  return true
+}
 export const resetIsLogin = () => ({
   type: userTypes.RESET_IS_LOGIN
 })

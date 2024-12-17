@@ -163,6 +163,79 @@ export const registerForm = [
   }
 ]
 
+export const addressForm = [
+  {
+    inputKey: 'firstName',
+    type: 'text',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Họ',
+    errorMessage: 'Tên không hợp lệ'
+  },
+  {
+    inputKey: 'lastName',
+    type: 'text',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Tên',
+    errorMessage: 'Tên không hợp lệ'
+  },
+  {
+    inputKey: 'province',
+    type: 'picker',
+    placeholder: 'Chọn tỉnh/thành phố',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Tỉnh/Thành phố',
+    errorMessage: 'Tên tỉnh/thành phố không hợp lệ'
+  },
+  {
+    inputKey: 'district',
+    type: 'picker',
+    placeholder: 'Chọn quận/huyện',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Quận/huyện',
+    errorMessage: 'Tên quận/huyện không hợp lệ'
+  },
+  {
+    inputKey: 'commune',
+    type: 'picker',
+    placeholder: 'Chọn phường/xã',
+    isValidate: false,
+    defaultValue: '',
+    required: false,
+    label: 'Phường/Xã',
+    errorMessage: 'Tên phường/xã không hợp lệ'
+  },
+  {
+    inputKey: 'specificAddress',
+    type: 'text',
+    placeholder: '',
+    isValidate: false,
+    defaultValue: '',
+    required: false,
+    label: 'Địa chỉ cụ thể',
+    errorMessage: ''
+  },
+  {
+    inputKey: 'phoneNumber',
+    type: 'number',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Số điện thoại',
+    errorMessage: 'Số điện thoại không hợp lệ'
+  }
+]
+
 export const listUserPage = [
   {
     key: 'profile',
