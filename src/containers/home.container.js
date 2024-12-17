@@ -7,8 +7,11 @@ import * as homeActions from '../actions/home.action'
 import Loading from '../components/loading/loading'
 import Header from '../components/header/header'
 import Footer from '../components/footer/footer'
+import storeConfig from '../config/storage.config'
+
 class HomeContainer extends Component {
   componentWillMount() {
+    console.log(24, storeConfig.getUser())
     this.props.actions.auth()
     this.props.homeActions.getCategory()
     this.props.homeActions.getBanner()

@@ -85,14 +85,14 @@ class LoginRegisterContainer extends Component {
     this.props.actions.auth()
   }
   registerSubmit = async () => {
-    const registerSuccess = this.props.actions.register(this.state.register.values)
+    const registerSuccess = await this.props.actions.register(this.state.register.values)
     if (registerSuccess) {
       this.props.history.push('/')
     }
   }
 
   loginSubmit = async () => {
-    const loginSuccess = this.props.actions.login(this.state.login.values)
+    const loginSuccess = await this.props.actions.login(this.state.login.values)
     if (loginSuccess) {
       this.props.history.push('/')
     }

@@ -17,6 +17,10 @@
 	width: 100%;
 }
 
+.logo {
+	width: 50px;
+}
+
 .range-price-input {
 	width: 5rem;
 }
@@ -137,6 +141,11 @@ ul.sub-menu {
 	height: 35px;
 }
 
+.icon-bars {
+	font-size: 20px;
+	padding: 5px;
+}
+
 @media (min-width: 768px) {
 	.container {
 		padding-left: 32px;
@@ -247,7 +256,10 @@ ul.sub-menu {
 
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 992px) {
+	.logo {
+		width: 100px;
+	}
 	.banner-image {
 		height: 400px;
 	}

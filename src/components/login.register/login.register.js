@@ -14,7 +14,7 @@ function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, regis
           return (
             <FloatingInput 
               {...item}
-              key={index}
+              key={`login-${index}`}
               value={state.login.values[item.inputKey]}
               checkValidate={state.login.checkValidate[item.inputKey]}
               onChange={(inputKey, text, newInputStatus) => onChangeFieldLogin(inputKey, text, newInputStatus)}/>
@@ -32,7 +32,7 @@ function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, regis
           return (
             <FloatingInput 
               {...item}
-              key={index}
+              key={`register-${index}`}
               value={state.register.values[item.inputKey]}
               fieldStatus={state.register.checkValidate[item.inputKey]}
               password={item.inputKey == 'confirmPassword' ? state.register.values['password'] : ''}

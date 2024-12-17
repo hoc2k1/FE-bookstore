@@ -1,6 +1,7 @@
 import { userTypes, url } from '../constants/action.types'
 import storeConfig from '../config/storage.config'
 import axios from 'axios'
+import toast from 'react-hot-toast';
 
 export const register = (data) => async (dispatch, getState) => {
   try {
@@ -10,17 +11,17 @@ export const register = (data) => async (dispatch, getState) => {
       firstName: data.firstName,
       lastName: data.lastName
     })
-    dispatch(login({email: data.email, password: data.password}))
+    toast.success("Đăng ký thành công")
+    dispatch(login({email: data.email, password: data.password, hiddenToast: true}))
     return true
   }
   catch (err) {
     console.error(err)
+    if (err.response.data.msg === "Email already exist")
+      toast.error("Email đã tồn tại!")
+    else
+      toast.error("Something when wrong!")
     return false
-    // if (err.response.data.msg === "Email already exist")
-    //   this.setState({ notificationRegister: 'Email already exist' })
-    // else
-    //   this.setState({ notificationRegister: 'Đăng Ký Thất Bại' })
-    // return
   }
 }
 
@@ -50,22 +51,21 @@ export const login = (data) => async (dispatch, getState) => {
           console.log(JSON.stringify(err.response))
         }
       }
+      if (!data.hiddenToast) {
+        toast.success("Đăng nhập thành công")
+      }
       return true
     }
   }
   catch (err) {
     console.error(err)
+    if (err.response !== undefined) {
+      toast.error("Email hoặc mật khẩu không chính xác!")
+    }
+    else {
+      toast.error("Something when wrong!")
+    }
     return false
-    // if (err.response !== undefined) {
-    //   if (err.response.data.msg === "no_registration_confirmation")
-    //     this.setState({ notificationLogin: 'Tài Khoản Chưa Được Kích Hoạt, Vui Lòng Vào mail Để Kích Hoạt' })
-    //   else {
-    //     this.setState({ notificationLogin: 'Email or password invalid' })
-    //   }
-    // }
-    // else {
-    //   this.setState({ notificationLogin: 'Some thing went wrong' })
-    // }
   }
 }
 export const auth = () => async (dispatch, getState) => {
@@ -83,7 +83,6 @@ export const auth = () => async (dispatch, getState) => {
     })
   }
   catch (err) {
-    console.log(888, err)
     dispatch(setLoginFail())
     return false
   }

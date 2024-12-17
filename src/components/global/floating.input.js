@@ -41,7 +41,7 @@ const FloatingInput = ({ inputKey, type, placeholder, onChange,
       <input type={type || 'text'}
         className={`border p-2`}
         placeholder={placeholder}
-        {...(value ? { value: value } : {})}
+        value={value || ''}
         required={required}
         onChange={(e) => {
           validate(e.target.value)

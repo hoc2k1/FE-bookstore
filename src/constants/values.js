@@ -162,3 +162,42 @@ export const registerForm = [
     errorMessage: 'Mật khẩu không trùng khớp'
   }
 ]
+
+export const listUserPage = [
+  {
+    key: 'profile',
+    title: "Thông tin tài khoản",
+    url: '/profile',
+    icon: 'user'
+  },
+  {
+    key: 'addresses',
+    title: "Địa chỉ giao hàng",
+    url: '/addresses',
+    icon: 'map'
+  },
+  {
+    key: 'signOut',
+    title: "Đăng xuất",
+    url: '/',
+    icon: 'hand-o-left'
+  }
+]
+
+export const listPageInHeader = [
+  {
+    key: 'home',
+    url: '/',
+    title: 'Trang chủ'
+  },
+  {
+    key: 'products',
+    url: '/products',
+    title: 'Sản phẩm'
+  },
+  {
+    key: 'products',
+    url: '/contact',
+    title: 'Liên hệ'
+  }
+]

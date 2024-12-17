@@ -8,9 +8,11 @@
     "react": "^17.0.0-rc.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^17.0.0-rc.0",
+    "react-hot-toast": "^2.4.1",
+    "react-modern-drawer": "^1.4.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^5.0.1",
     "react-slideshow-image": "^4.3.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -21,5 +23,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
