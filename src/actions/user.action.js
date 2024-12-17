@@ -95,6 +95,34 @@ export const auth = () => async (dispatch, getState) => {
     return true
   }
 }
+
+export const getAllAddresses = () => async (dispatch, getState) => {
+  let id = storeConfig.getUser().id
+  let res
+  dispatch(setAddressesLoading(true))
+  try {
+    res = await axios.post(`${url.URL_BE}address/all`, {
+      id_user: id
+    })
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    return false
+  }
+  dispatch(setAddressesLoading(false))
+  dispatch(setAddresses(res.data.data))
+}
+export const deleteAddress = (idAddress) => async (dispatch, getState) => {
+  try {
+    await axios.get(`${url.URL_BE}address/delete/${idAddress}`)
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    return false
+  }
+  toast.success("Xoá địa chỉ thành công!")
+  dispatch(getAllAddresses())
+}
 export const resetIsLogin = () => ({
   type: userTypes.RESET_IS_LOGIN
 })
@@ -127,6 +155,14 @@ export const resetForgotPassword = () => ({
 export const setEmailForgotPassword = (email) => ({
   type: userTypes.SET_EMAIL_FORGOTPASSWORD,
   email
+})
+export const setAddresses = (data) => ({
+  type: userTypes.SET_ADDRESSES,
+  data
+})
+export const setAddressesLoading = (data) => ({
+  type: userTypes.SET_ADDRESSES_LOADING,
+  data
 })
 export const submitForgotPassword = (email) => async (dispatch, getState) => {
   let res

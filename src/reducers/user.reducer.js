@@ -86,7 +86,25 @@ const forgotPassword = (state = {}, action) => {
     default: return state
   }
 }
+const user = (state = {}, action) => {
+  switch (action.type) {
+    case userTypes.SET_ADDRESSES: {
+      return {
+        ...state,
+        addresses: action.data
+      }
+    }
+    case userTypes.SET_ADDRESSES_LOADING: {
+      return {
+        ...state,
+        addressesLoading: action.data
+      }
+    }
+    default: return state
+  }
+}
 export default combineReducers({
   login,
+  user,
   forgotPassword
 })

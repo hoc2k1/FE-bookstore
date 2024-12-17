@@ -184,6 +184,12 @@ body, input {
   cursor: pointer;
 }
 @media (min-width: 992px) {
+  .icon-address {
+    opacity: var(--icon-opacity);
+  }
+  .icon-address:hover {
+    opacity: 1;
+  }
   .text-link {
     color: var(--color-text);
     text-decoration: none;
@@ -1925,6 +1931,22 @@ h2.title {
   .icon-header-container:hover, .icon-header-search:hover {
     opacity: 1;
   }
+}
+
+i.icon-delete {
+  color: var(--color-error)
+}
+.icon-address {
+  font-size: 18px;
+  color: var(--color-theme);
+  border-radius: 10px;
+  background-color: var(--color-secondary-bg);
+}
+
+.border-dash {
+  border-style: dashed;
+  border-width: 1px;
+  border-color: var(--color-border);
 }
 
 .icon-header {

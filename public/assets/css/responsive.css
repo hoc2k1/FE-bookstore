@@ -13,8 +13,12 @@
 	margin-left: -30px;
 }
 
-.normal-width-input {
+.normal-width-input, .width-small {
 	width: 100%;
+}
+
+.icon-normal {
+	font-size: 18px;
 }
 
 .logo {
@@ -151,7 +155,10 @@ ul.sub-menu {
 		padding-left: 32px;
 		padding-right: 32px;
 	}
-	.normal-width-input {
+	.icon-normal {
+		font-size: 20px;
+	}
+	.normal-width-input, .width-small {
 		width: 768px;
 	}
 	.add-to-card-icon {
