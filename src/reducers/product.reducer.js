@@ -8,24 +8,6 @@ const product = (state = { productDetail: null, bookRelated: {}, comment: [], pa
         productDetail: action.productDetail
       }
     }
-    case productTypes.SET_NAME_CATEGORY: {
-      return {
-        ...state,
-        nameCategory: action.name
-      }
-    }
-    case productTypes.SET_NAME_PUBLICSHER: {
-      return {
-        ...state,
-        namePublisher: action.name
-      }
-    }
-    case productTypes.SET_NAME_AUTHOR: {
-      return {
-        ...state,
-        nameAuthor: action.name
-      }
-    }
     case productTypes.SET_BOOK_RELATED: {
       return {
         ...state,
