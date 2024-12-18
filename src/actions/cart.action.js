@@ -82,37 +82,43 @@ export const addToCart = ({ products=[], id_user=null }) => async (dispatch, get
   }
 }
 export const updateProductInCart = (product) => async (dispatch, getState) => {
-  if (!getState().userReducers.login.islogin) {
-    storeConfig.updateProductInCart(product)
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}cart/update`, {
+      id: storeConfig.getCartId(),
+      product: product
+    })
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    console.log(err.response)
+  }
+  if (res.data.error) {
+    toast.error(res.data.error)
   }
   else {
-    try {
-      await axios.post(`${url.URL_BE}cart/update`, {
-        id_user: storeConfig.getUser().id,
-        product: product
-      })
-    }
-    catch (err) {
-      console.log(err.response)
-    }
+    dispatch(setCart(res.data.data))
   }
-  dispatch(getCart())
 }
-export const deteleProductInCart = (id_product) => async (dispatch, getState) => {
-  if (!getState().userReducers.login.islogin) {
-    storeConfig.deteleProductInCart(id_product)
-  } else {
-    try {
-      await axios.post(`${url.URL_BE}cart/delete`, {
-        id_user: storeConfig.getUser().id,
-        id_product: id_product
-      })
-    }
-    catch (err) {
-      console.log(err.response)
-    }
+export const deleteProductInCart = (id_product) => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}cart/deleteProduct`, {
+      id: storeConfig.getCartId(),
+      id_product: id_product
+    })
   }
-  dispatch(getCart())
+  catch (err) {
+    toast.error("Something when wrong!")
+    console.log(err.response)
+  }
+  if (res.data.error) {
+    toast.error(res.data.error)
+  }
+  else {
+    dispatch(setCart(res.data.data))
+    toast.error("Xoá sản phẩm thành công!")
+  }
 }
 
 export const deleteCart = (id_cart) => async (dispatch, getState) => {

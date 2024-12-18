@@ -35,6 +35,9 @@
   border-bottom: 2px solid var(--color-border);
   opacity: var(--icon-opacity);
 }
+.font-size-normal {
+  font-size: var(--font-size-text);
+}
 .header-login-register.active {
   color: var(--color-theme);
   border-bottom-color: var(--color-theme);
@@ -317,7 +320,7 @@ body, input {
 .indicator {
   background-color: var(--color-bg);
 }
-.indicator.active {
+.indicator.active, .bg-theme {
   background-color: var(--color-theme);
 }
 

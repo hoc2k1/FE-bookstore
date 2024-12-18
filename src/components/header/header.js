@@ -71,8 +71,8 @@ class Header extends Component {
           onClick={() => this.props.history.push('/cart')}
         >
           <i className={`fa fa-shopping-cart icon-header-in-popup position-relative`}>
-            <div className={`cart-dot ${this.props.cart.products.length > 0 ? 'd-flex' : 'd-none'}`}>
-              <span>{this.props.cart.products.length > 99 ? '99+' : this.props.cart.products.length}</span>
+            <div className={`cart-dot ${this.props.cart?.products?.length > 0 ? 'd-flex' : 'd-none'}`}>
+              <span>{this.props.cart?.products?.length > 99 ? '99+' : this.props.cart?.products?.length}</span>
             </div>
           </i>
           <span className="text-link">Giỏ hàng</span>
@@ -216,8 +216,8 @@ class Header extends Component {
                 <li className="d-lg-flex d-none">
                   <Link to={"/cart"} className="flex-column d-flex icon-header-container align-items-center text-decoration-none">
                     <i className="fa fa-shopping-cart icon-header position-relative">
-                      <div className={`cart-dot ${this.props.cart.products.length > 0 ? 'd-flex' : 'd-none'}`}>
-                        <span>{this.props.cart.products.length > 99 ? '99+' : this.props.cart.products.length}</span>
+                      <div className={`cart-dot ${this.props.cart?.products?.length > 0 ? 'd-flex' : 'd-none'}`}>
+                        <span>{this.props.cart?.products?.length > 99 ? '99+' : this.props.cart?.products?.length}</span>
                       </div>
                     </i>
                     <span className="text-link text-nowrap">Giỏ hàng</span>

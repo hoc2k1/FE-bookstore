@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { addNewCart, addToCart, deleteCart, getCart } from './cart.action';
 
 export const register = (data) => async (dispatch, getState) => {
+  dispatch(setLoadingLoginRegister(true))
   try {
     await axios.post(`${url.URL_BE}user/register`, {
       email: data.email,
@@ -12,7 +13,9 @@ export const register = (data) => async (dispatch, getState) => {
       firstName: data.firstName,
       lastName: data.lastName
     })
-    toast.success("Đăng ký thành công")
+    setTimeout(() => {
+      toast.success("Đăng ký thành công")
+    }, 1000)
     dispatch(login({email: data.email, password: data.password, hiddenToast: true}))
     return true
   }
@@ -22,11 +25,13 @@ export const register = (data) => async (dispatch, getState) => {
       toast.error("Email đã tồn tại!")
     else
       toast.error("Something when wrong!")
+    dispatch(setLoadingLoginRegister(false))
     return false
   }
 }
 
 export const login = (data) => async (dispatch, getState) => {
+  dispatch(setLoadingLoginRegister(true))
   let res
   try {
     res = await axios.post(`${url.URL_BE}user/login`, {
@@ -46,7 +51,10 @@ export const login = (data) => async (dispatch, getState) => {
         dispatch(addToCart({id_user: res.data.user.id, products: cart.products}))
       }
       if (!data.hiddenToast) {
-        toast.success("Đăng nhập thành công")
+        setTimeout(() => {
+          dispatch(setLoadingLoginRegister(false))
+          toast.success("Đăng nhập thành công")
+        }, 1000)
       }
       return true
     }
@@ -59,6 +67,7 @@ export const login = (data) => async (dispatch, getState) => {
     else {
       toast.error("Something when wrong!")
     }
+    dispatch(setLoadingLoginRegister(false))
     return false
   }
 }
@@ -233,8 +242,13 @@ export const changePassword = (data) => async (dispatch, getState) => {
 
 export const setEmail = (email) => ({
   type: userTypes.SET_EMAIL_LOGIN,
-  email,
+  email
 })
+export const setLoadingLoginRegister = (data) => ({
+  type: userTypes.SET_LOADING_LOGIN_REGISTER,
+  data
+})
+setLoadingLoginRegister
 export const setLoginSuccess = () => ({
   type: userTypes.LOGIN_SUCCESS,
   data: 'login success'

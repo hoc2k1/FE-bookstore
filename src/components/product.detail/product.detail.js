@@ -63,7 +63,7 @@ class ContentProductDetail extends Component {
     return (
       <div className="container my-md-4 my-2">
         <div className={`d-flex flex-column flex-md-row gap-md-4 mb-3 mb-md-5`}>
-          <div className="ư-100 w-md-50">
+          <div className="w-100 w-md-50">
             <img src={this.imageUrl} alt="" className="product-image"/>
           </div>
           <div className="flex-grow-1">

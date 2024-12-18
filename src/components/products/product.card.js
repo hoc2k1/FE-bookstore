@@ -9,19 +9,17 @@ const ProductCard = (props) => {
   const publisher = props.publisher.filter(item => item._id == props.product.id_nsx)[0]
   const imageUrl = (props.product.img && props.product.img[0]) ? props.product.img[0] : '../../../assets/images/shop/placeholder-image.png'
   return (
-    <div className="product-card border">
-      <div className="product-image-wrapper">
+    <div className={`${props.isCart ? 'd-flex gap-md-3 gap-2 py-2 py-md-3 align-items-center w-100' : 'product-card border'}`}>
+      <div className={`${props.isCart ? 'w-25' : 'w-100'}`}>
         <a href={'/product/' + props.product._id}><img src={imageUrl} alt="" className="product-image"/></a>
       </div>
       <div>
         <div className="mt-1">
           <a href={'/product/' + props.product._id} className="text-link heading list-unstyled"><span>{props.product.name}</span></a>
         </div>
-        <Price price={props.product.price} sales={props.product.sales}/>
-        {category && (<span><span className="fw-bold">Thể loại: </span><a className="text-link" href={`/products/?${keyFilter.SEARCH_CATEGORY}=${category._id}`}>{category.name}</a></span>)}
-        <br/>
-        {author && (<span><span className="fw-bold">Tác giả: </span><a className="text-link" href={`/products?${keyFilter.SEARCH_AUTHOR}=${author._id}`}>{author.name}</a></span>)}
-        <br/>
+        <Price isSmall={props.isCart} price={props.product.price} sales={props.product.sales}/>
+        {category && (<span><span className="fw-bold">Thể loại: </span><a className="text-link" href={`/products/?${keyFilter.SEARCH_CATEGORY}=${category._id}`}>{category.name}</a><br/></span>)}
+        {author && (<span><span className="fw-bold">Tác giả: </span><a className="text-link" href={`/products?${keyFilter.SEARCH_AUTHOR}=${author._id}`}>{author.name}</a><br/></span>)}
         {publisher && (<span><span className="fw-bold">Nhà sản xuất: </span><a className="text-link" href={`/products?${keyFilter.SEARCH_PUBLISHER}=${publisher._id}`}>{publisher.name}</a></span>)}
       </div>
     </div>

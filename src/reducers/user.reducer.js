@@ -30,6 +30,11 @@ const login = (state = initial, action) => {
         ...state,
         islogin: null
       }
+    case userTypes.SET_LOADING_LOGIN_REGISTER:
+      return {
+        ...state,
+        loadingLoginRegister: action.data
+      }
     default: {
       return state
     }

@@ -76,14 +76,18 @@ class LoginRegisterContainer extends Component {
   registerSubmit = async () => {
     const registerSuccess = await this.props.actions.register(this.state.register.values)
     if (registerSuccess) {
-      this.props.history.push('/')
+      setTimeout(() => {
+        this.props.history.push('/')
+      }, 1000)
     }
   }
 
   loginSubmit = async () => {
     const loginSuccess = await this.props.actions.login(this.state.login.values)
     if (loginSuccess) {
-      this.props.history.push('/')
+      setTimeout(() => {
+        this.props.history.push('/')
+      }, 1000)
     }
   }
   render() {
@@ -95,6 +99,7 @@ class LoginRegisterContainer extends Component {
           onChangeFieldRegister={(inputKey, text, newInputStatus) => this.onChangeFieldRegister(inputKey, text, newInputStatus)}
           registerSubmit={() => this.registerSubmit()}
           loginSubmit={() => this.loginSubmit()}
+          loadingLoginRegister={this.props.loadingLoginRegister}
           state={this.state}
         />
         <Footer />
@@ -103,13 +108,15 @@ class LoginRegisterContainer extends Component {
 
   }
 }
-
+const mapStateToProps = state => ({
+  loadingLoginRegister: state.userReducers.login.loadingLoginRegister
+})
 const mapDispatchToProps = dispatch => {
   return ({
     actions: bindActionCreators(userActions, dispatch),
   })
 }
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LoginRegisterContainer)

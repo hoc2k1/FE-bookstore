@@ -156,7 +156,36 @@ ul.sub-menu {
   height: 20px;
 }
 
+.width-qty {
+  width: 24px;
+	min-width: 24px;
+}
+.height-qty {
+  height: 24px;
+	min-height: 24px;
+}
+.qty-cart-input {
+	width: 100%;
+}
+
 @media (min-width: 768px) {
+	.w-md-50 {
+		width: 50% !important;
+	}
+	.w-md-25 {
+		width: 25% !important;
+	}
+	.qty-cart-input {
+		width: 80px;
+	}
+	.height-qty {
+		height: 38px;
+		min-height: 38px;
+	}
+	.width-qty {
+		width: 38px;
+		min-width: 38px;
+	}
 	.cart-dot {
 		top: -12px;
 		right: -12px;
@@ -166,6 +195,9 @@ ul.sub-menu {
 	.container {
 		padding-left: 32px;
 		padding-right: 32px;
+	}
+	.row.row-cart {
+		--bs-gutter-x: 0px;
 	}
 	.icon-normal {
 		font-size: 20px;

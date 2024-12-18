@@ -6,7 +6,7 @@ import ForgotPasswordContainer from './forgot.password.container'
 import ProductDetailContainer from './product.detail.container'
 import ProfileContainer from './profile.container'
 import CartContainer from './cart.container'
-import VerifyPaymentContainer from './verify.payment.container'
+import PaymentContainer from './payment.container'
 import HistoryPurchase from './history.purchase.container'
 import productsContainer from './products.container'
 import { Toaster } from 'react-hot-toast';
@@ -26,7 +26,7 @@ const App = () => (
         <Route exact path='/addresses' component={AddressesContainer} />
         <Route exact path='/address' component={AddressContainer} />
         <Route exact path='/cart' component={CartContainer} />
-        <Route exact path='/payment/:token' component={VerifyPaymentContainer} />
+        <Route exact path='/payment' component={PaymentContainer} />
         <Route exact path='/purchase_history' component={HistoryPurchase} />
         <Route exact path='/products' component={productsContainer} />
       </Switch>

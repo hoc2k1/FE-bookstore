@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { loginForm, registerForm } from '../../constants/values';
 import FloatingInput from '../global/floating.input';
 import Button from '../button/button'
+import Loading from '../loading/loading';
 
-function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, registerSubmit, loginSubmit }) {
+function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, registerSubmit, loginSubmit, loadingLoginRegister }) {
   const [login, setLogin] = useState(true);
   let xhtml = '';
   if (login) {
@@ -20,7 +21,12 @@ function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, regis
               onChange={(inputKey, text, newInputStatus) => onChangeFieldLogin(inputKey, text, newInputStatus)}/>
           )
         }) }
-        <Button buttonStatus={state.login.buttonStatus} onClick={loginSubmit}><span className="heading">Đăng nhập</span></Button>
+        <Button buttonStatus={state.login.buttonStatus} onClick={loginSubmit}>
+          <span className="heading">Đăng nhập</span>
+          <div className={`absolute-full bg-theme ${loadingLoginRegister ? 'd-flex' : 'd-none'}`}>
+            <Loading isSmall={true}/>
+          </div>
+        </Button>
         <div className='forgotpassword mt-md-4 mt-3'>
           <Link to='/forgotpass/' className="text-link">Quên mật khẩu?</Link>
         </div>
@@ -40,7 +46,12 @@ function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, regis
               onChange={(inputKey, text, newInputStatus) => onChangeFieldRegister(inputKey, text, newInputStatus)}/>
           )
         }) }
-        <Button buttonStatus={state.register.buttonStatus} onClick={registerSubmit}><span className="heading">Đăng ký</span></Button>
+        <Button buttonStatus={state.register.buttonStatus} onClick={registerSubmit}>
+          <span className="heading">Đăng ký</span>
+          <div className={`absolute-full bg-theme ${loadingLoginRegister ? 'd-flex' : 'd-none'}`}>
+            <Loading isSmall={true}/>
+          </div>
+        </Button>
       </div>
   }
   return (

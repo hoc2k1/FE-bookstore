@@ -321,10 +321,10 @@ const mapStateToProps = state => ({
   })
 
 const mapDispatchToProps = dispatch => {
-return ({
-  actions: bindActionCreators(userActions, dispatch),
-  productActions: bindActionCreators(productActions, dispatch)
-})
+  return ({
+    actions: bindActionCreators(userActions, dispatch),
+    productActions: bindActionCreators(productActions, dispatch)
+  })
 }
 export default connect(
   mapStateToProps,
