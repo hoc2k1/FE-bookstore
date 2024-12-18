@@ -1,14 +1,14 @@
 import React, {useState} from 'react' 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as userActions from '../../actions/user.action'
-import * as homeActions from '../../actions/home.action'
-import * as productActions from '../../actions/product.action'
+import * as cartActions from '../../actions/cart.action'
 
-const AddToCart = ({product}) => {
+const AddToCart = ({product, cartActions}) => {
   const [qty, setQty] = useState(1)
   const addToCart = () => {
-
+    const item = product
+    item.count = qty
+    cartActions.addToCart({products: [item]})
   }
   if (parseInt(product.count) > 0 || product.available) {
     return (
@@ -44,9 +44,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => {
   return ({
-    actions: bindActionCreators(userActions, dispatch),
-    homeActions: bindActionCreators(homeActions, dispatch),
-    productActions: bindActionCreators(productActions, dispatch)
+    cartActions: bindActionCreators(cartActions, dispatch)
   })
 }
 

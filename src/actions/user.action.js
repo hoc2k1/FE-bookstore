@@ -2,6 +2,7 @@ import { userTypes, url } from '../constants/action.types'
 import storeConfig from '../config/storage.config'
 import axios from 'axios'
 import toast from 'react-hot-toast';
+import { addNewCart, addToCart, deleteCart, getCart } from './cart.action';
 
 export const register = (data) => async (dispatch, getState) => {
   try {
@@ -38,19 +39,11 @@ export const login = (data) => async (dispatch, getState) => {
       dispatch(setUser(res.data.user))
       dispatch(setLoginSuccess())
 
-      let cart = storeConfig.getCart()
-      storeConfig.removeCart()
-      if (cart !== null) {
-        let res
-        try {
-          res = await axios.post(`${url.URL_BE}cart/addtocard`, {
-            id_user: res.data.user._id,
-            products: cart
-          })
-        }
-        catch (err) {
-          console.log(JSON.stringify(err.response))
-        }
+      let cart = getState().cartReducers.cart.data
+      storeConfig.removeCartId()
+      if (cart) {
+        dispatch(deleteCart(cart._id))
+        dispatch(addToCart({id_user: res.data.user.id, products: cart.products}))
       }
       if (!data.hiddenToast) {
         toast.success("Đăng nhập thành công")
@@ -72,7 +65,19 @@ export const login = (data) => async (dispatch, getState) => {
 export const auth = () => async (dispatch, getState) => {
   if (storeConfig.getUser() === null) {
     dispatch(setLoginFail())
+    if (!storeConfig.getCartId()) {
+      dispatch(addNewCart())
+    }
+    else {
+      dispatch(getCart())
+    }
     return false
+  }
+  if (!storeConfig.getCartId()) {
+    dispatch(addNewCart(storeConfig.getUser().id))
+  }
+  else {
+    dispatch(getCart())
   }
   let email = storeConfig.getUser().email
   let token = storeConfig.getToken()
@@ -173,7 +178,9 @@ export const resetIsLogin = () => ({
 })
 export const logout = () => (dispatch, getState) => {
   storeConfig.clear()
+  dispatch(addNewCart())
   dispatch(setLoginFail())
+  toast.success("Đăng xuất thành công!")
 }
 export const updateProfile = (data) => async (dispatch, getState) => {
   let res

@@ -20,7 +20,7 @@ class CartContainer extends Component {
 
         setSearchText={value => this.props.homeActions.setSearchText(value)}
         history={this.props.history}
-        cart={this.props.cart}
+        cart={this.props.cart.products}
         updateProductInCart={(product) => this.props.cartActions.updateProductInCart(product)}
         deteleProductInCart={(id_product) => this.props.cartActions.deteleProductInCart(id_product)}
       

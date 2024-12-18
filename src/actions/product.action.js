@@ -125,23 +125,3 @@ export const setLoadingProductsData = (data) => ({
   type: productTypes.SET_LOADING_PRODUCTS_DATA,
   data
 })
-
-setLoadingProductsData
-
-export const addToCart = (product) => async (dispatch, getState) => {
-  if (getState().userReducers.login.islogin) {
-    let res
-    try {
-      res = await axios.post(`${url.URL_BE}cart/addtocard`, {
-        id_user: storeConfig.getUser().id,
-        products: [product]
-      })
-    }
-    catch (err) {
-      console.log(JSON.stringify(err.response))
-      return
-    }
-  } else {
-    storeConfig.addProductToCart(product)
-  }
-}

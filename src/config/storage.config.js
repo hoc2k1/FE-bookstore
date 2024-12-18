@@ -24,6 +24,17 @@ exports.getCart = () => {
     return null
   return JSON.parse(localStorage.getItem('cart'))
 }
+exports.setCartId = (cart_id) => {
+  localStorage.setItem('cart_id', cart_id)
+}
+exports.getCartId = () => {
+  if (!localStorage.getItem('cart_id'))
+    return null
+  return localStorage.getItem('cart_id')
+}
+exports.removeCartId = () => {
+  localStorage.removeItem('cart_id')
+}
 exports.removeCart = () => {
   localStorage.removeItem('cart')
 }

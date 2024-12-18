@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import storeConfig from "../../config/storage.config";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../../actions/user.action'
@@ -71,7 +70,11 @@ class Header extends Component {
           key={`mb-cart-drawer`} 
           onClick={() => this.props.history.push('/cart')}
         >
-          <i className={`fa fa-shopping-cart icon-header-in-popup`}></i>
+          <i className={`fa fa-shopping-cart icon-header-in-popup position-relative`}>
+            <div className={`cart-dot ${this.props.cart.products.length > 0 ? 'd-flex' : 'd-none'}`}>
+              <span>{this.props.cart.products.length > 99 ? '99+' : this.props.cart.products.length}</span>
+            </div>
+          </i>
           <span className="text-link">Giỏ hàng</span>
         </div>
       </div>
@@ -155,6 +158,7 @@ class Header extends Component {
     )
   }
   render() {
+    console.log(2, this.props.cart)
     return (
       <header id="header" className="sticky-top header ">
         <div className="container py-2">
@@ -211,7 +215,11 @@ class Header extends Component {
                 </ul>
                 <li className="d-lg-flex d-none">
                   <Link to={"/cart"} className="flex-column d-flex icon-header-container align-items-center text-decoration-none">
-                    <i className="fa fa-shopping-cart icon-header" />
+                    <i className="fa fa-shopping-cart icon-header position-relative">
+                      <div className={`cart-dot ${this.props.cart.products.length > 0 ? 'd-flex' : 'd-none'}`}>
+                        <span>{this.props.cart.products.length > 99 ? '99+' : this.props.cart.products.length}</span>
+                      </div>
+                    </i>
                     <span className="text-link text-nowrap">Giỏ hàng</span>
                   </Link>
                 </li>
@@ -227,7 +235,8 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   islogin: state.userReducers.login.islogin,
-  user: state.userReducers.user.user
+  user: state.userReducers.user.user,
+  cart: state.cartReducers.cart.data
 })
 
 const mapDispatchToProps = dispatch => {

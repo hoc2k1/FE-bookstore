@@ -157,6 +157,15 @@
   right: 0;
   z-index: 99;
 }
+.cart-dot {
+  background-color: var(--color-theme);
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  color: var(--color-bg);
+  border-radius: 9999px;
+  font-size: var(--font-size-text) !important;
+}
 
 .list-options-filter {
   top: calc(100% + 1rem);
