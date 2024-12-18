@@ -46,6 +46,7 @@
   align-items: center;
 }
 .add-to-card-button {
+  transition: none;
   display: flex;
   padding: 0.5rem;
   width: 100%;
@@ -74,6 +75,9 @@
   align-items: center;
   justify-content: center;
   cursor: not-allowed;
+}
+.secondary-bg {
+  background-color: var(--color-secondary-bg);
 }
 .add-to-card-icon {
 	background-color: var(--color-secondary-bg);
@@ -3247,9 +3251,27 @@ textarea {
   width: 768px;
 }
 
+.absolute-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-100 {
+  opacity: 1;
+}
+
 .loading-gif {
   width: 100px;
   height: 100px;
+}
+.loading-gif-small {
+  width: 30px;
+  height: 30px;
 }
 .double-bounce1,
 .double-bounce2 {

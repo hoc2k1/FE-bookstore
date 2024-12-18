@@ -7,6 +7,10 @@ export const setCart = (data) => ({
   type: cartTypes.SET_CART,
   data
 })
+export const setAddToCartLoading = (data) => ({
+  type: cartTypes.SET_ADD_TO_CART_LOADING,
+  data
+})
 export const addNewCart = (id_user) => async (dispatch, getState) => {
   let res
   try {
@@ -41,6 +45,7 @@ export const getCart = () => async (dispatch, getState) => {
   }
 }
 export const addToCart = ({ products=[], id_user=null }) => async (dispatch, getState) => {
+  dispatch(setAddToCartLoading(true))
   const id_cart = storeConfig.getCartId()
   let res
   try {
@@ -53,6 +58,7 @@ export const addToCart = ({ products=[], id_user=null }) => async (dispatch, get
   catch (err) {
     toast.error("Something when wrong!")
     console.log(JSON.stringify(err.response))
+    dispatch(setAddToCartLoading(false))
     return false
   }
   if (id_user) {
@@ -66,8 +72,8 @@ export const addToCart = ({ products=[], id_user=null }) => async (dispatch, get
       toast.error(res.data.error)
     }
   }
+  dispatch(setAddToCartLoading(false))
   if (res.data.data) {
-    console.log(342, res.data.data)
     dispatch(setCart(res.data.data))
     return true
   }

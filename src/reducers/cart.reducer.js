@@ -8,6 +8,12 @@ const cart = (state = { data: [] }, action) => {
         data: action.data
       }
     }
+    case cartTypes.SET_ADD_TO_CART_LOADING: {
+      return {
+        ...state,
+        addToCardLoading: action.data
+      }
+    }
 
     case cartTypes.PAYMENT_SUCCESS: {
       return {

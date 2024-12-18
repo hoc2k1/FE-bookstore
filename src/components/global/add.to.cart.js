@@ -2,8 +2,9 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as cartActions from '../../actions/cart.action'
+import Loading from '../loading/loading'
 
-const AddToCart = ({product, cartActions}) => {
+const AddToCart = ({product, cartActions, addToCardLoading}) => {
   const [qty, setQty] = useState(1)
   const addToCart = () => {
     const item = product
@@ -24,8 +25,11 @@ const AddToCart = ({product, cartActions}) => {
             onChange={e => setQty(e.target.value)}
           />
         </div>
-        <div onClick={() => addToCart()} style={{ marginTop: '0.5rem' }}>
-          <span className="add-to-card-button heading">Thêm vào giỏ hàng</span>
+        <div onClick={() => addToCart()} style={{ marginTop: '0.5rem' }} className='position-relative'>
+          <span className={`add-to-card-button heading`}>Thêm vào giỏ hàng</span>
+          <div className={`absolute-full secondary-bg ${addToCardLoading ? 'd-flex' : 'd-none'}`}>
+            <Loading isSmall={true}/>
+          </div>
         </div>
       </div>
     )
@@ -40,7 +44,7 @@ const AddToCart = ({product, cartActions}) => {
 }
 
 const mapStateToProps = state => ({
-  islogin: state.userReducers.login.islogin,
+  addToCardLoading: state.cartReducers.cart.addToCardLoading
 })
 const mapDispatchToProps = dispatch => {
   return ({
