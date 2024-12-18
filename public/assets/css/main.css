@@ -21,6 +21,7 @@
   --color-secondary-bg: #FBF6ED;
   --out-of-stock-button: #CCCCCC;
   --color-error: red;
+  --color-input-disabled: #f7f7fa;
 }
 
 @media (min-width: 768px) {
@@ -113,6 +114,13 @@
   --rs-input-focus-border: var(--color-border);
   --rs-picker-value: var(--color-text);
   --rs-text-secondary: var(--color-text);
+  --rs-input-disabled-bg: var(--color-input-disabled);
+}
+.input-disabled {
+  background-color: var(--color-input-disabled);
+}
+.rs-picker-toggle {
+  border-radius: 0px !important;
 }
 .rs-picker-popup {
   --rs-listbox-option-selected-text: var(--color-theme);

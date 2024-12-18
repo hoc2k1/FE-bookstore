@@ -106,7 +106,7 @@ export const loginForm = [
     isValidate: true,
     defaultValue: '',
     required: true,
-    label: 'Password',
+    label: 'Mật khẩu',
     errorMessage: 'Mật khẩu phải có ít nhất 6 ký tự'
   }
 ]
@@ -162,6 +162,74 @@ export const registerForm = [
     errorMessage: 'Mật khẩu không trùng khớp'
   }
 ]
+
+export const profileForm = [
+  {
+    inputKey: 'firstName',
+    type: 'text',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Họ',
+    errorMessage: 'Tên không hợp lệ'
+  },
+  {
+    inputKey: 'lastName',
+    type: 'text',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Tên',
+    errorMessage: 'Tên không hợp lệ'
+  },
+  {
+    inputKey: 'email',
+    type: 'email',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    isDisabled: true,
+    required: true,
+    label: 'Email',
+    errorMessage: 'Email không hợp lệ'
+  },
+]
+
+export const changePassForm = [
+  {
+    inputKey: 'oldPassword',
+    type: 'password',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Mật khẩu cũ',
+    errorMessage: 'Mật khẩu phải có ít nhất 6 ký tự'
+  },
+  {
+    inputKey: 'newPassword',
+    type: 'password',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Mật khẩu mới',
+    errorMessage: 'Mật khẩu phải có ít nhất 6 ký tự'
+  },
+  {
+    inputKey: 'confirmPassword',
+    type: 'password',
+    placeholder: '',
+    isValidate: true,
+    defaultValue: '',
+    required: true,
+    label: 'Xác nhận mật khẩu',
+    errorMessage: 'Mật khẩu không trùng khớp'
+  }
+]
+
 
 export const addressForm = [
   {

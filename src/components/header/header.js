@@ -12,31 +12,10 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       searchText: '',
       showPopup: false,
       showDrawer: false
     };
-  }
-  componentWillMount() {
-    if (storeConfig.getUser()) {
-      this.setState({
-        name: storeConfig.getUser().firstName + ' ' + storeConfig.getUser().lastName
-      });
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.islogin) {
-      this.setState({
-        name: ""
-      });
-    } else {
-      if (storeConfig.getUser()) {
-        this.setState({
-          name: storeConfig.getUser().firstName + ' ' + storeConfig.getUser().lastName
-        });
-      }
-    }
   }
   renderUser = () => {
     if (this.props.islogin) {
@@ -44,7 +23,7 @@ class Header extends Component {
         <li className="position-relative d-lg-flex d-none">
           <div className="flex-column d-flex icon-header-container align-items-center text-decoration-none cursor-pointer" onClick={() => this.setState({showPopup: !this.state.showPopup}) }>
             <i className="fa fa-user icon-header" />
-            <span className="text-link text-nowrap text-truncate">{this.state.name}</span>
+            <span className="text-link text-nowrap text-truncate">{this.props.user && this.props.user.firstName + ' ' + this.props.user.lastName}</span>
           </div>
           <div className={`popup-header position-absolute color-bg d-flex flex-column border ${this.state.showPopup ? 'd-flex' : 'd-none'}`}>
             {listUserPage.map((item, index) => {
@@ -240,19 +219,6 @@ class Header extends Component {
               </ul>
             </div>
           </div>
-          {/* <div className="d-flex d-md-none flex-grow-1 mx-3 border-bottom d-flex justify-content-between align-items-center">
-            <input
-              type="" 
-              id=""
-              name=""
-              placeholder="Tìm kiếm"
-              className="w-100 header-search-input px-3 py-2 border-0"
-              onChange={e => this.setState({searchText: e.target.value})}
-            />
-            <a href={`/products?${keyFilter.SEARCH_TEXT}=${this.state.searchText}`}>
-              <i className="fa fa-search icon-header-search px-3 border-start" aria-hidden="true"></i>
-            </a>
-          </div> */}
         </div>
       </header>
     );
@@ -261,6 +227,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   islogin: state.userReducers.login.islogin,
+  user: state.userReducers.user.user
 })
 
 const mapDispatchToProps = dispatch => {

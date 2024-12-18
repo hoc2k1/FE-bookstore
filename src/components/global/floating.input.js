@@ -3,7 +3,7 @@ import { inputStatus } from "../../constants/values";
 
 const FloatingInput = ({ inputKey, type, placeholder, onChange, 
   password, isValidate, value, required, label, fieldStatus,
-  errorMessage, checkValidate }) => {
+  errorMessage, checkValidate, isDisabled }) => {
   const validate = (text) => {
     let newInputStatus = inputStatus.normal
     if (isValidate) {
@@ -12,7 +12,9 @@ const FloatingInput = ({ inputKey, type, placeholder, onChange,
           const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
           newInputStatus = emailRegex.test(text) ? inputStatus.success : inputStatus.error
           break;
-        case 'password': 
+        case 'password':
+        case 'oldPassword':
+        case 'newPassword':
           newInputStatus = text.length >= 6 ? inputStatus.success : inputStatus.error
           break;
         case 'confirmPassword':
@@ -40,7 +42,8 @@ const FloatingInput = ({ inputKey, type, placeholder, onChange,
     <div className="d-flex flex-column normal-width-input mt-2">
       {label && (<label className={`${required ? 'required' : ''}`}>{label}</label>)}
       <input type={type || 'text'}
-        className={`border p-2`}
+        className={`border p-2 ${isDisabled ? 'input-disabled' : ''}`}
+        disabled={isDisabled}
         placeholder={placeholder}
         value={value || ''}
         required={required}

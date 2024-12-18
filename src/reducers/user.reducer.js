@@ -100,6 +100,12 @@ const user = (state = {}, action) => {
         addressesLoading: action.data
       }
     }
+    case userTypes.SET_USER: {
+      return {
+        ...state,
+        user: action.data
+      }
+    }
     default: return state
   }
 }

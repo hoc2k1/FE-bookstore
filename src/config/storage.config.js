@@ -12,7 +12,7 @@ exports.setUser = (user) => {
   localStorage.setItem("user", JSON.stringify(user))
 }
 exports.getUser = () => {
-  if (localStorage.getItem('user') === null)
+  if (!localStorage.getItem('user'))
     return null
   return JSON.parse(localStorage.getItem('user'))
 }
@@ -20,7 +20,7 @@ exports.clear = () => {
   localStorage.clear()
 }
 exports.getCart = () => {
-  if (localStorage.getItem('cart') === null)
+  if (!localStorage.getItem('cart'))
     return null
   return JSON.parse(localStorage.getItem('cart'))
 }
@@ -29,7 +29,7 @@ exports.removeCart = () => {
 }
 exports.addProductToCart = (product) => {
   let cart
-  if (localStorage.getItem('cart') !== null) {
+  if (localStorage.getItem('cart')) {
     cart = JSON.parse(localStorage.getItem('cart'))
   } else {
     cart = []
@@ -44,7 +44,7 @@ exports.addProductToCart = (product) => {
 }
 exports.updateProductInCart = (product) => {
   let cart = this.getCart()
-  if (cart === null) {
+  if (!cart) {
     return false
   }
   let index = cart.findIndex(element => product._id === element._id)
@@ -58,7 +58,7 @@ exports.updateProductInCart = (product) => {
 }
 exports.deteleProductInCart = (id_product) => {
   let cart = this.getCart()
-  if (cart === null) {
+  if (!cart) {
     return false
   }
   let index = cart.findIndex(element => id_product === element._id)

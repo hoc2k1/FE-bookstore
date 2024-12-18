@@ -35,6 +35,7 @@ export const login = (data) => async (dispatch, getState) => {
     if(res) {
       storeConfig.setUser(res.data.user)
       storeConfig.setToken(res.data.token)
+      dispatch(setUser(res.data.user))
       dispatch(setLoginSuccess())
 
       let cart = storeConfig.getCart()
@@ -92,6 +93,7 @@ export const auth = () => async (dispatch, getState) => {
   }
   else {
     dispatch(setLoginSuccess())
+    dispatch(setUser(storeConfig.getUser()))
     return true
   }
 }
@@ -173,6 +175,55 @@ export const logout = () => (dispatch, getState) => {
   storeConfig.clear()
   dispatch(setLoginFail())
 }
+export const updateProfile = (data) => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}user/updateinfor`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email
+    })
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    return
+  }
+  if(res) {
+    storeConfig.setUser(res.data.user)
+    storeConfig.setToken(res.data.token)
+    dispatch(setUser(res.data.user))
+    toast.success("Thay đổi thông tin thành công!")
+  }
+}
+
+export const changePassword = (data) => async (dispatch, getState) => {
+  const email = storeConfig.getUser().email
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}user/updatepassword`, {
+      oldPassword: data.oldPassword,
+      newPassword: data.newPassword,
+      email: email
+    })
+  }
+  catch (err) {
+    console.log(11, err)
+    toast.error("Something when wrong!")
+    return
+  }
+  if(res) {
+    if (res.data.error) {
+      toast.error(res.data.error)
+    }
+    else {
+      storeConfig.setUser(res.data.user)
+      storeConfig.setToken(res.data.token)
+      dispatch(setUser(res.data.user))
+      toast.success("Thay đổi mật khẩu thành công!")
+    }
+  }
+}
+
 export const setEmail = (email) => ({
   type: userTypes.SET_EMAIL_LOGIN,
   email,
@@ -199,6 +250,10 @@ export const setEmailForgotPassword = (email) => ({
   type: userTypes.SET_EMAIL_FORGOTPASSWORD,
   email
 })
+export const setUser = (data) => ({
+  type: userTypes.SET_USER,
+  data
+})
 export const setAddresses = (data) => ({
   type: userTypes.SET_ADDRESSES,
   data
@@ -219,14 +274,6 @@ export const submitForgotPassword = (email) => async (dispatch, getState) => {
   dispatch(setEmailForgotPassword(res.data.email))
   dispatch(forgotEmailSuccess())
 }
-export const verifyOTPSuccess = (otp) => ({
-  type: userTypes.VERIFY_OTP_SUCCESS,
-  otp
-})
-export const verifyOTPFAIL = () => ({
-  type: userTypes.VERIFY_OTP_FAIL
-})
-
 export const submitEnterNewPassword = (newPassword) => async (dispatch, getState) => {
   let res
   try {

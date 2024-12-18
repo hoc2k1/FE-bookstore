@@ -1,111 +1,123 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-import { bindActionCreators } from "redux";
-import Profile from "../components/profile/profile";
-import * as userActions from "../actions/user.action";
-import * as profileActions from "../actions/profile.action";
-import Loading from "../components/loading/loading";
-import storeConfig from "../config/storage.config";
-import { url } from "../constants/action.types";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Profile from '../components/profile/profile'
+import * as userActions from '../actions/user.action'
+import Header from '../components/header/header'
+import Footer from '../components/footer/footer'
+import { inputStatus, profileForm, changePassForm  } from '../constants/values'
+import storeConfig from '../config/storage.config'
+
 class ProfileContainer extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      email: null,
-      firstName: null,
-      lastName: null,
-      address: null,
-      phone_number: null,
-      notiupdatePassword: null
-    };
-  }
-  async componentWillMount() {
-    let res = await this.props.actions.auth();
-    if (res === false) this.props.history.push("/");
-    if (storeConfig.getUser() !== null) {
-      this.setState({
-        email: storeConfig.getUser().email,
-        firstName: storeConfig.getUser().firstName,
-        lastName: storeConfig.getUser().lastName,
-        address: storeConfig.getUser().address,
-        phone_number: storeConfig.getUser().phone_number
-      });
-    }
-  }
-  updatePassword = async (oldpassword, newpassword) => {
-    let res = null;
-    try {
-      res = await axios.post(`${url.URL_BE}user/updatepassword`, {
-        email: storeConfig.getUser().email,
-        oldpassword: oldpassword,
-        newpassword: newpassword
-      });
-    } catch (err) {
-      console.log(err);
-      this.setState({ notiupdatePassword: false });
-      return false;
-    }
+    super(props)
 
-    this.setState({ notiupdatePassword: true })
-  };
-  resetUpdatePassword = () => {
-    this.setState({
-      notiupdatePassword: null
+    this.state = {
+      profile: {
+        values: {},
+        checkValidate: [],
+        buttonStatus: false
+      },
+      password: {
+        values: {},
+        checkValidate: [],
+        buttonStatus: false
+      }
+    }
+    profileForm.map((item) => {
+      if (item.inputKey) {
+        this.state.profile.values[item.inputKey] = ''
+        if (item.isValidate) {
+          this.state.profile.checkValidate[item.inputKey] = inputStatus.normal
+        }
+      }
+    })
+    changePassForm.map((item) => {
+      if (item.inputKey) {
+        this.state.password.values[item.inputKey] = ''
+        if (item.isValidate) {
+          this.state.password.checkValidate[item.inputKey] = inputStatus.normal
+        }
+      }
     })
   }
-  render() {
-    if (this.props.islogin) {
-      return (
-        <div>
-          <Profile
-            islogin={this.props.islogin}
-            logout={() => this.props.actions.logout()}
-            email={this.state.email}
-            firstName={this.state.firstName}
-            lastName={this.state.lastName}
-            address={this.state.address}
-            phone_number={this.state.phone_number}
-            setFirstName={value => this.setState({ firstName: value })}
-            setLastName={value => this.setState({ lastName: value })}
-            setAddress={value => this.setState({ address: value })}
-            setPhoneNumber={value => this.setState({ phone_number: value })}
-            updateInfor={() =>
-              this.props.profileActions.updateInfor(
-                this.state.email,
-                this.state.firstName,
-                this.state.lastName,
-                this.state.address,
-                this.state.phone_number
-              )
-            }
-            isupdate={this.props.isupdate}
-            history={this.props.history}
-            updatePassword={(oldpassword, newpassword) =>
-              this.updatePassword(oldpassword, newpassword)
-            }
-            notiupdatePassword={this.state.notiupdatePassword}
-            resetUpdatePassword={() => this.resetUpdatePassword()}
-          />
-        </div>
-      );
-    } else {
-      return <Loading />;
+  async componentWillMount() {
+    this.checkIsLogin = await this.props.actions.auth()
+    if(!this.checkIsLogin) {
+      this.props.history.push('/login_register')
+    }
+    else {
+      const userData = storeConfig.getUser()
+      const newProfileData = this.state.profile
+      profileForm.map((item) => {
+        newProfileData.values[item.inputKey] = userData[item.inputKey]
+      })
+      newProfileData.buttonStatus = true;
+      this.setState({profile: newProfileData})
     }
   }
+
+  onChangeFieldChangePass(inputKey, text, newInputStatus) {
+    const newPasswordState = this.state.password;
+    newPasswordState.values[inputKey] = text;
+    newPasswordState.checkValidate[inputKey] = newInputStatus;
+    let checkButtonStatus = true
+    changePassForm.map((item) => {
+      if (item.isValidate && newPasswordState.checkValidate[item.inputKey] != inputStatus.success) {
+        if (!(newPasswordState.checkValidate[item.inputKey] == inputStatus.normal && this.state.password.values[item.inputKey])) {
+          checkButtonStatus = false
+        }
+      }
+    })
+    newPasswordState.buttonStatus = checkButtonStatus
+    this.setState({password: newPasswordState})
+  }
+  onChangeFieldProfile(inputKey, text, newInputStatus) {
+    const newProfileState = this.state.profile;
+    newProfileState.values[inputKey] = text;
+    newProfileState.checkValidate[inputKey] = newInputStatus;
+    let checkButtonStatus = true
+    profileForm.map((item) => {
+      if (item.isValidate && newProfileState.checkValidate[item.inputKey] != inputStatus.success) {
+        if (!(newProfileState.checkValidate[item.inputKey] == inputStatus.normal && this.state.profile.values[item.inputKey])) {
+          checkButtonStatus = false
+        }
+      }
+    })
+    newProfileState.buttonStatus = checkButtonStatus
+    this.setState({profile: newProfileState})
+  }
+  changePassSubmit = async () => {
+    await this.props.actions.changePassword(this.state.password.values);
+  }
+
+  editProfileSubmit = async () => {
+    await this.props.actions.updateProfile(this.state.profile.values);
+  }
+  render() {
+    return (
+      <div>
+        <Header history={this.props.history}/>
+        <Profile
+          onChangeFieldChangePass={(inputKey, text, newInputStatus) => this.onChangeFieldChangePass(inputKey, text, newInputStatus)}
+          onChangeFieldProfile={(inputKey, text, newInputStatus) => this.onChangeFieldProfile(inputKey, text, newInputStatus)}
+          changePassSubmit={() => this.changePassSubmit()}
+          editProfileSubmit={() => this.editProfileSubmit()}
+          state={this.state}
+        />
+        <Footer />
+      </div>
+    )
+
+  }
 }
-const mapStateToProps = state => ({
-  islogin: state.userReducers.login.islogin,
-  isupdate: state.profileReducers.profile.isupdate
-});
 
 const mapDispatchToProps = dispatch => {
-  return {
+  return ({
     actions: bindActionCreators(userActions, dispatch),
-    profileActions: bindActionCreators(profileActions, dispatch)
-  };
-};
+  })
+}
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileContainer);
+  null,
+  mapDispatchToProps,
+)(ProfileContainer)
