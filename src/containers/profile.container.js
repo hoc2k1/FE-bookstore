@@ -33,9 +33,6 @@ class ProfileContainer extends Component {
       });
     }
   }
-  componentWillUnmount() {
-    this.props.profileActions.resetProfile();
-  }
   updatePassword = async (oldpassword, newpassword) => {
     let res = null;
     try {

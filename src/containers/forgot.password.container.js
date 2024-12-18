@@ -6,6 +6,7 @@ import ForgotPassword from '../components/fogot.password/forgot.password'
 import Fail from '../components/status/fail'
 import Success from '../components/status/success'
 import EnterNewPassword from '../components/fogot.password/enter.new.password'
+
 class ForgotPasswordContainer extends Component {
   constructor(props) {
     super(props)

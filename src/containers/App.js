@@ -22,7 +22,7 @@ const App = () => (
         <Route exact path='/login_register' component={LoginRegisterContainer} />
         <Route exact path='/forgotpass/' component={ForgotPasswordContainer} />
         <Route exact path='/product/:id' component={ProductDetailContainer} />
-        <Route exact path='/profile/:email' component={ProfileContainer} />
+        <Route exact path='/profile' component={ProfileContainer} />
         <Route exact path='/addresses' component={AddressesContainer} />
         <Route exact path='/address' component={AddressContainer} />
         <Route exact path='/cart' component={CartContainer} />

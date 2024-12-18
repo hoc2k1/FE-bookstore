@@ -1,21 +1,12 @@
 import axios from 'axios'
 import storeConfig from '../config/storage.config'
 import { profileTypes, url } from '../constants/action.types'
-export const setAuthSuccess = () => ({
-  type: profileTypes.SET_AUTH_LOGIN_SUCCESS
-})
-export const setAuthFail = () => ({
-  type: profileTypes.SET_AUTH_LOGIN_FAIL
-})
 
 export const setUpdateInforSuccess = () => ({
   type: profileTypes.UPDATE_INFOR_USER_SUCCESS
 })
 export const setUpdateInforFail = () => ({
   type: profileTypes.UPDATE_INFOR_USER_FAIL
-})
-export const resetProfile = () => ({
-  type: profileTypes.RESET_PROFILE
 })
 export const updateInfor = (email, firstName, lastName, address, phone_number) => async (dispatch, getState) => {
   let res
