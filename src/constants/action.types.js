@@ -68,7 +68,8 @@ export const cartTypes = {
     SET_ADD_TO_CART_LOADING: 'SET_ADD_TO_CART_LOADING'
 }
 export const billTypes = {
-    SET_BILL: 'SET_BILL'
+    SET_BILL: 'SET_BILL',
+    SET_BILLS: 'SET_BILLS'
 }
 export const purchaseHistoryTypes = {
     SET_PURCHASED_HISTORY: 'SET_PURCHASED_HISTORY',

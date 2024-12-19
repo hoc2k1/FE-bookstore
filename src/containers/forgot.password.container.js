@@ -1,139 +1,70 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as userActions from '../actions/user.action'
 import ForgotPassword from '../components/fogot.password/forgot.password'
-import Fail from '../components/status/fail'
-import Success from '../components/status/success'
-import EnterNewPassword from '../components/fogot.password/enter.new.password'
-
+import * as userActions from '../actions/user.action'
+import Header from '../components/header/header'
+import Footer from '../components/footer/footer'
+import { inputStatus } from '../constants/values'
+import toast from 'react-hot-toast'
 class ForgotPasswordContainer extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      email: '',
-      notification: '',
-      status: null,
-      otp: null,
-      verify_otp: null,
-      notificationOTP: '',
-      newPassword: '',
-      confirm: '',
-      statusForgotPassword: null,
+      forgotPass: {
+        values: {
+          email: ''
+        },
+        checkValidate: {
+          email: inputStatus.normal
+        },
+        buttonStatus: false
+      },
     }
-  }
-  isvalidEmail = (email) => {
-    if (email.indexOf('@') === -1 || email.indexOf('.') === -1)
-      return false
-    return true
-  }
-  submit = () => {
-    if (this.isvalidEmail(this.state.email))
-      this.setState({ email: '' })
-    else {
-      this.setState({ notification: 'email invalid' })
-      return
-    }
-    this.props.actions.submitForgotPassword(this.state.email)
   }
 
-  componentWillUnmount() {
-    this.props.actions.resetForgotPassword()
+  onChangeField(inputKey, text, newInputStatus) {
+    const newForgotPassState = this.state.forgotPass;
+    newForgotPassState.values[inputKey] = text;
+    newForgotPassState.checkValidate[inputKey] = newInputStatus;
+    let checkButtonStatus = true
+    if (newForgotPassState.checkValidate[inputKey] == inputStatus.error) {
+      checkButtonStatus = false
+    }
+    newForgotPassState.buttonStatus = checkButtonStatus
+    this.setState({forgotPass: newForgotPassState})
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isForgot === true) {
-      this.setState({ status: true })
-    }
-    else if (nextProps.isForgot === false) {
-      this.setState({ status: false })
-    }
-    if (nextProps.verify_otp === true) {
-      this.setState({ verify_otp: true, notificationOTP: "" })
-    }
-    else if (nextProps.verify_otp === false) {
-      this.setState({ verify_otp: false, notificationOTP: 'OTP CODE INVALID' })
-    }
-    if (nextProps.forgotpassword === true) {
-      this.setState({ statusForgotPassword: true })
-    }
-    else if (nextProps.forgotpassword === false) {
-      this.setState({ statusForgotPassword: true })
-    }
+  componentWillMount() {
+    this.props.actions.auth()
+  }
 
-  }
-  submitEnterNewPassword = (password, confirm) => {
-    if (password.length < 6) {
-      this.setState({ notificationEnterPassowrd: "input invalid" })
-      return
-    }
-    if (confirm !== password) {
-      this.setState({ notificationEnterPassowrd: "input invalid" })
-      return
-    }
-    this.props.actions.submitEnterNewPassword(this.state.newPassword)
+  forgotPassSubmit = async () => {
+    toast.success("Vui lòng kiểm tra email để cập nhật mật khẩu!")
   }
   render() {
-    const { status } = this.state
-    if (status === null) {
-      return (
-        <ForgotPassword
-          setEmail={(value) => this.setState({ email: value })}
-          submit={() => this.submit()}
-          notification={this.state.notification}
-        />
-      )
-    }
-    else if (status) {
-      if (this.state.verify_otp) {
-        if (this.state.statusForgotPassword) {
-          return (
-            <Success />
-          )
-        }
-        else if (this.state.statusForgotPassword === false) {
-          return (
-            <Fail />
-          )
-        }
-        else {
-          return (
-            <EnterNewPassword
-              setNewPassword={(value) => this.setState({ newPassword: value })}
-              setConfirm={(value) => this.setState({ confirm: value })}
-              submitEnterNewPassword={() => this.submitEnterNewPassword(this.state.newPassword, this.state.confirm)}
-            />
-          )
-        }
-
-      }
-      else {
-
-        return (
-          <div></div>
-        )
-      }
-
-    }
-    else {
-      return (
-        <Fail />
-      )
-    }
+    return (
+      <div className="d-flex flex-column min-h-full">
+        <Header history={this.props.history}/>
+        <div className="d-flex flex-column flex-grow-1">
+          <ForgotPassword
+            onChangeField={(inputKey, text, newInputStatus) => this.onChangeField(inputKey, text, newInputStatus)}
+            forgotPassSubmit={() => this.forgotPassSubmit()}
+            state={this.state}
+          />
+        </div>
+        <Footer />
+      </div>
+    )
 
   }
 }
-const mapStateToProps = state => ({
-  isForgot: state.userReducers.forgotPassword.isForgot,
-  verify_otp: state.userReducers.forgotPassword.verify_otp,
-  forgotpassword: state.userReducers.forgotPassword.forgotpassword
-})
-
 const mapDispatchToProps = dispatch => {
   return ({
-    actions: bindActionCreators(userActions, dispatch)
+    actions: bindActionCreators(userActions, dispatch),
   })
 }
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  null,
+  mapDispatchToProps,
 )(ForgotPasswordContainer)

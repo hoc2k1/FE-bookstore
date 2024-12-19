@@ -20,12 +20,14 @@ class HomeContainer extends Component {
     const { category, banner, totalpage } = this.props
     if (category && banner && totalpage ) {
       return (
-        <div>
+        <div className="d-flex flex-column min-h-full">
           <Header history={this.props.history}/>
-          <Home
-            category={this.props.category}
-            banner={this.props.banner}
-          />
+          <div className="d-flex flex-column flex-grow-1">
+            <Home
+              category={this.props.category}
+              banner={this.props.banner}
+            />
+          </div>
           <Footer />
         </div>
       )

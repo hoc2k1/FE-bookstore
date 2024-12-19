@@ -25,6 +25,26 @@ export const findById = (id_bill) => async (dispatch, getState) => {
     return false
   }
 }
+export const getBillByUser = () => async (dispatch, getState) => {
+  const id_user = storeConfig.getUser().id
+  let res
+  try {
+    res = await axios.get(`${url.URL_BE}bill/getallbill/${id_user}`)
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    console.log(err)
+    return false
+  }
+  if(res.data.data) {
+    dispatch(setBills(res.data.data))
+    return true
+  }
+  else if (res.data.error) {
+    toast.error(res.data.error)
+    return false
+  }
+}
 export const findOrAdd = (data) => async (dispatch, getState) => {
   const id_user = storeConfig.getUser().id
   let res
@@ -105,5 +125,10 @@ export const checkout = (id_bill) => async (dispatch, getState) => {
 
 export const setBill = (data) => ({
   type: billTypes.SET_BILL,
+  data
+})
+
+export const setBills = (data) => ({
+  type: billTypes.SET_BILLS,
   data
 })

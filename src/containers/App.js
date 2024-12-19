@@ -13,7 +13,7 @@ import AddressesContainer from './addresses.container'
 import AddressContainer from './address.container'
 import ThankYouContainer from './thank.you.container'
 import BillContainer from './bill.container'
-import BillsContainer from './bill.container'
+import BillsContainer from './bills.container'
 import 'rsuite/dist/rsuite.min.css';
 const App = () => (
   <div className="w-100 h-100">
@@ -22,7 +22,7 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={HomeContainer} />
         <Route exact path='/login_register' component={LoginRegisterContainer} />
-        <Route exact path='/forgotpass/' component={ForgotPasswordContainer} />
+        <Route exact path='/forgotpass' component={ForgotPasswordContainer} />
         <Route exact path='/product/:id' component={ProductDetailContainer} />
         <Route exact path='/profile' component={ProfileContainer} />
         <Route exact path='/addresses' component={AddressesContainer} />

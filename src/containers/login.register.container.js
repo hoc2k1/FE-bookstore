@@ -106,16 +106,18 @@ class LoginRegisterContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="d-flex flex-column min-h-full">
         <Header history={this.props.history}/>
-        <LoginRegister
-          onChangeFieldLogin={(inputKey, text, newInputStatus) => this.onChangeFieldLogin(inputKey, text, newInputStatus)}
-          onChangeFieldRegister={(inputKey, text, newInputStatus) => this.onChangeFieldRegister(inputKey, text, newInputStatus)}
-          registerSubmit={() => this.registerSubmit()}
-          loginSubmit={() => this.loginSubmit()}
-          loadingLoginRegister={this.props.loadingLoginRegister}
-          state={this.state}
-        />
+        <div className="d-flex flex-column flex-grow-1">
+          <LoginRegister
+            onChangeFieldLogin={(inputKey, text, newInputStatus) => this.onChangeFieldLogin(inputKey, text, newInputStatus)}
+            onChangeFieldRegister={(inputKey, text, newInputStatus) => this.onChangeFieldRegister(inputKey, text, newInputStatus)}
+            registerSubmit={() => this.registerSubmit()}
+            loginSubmit={() => this.loginSubmit()}
+            loadingLoginRegister={this.props.loadingLoginRegister}
+            state={this.state}
+          />
+        </div>
         <Footer />
       </div>
     )

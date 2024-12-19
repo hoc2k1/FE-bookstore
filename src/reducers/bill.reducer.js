@@ -9,6 +9,12 @@ const bill = (state = { data: [] }, action) => {
         data: action.data
       }
     }
+    case billTypes.SET_BILLS: {
+      return {
+        ...state,
+        bills: action.data
+      }
+    }
     default: return state
   }
 }

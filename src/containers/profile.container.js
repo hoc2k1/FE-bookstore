@@ -96,15 +96,17 @@ class ProfileContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="d-flex flex-column min-h-full">
         <Header history={this.props.history}/>
-        <Profile
-          onChangeFieldChangePass={(inputKey, text, newInputStatus) => this.onChangeFieldChangePass(inputKey, text, newInputStatus)}
-          onChangeFieldProfile={(inputKey, text, newInputStatus) => this.onChangeFieldProfile(inputKey, text, newInputStatus)}
-          changePassSubmit={() => this.changePassSubmit()}
-          editProfileSubmit={() => this.editProfileSubmit()}
-          state={this.state}
-        />
+        <div className="d-flex flex-column flex-grow-1">
+          <Profile
+            onChangeFieldChangePass={(inputKey, text, newInputStatus) => this.onChangeFieldChangePass(inputKey, text, newInputStatus)}
+            onChangeFieldProfile={(inputKey, text, newInputStatus) => this.onChangeFieldProfile(inputKey, text, newInputStatus)}
+            changePassSubmit={() => this.changePassSubmit()}
+            editProfileSubmit={() => this.editProfileSubmit()}
+            state={this.state}
+          />
+        </div>
         <Footer />
       </div>
     )

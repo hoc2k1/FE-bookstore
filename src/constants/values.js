@@ -313,9 +313,15 @@ export const listUserPage = [
   },
   {
     key: 'addresses',
-    title: "Địa chỉ giao hàng",
+    title: "Danh sách địa chỉ",
     url: '/addresses',
     icon: 'map'
+  },
+  {
+    key: 'bills',
+    title: "Danh sách đơn hàng",
+    url: '/bills',
+    icon: 'files-o'
   },
   {
     key: 'signOut',

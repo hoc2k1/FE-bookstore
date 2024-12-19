@@ -32,6 +32,19 @@
   }
 }
 
+.status-wait {
+  color: #FF6600;
+}
+.status-shipping {
+  color: #8B4513;
+}
+.status-complete {
+  color: var(--color-success);
+}
+.status-cancel {
+  color: var(--color-error);
+}
+
 .header-login-register {
   border-bottom: 2px solid var(--color-border);
   opacity: var(--icon-opacity);

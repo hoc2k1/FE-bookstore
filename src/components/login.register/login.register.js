@@ -28,7 +28,7 @@ function LoginRegister({ onChangeFieldLogin, onChangeFieldRegister, state, regis
           </div>
         </Button>
         <div className='forgotpassword mt-md-4 mt-3'>
-          <Link to='/forgotpass/' className="text-link">Quên mật khẩu?</Link>
+          <Link to='/forgotpass' className="text-link">Quên mật khẩu?</Link>
         </div>
       </div>
   } else {
