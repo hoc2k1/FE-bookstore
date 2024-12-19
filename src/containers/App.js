@@ -7,11 +7,11 @@ import ProductDetailContainer from './product.detail.container'
 import ProfileContainer from './profile.container'
 import CartContainer from './cart.container'
 import PaymentContainer from './payment.container'
-import HistoryPurchase from './history.purchase.container'
 import productsContainer from './products.container'
 import { Toaster } from 'react-hot-toast';
 import AddressesContainer from './addresses.container'
 import AddressContainer from './address.container'
+import ThankYouContainer from './thank.you.container'
 import 'rsuite/dist/rsuite.min.css';
 const App = () => (
   <div className="w-100 h-100">
@@ -27,8 +27,8 @@ const App = () => (
         <Route exact path='/address' component={AddressContainer} />
         <Route exact path='/cart' component={CartContainer} />
         <Route exact path='/payment' component={PaymentContainer} />
-        <Route exact path='/purchase_history' component={HistoryPurchase} />
         <Route exact path='/products' component={productsContainer} />
+        <Route exact path='/thankyou' component={ThankYouContainer} />
       </Switch>
     </Router>
   </div>

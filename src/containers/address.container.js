@@ -29,6 +29,7 @@ class AddressContainer extends Component {
     if (this.props.location.search) {
       const queryParams = new URLSearchParams(this.props.location.search);
       this.idAddress = queryParams.get('id')
+      this.from = queryParams.get('from')
     }
     addressForm.map((item) => {
       if (item.inputKey) {
@@ -166,7 +167,12 @@ class AddressContainer extends Component {
     else {
       const isSuccess = await this.props.actions.addNewAddress(data)
       if (isSuccess) {
-        this.props.history.push('/addresses')
+        if (this.from) {
+          this.props.history.push('/payment')
+        }
+        else {
+          this.props.history.push('/addresses')
+        }
       }
     }
   }

@@ -158,7 +158,6 @@ class Header extends Component {
     )
   }
   render() {
-    console.log(2, this.props.cart)
     return (
       <header id="header" className="sticky-top header ">
         <div className="container py-2">

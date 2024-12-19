@@ -325,6 +325,24 @@ export const listUserPage = [
   }
 ]
 
+export const billStatus = {
+  pending: 'pending',
+  wait_accept: 'Chờ xác nhận',
+  shipping: 'Đang vận chuyền',
+  complete: 'Hoàn thành',
+  cancel: "Đã huỷ"
+}
+
+export const paymentMethod = {
+  cod: 'Thanh toán khi nhận hàng'
+}
+
+export const cartGridType = {
+  cart: 'cart',
+  payment: 'payment',
+  bill: 'bill'
+}
+
 export const listPageInHeader = [
   {
     key: 'home',

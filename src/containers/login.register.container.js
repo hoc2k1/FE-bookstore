@@ -22,6 +22,10 @@ class LoginRegisterContainer extends Component {
         buttonStatus: false
       }
     }
+    if (this.props.location.search) {
+      const queryParams = new URLSearchParams(this.props.location.search);
+      this.from = queryParams.get('from')
+    }
     loginForm.map((item) => {
       if (item.inputKey) {
         this.state.login.values[item.inputKey] = ''
@@ -77,7 +81,12 @@ class LoginRegisterContainer extends Component {
     const registerSuccess = await this.props.actions.register(this.state.register.values)
     if (registerSuccess) {
       setTimeout(() => {
-        this.props.history.push('/')
+        if (this.from) {
+          this.props.history.push('/cart')
+        }
+        else {
+          this.props.history.push('/')
+        }
       }, 1000)
     }
   }
@@ -86,7 +95,12 @@ class LoginRegisterContainer extends Component {
     const loginSuccess = await this.props.actions.login(this.state.login.values)
     if (loginSuccess) {
       setTimeout(() => {
-        this.props.history.push('/')
+        if (this.from) {
+          this.props.history.push('/cart')
+        }
+        else {
+          this.props.history.push('/')
+        }
       }, 1000)
     }
   }

@@ -22,6 +22,7 @@
   --out-of-stock-button: #CCCCCC;
   --color-error: red;
   --color-input-disabled: #f7f7fa;
+  --color-success: #008000;
 }
 
 @media (min-width: 768px) {
@@ -232,6 +233,28 @@ body, input {
   text-decoration: underline;
   cursor: pointer;
 }
+.ReactModalPortal {
+  position: fixed;
+  z-index: 9999;
+}
+.right-0 {
+  right: 0;
+}
+.left-0 {
+  left: 0;
+}
+.top-0 {
+  top: 0;
+}
+.bottom-0 {
+  bottom: 0;
+}
+.icon-success {
+  color: var(--color-success);
+}
+.w-fit {
+  width: fit-content;
+}
 @media (min-width: 992px) {
   .icon-address {
     opacity: var(--icon-opacity);
@@ -247,7 +270,7 @@ body, input {
   }
   .text-link {
     color: var(--color-text);
-    text-decoration: none;
+    text-decoration: none !important;
     position: relative;
   }
   

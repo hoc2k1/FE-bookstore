@@ -25,8 +25,13 @@ const AddressCard = (props) => {
   const handleDelete = () => {
     props.actions.deleteAddress(props.address._id)
   }
+  const chooseAddress = () => {
+    if (props.type) {
+      props.chooseAddress()
+    }
+  }
   return (
-    <div className="p-md-3 p-2 shadow d-flex">
+    <div className={`p-md-3 p-2 shadow d-flex ${props.type ? 'cursor-pointer' : ''}`} onClick={() => chooseAddress()}>
       <div className="flex-grow-1">
         {renderRow('Họ tên', props.address.firstName + ' ' + props.address.lastName)}
         {renderRow('Tỉnh/Thành phố', props.address.province)}
@@ -35,7 +40,7 @@ const AddressCard = (props) => {
         {renderRow('Địa chỉ cụ thể', props.address.specificAddress)}
         {renderRow('Số điện thoại', props.address.phoneNumber)}
       </div>
-      <div className="d-flex flex-column gap-md-3 gap-2">
+      <div className={`${props.type ? 'd-none' : 'd-flex'} flex-column gap-md-3 gap-2`}>
         <i onClick={() => handleDelete()} className="fa fa-times-circle icon-address p-md-2 p-1 cursor-pointer"></i>
         <i onClick={() => handleEdit()} className="fa fa-pencil-square-o icon-address p-md-2 p-1 cursor-pointer"></i>
       </div>

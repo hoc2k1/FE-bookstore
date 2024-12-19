@@ -67,6 +67,9 @@ export const cartTypes = {
     RESET_PAYMENT: 'RESET_PAYMENT',
     SET_ADD_TO_CART_LOADING: 'SET_ADD_TO_CART_LOADING'
 }
+export const billTypes = {
+    SET_BILL: 'SET_BILL'
+}
 export const purchaseHistoryTypes = {
     SET_PURCHASED_HISTORY: 'SET_PURCHASED_HISTORY',
 }

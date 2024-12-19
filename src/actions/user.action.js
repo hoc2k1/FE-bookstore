@@ -223,7 +223,6 @@ export const changePassword = (data) => async (dispatch, getState) => {
     })
   }
   catch (err) {
-    console.log(11, err)
     toast.error("Something when wrong!")
     return
   }
