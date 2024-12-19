@@ -99,16 +99,18 @@ const PaymentAddress = (props) => {
     <div>
       {renderHeader()}
       {renderContent()}
-      <Modal 
-        isOpen={showPopup}
-        onRequestClose={() => setShowPopup(false)}
-        shouldCloseOnOverlayClick={true}
-      >
-        <i className='fa fa-times-circle cursor-pointer font-size-normal text-end p-2 p-md-3 position-fixed top-0 right-0' onClick={() => setShowPopup(false)}></i>
-        <div className='container h-100'>
-          {renderAddresses()}
-        </div>
-      </Modal>
+      {props.type == cartGridType.payment && (
+        <Modal 
+          isOpen={showPopup}
+          onRequestClose={() => setShowPopup(false)}
+          shouldCloseOnOverlayClick={true}
+        >
+          <i className='fa fa-times-circle cursor-pointer font-size-normal text-end p-2 p-md-3 position-fixed top-0 right-0' onClick={() => setShowPopup(false)}></i>
+          <div className='container h-100'>
+            {renderAddresses()}
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }

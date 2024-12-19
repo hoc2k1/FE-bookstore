@@ -7,6 +7,24 @@ import toast from 'react-hot-toast'
 import { billStatus } from '../constants/values'
 import { deleteCart, setCart } from './cart.action'
 
+export const findById = (id_bill) => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.get(`${url.URL_BE}bill/getbill/${id_bill}`)
+  }
+  catch (err) {
+    toast.error("Something when wrong!")
+    console.log(err)
+    return false
+  }
+  if(res.data.data) {
+    return res.data.data
+  }
+  else if (res.data.error) {
+    toast.error(res.data.error)
+    return false
+  }
+}
 export const findOrAdd = (data) => async (dispatch, getState) => {
   const id_user = storeConfig.getUser().id
   let res
@@ -52,7 +70,6 @@ export const updateBill = (data) => async (dispatch, getState) => {
     return false
   }
   if(res.data.data) {
-    console.log(234, res.data.data)
     dispatch(setBill(res.data.data))
     return true
   }

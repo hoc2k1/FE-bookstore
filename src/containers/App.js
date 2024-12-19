@@ -12,6 +12,8 @@ import { Toaster } from 'react-hot-toast';
 import AddressesContainer from './addresses.container'
 import AddressContainer from './address.container'
 import ThankYouContainer from './thank.you.container'
+import BillContainer from './bill.container'
+import BillsContainer from './bill.container'
 import 'rsuite/dist/rsuite.min.css';
 const App = () => (
   <div className="w-100 h-100">
@@ -29,6 +31,8 @@ const App = () => (
         <Route exact path='/payment' component={PaymentContainer} />
         <Route exact path='/products' component={productsContainer} />
         <Route exact path='/thankyou' component={ThankYouContainer} />
+        <Route exact path='/bills' component={BillsContainer} />
+        <Route exact path='/bill' component={BillContainer} />
       </Switch>
     </Router>
   </div>
