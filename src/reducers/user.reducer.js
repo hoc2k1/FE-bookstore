@@ -60,6 +60,5 @@ const user = (state = {}, action) => {
 }
 export default combineReducers({
   login,
-  user,
-  forgotPassword
+  user
 })
