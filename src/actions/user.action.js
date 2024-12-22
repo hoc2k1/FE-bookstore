@@ -104,7 +104,7 @@ export const auth = () => async (dispatch, getState) => {
   if (res.error) {
     dispatch(setLoginFail())
     toast.error('Phiên đăng nhập đã hết hạn')
-    window.location.href('/login_register')
+    window.location.href = '/login_register'
     return false
   }
   else {
