@@ -21,7 +21,7 @@ class AddressesContainer extends Component {
 
   render() {
     const { addresses } = this.props
-    if (checkNotEmpty(addresses)) {
+    if (addresses) {
       return (
         <div className="d-flex flex-column min-h-full">
           <Header history={this.props.history}/>
