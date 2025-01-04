@@ -1,3 +1,10 @@
+// export const url = {
+//     URL_BE: 'http://localhost:8080/'
+// }
+export const url = {
+    URL_BE: 'https://be-bookstore-iota.vercel.app/'
+}
+
 export const userTypes = {
     SET_EMAIL_LOGIN: 'SET_EMAIL_LOGIN',
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
@@ -61,11 +68,4 @@ export const cartTypes = {
 export const billTypes = {
     SET_BILL: 'SET_BILL',
     SET_BILLS: 'SET_BILLS'
-}
-export const purchaseHistoryTypes = {
-    SET_PURCHASED_HISTORY: 'SET_PURCHASED_HISTORY',
-}
-
-export const url = {
-    URL_BE: 'http://localhost:8080/'
 }

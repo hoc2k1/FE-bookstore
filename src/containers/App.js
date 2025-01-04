@@ -7,7 +7,7 @@ import ProductDetailContainer from './product.detail.container'
 import ProfileContainer from './profile.container'
 import CartContainer from './cart.container'
 import PaymentContainer from './payment.container'
-import productsContainer from './products.container'
+import ProductsContainer from './products.container'
 import { Toaster } from 'react-hot-toast';
 import AddressesContainer from './addresses.container'
 import AddressContainer from './address.container'
@@ -29,7 +29,7 @@ const App = () => (
         <Route exact path='/address' component={AddressContainer} />
         <Route exact path='/cart' component={CartContainer} />
         <Route exact path='/payment' component={PaymentContainer} />
-        <Route exact path='/products' component={productsContainer} />
+        <Route exact path='/products' component={ProductsContainer} />
         <Route exact path='/thankyou' component={ThankYouContainer} />
         <Route exact path='/bills' component={BillsContainer} />
         <Route exact path='/bill' component={BillContainer} />

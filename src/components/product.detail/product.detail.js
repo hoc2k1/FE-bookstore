@@ -12,7 +12,7 @@ class ContentProductDetail extends Component {
     super(props);
     this.author = this.props.author.filter(item => item._id == this.props.productDetail.id_author)[0]
     this.category = this.props.category.filter(item => item._id == this.props.productDetail.id_category)[0]
-    this.publisher = this.props.publisher.filter(item => item._id == this.props.productDetail.id_nsx)[0]
+    this.publisher = this.props.publisher.filter(item => item._id == this.props.productDetail.id_publisher)[0]
     this.imageUrl = (this.props.productDetail.img && this.props.productDetail.img[0]) ? this.props.productDetail.img[0] : '../../../assets/images/shop/placeholder-image.png'
     this.state = {
       showDescription: false

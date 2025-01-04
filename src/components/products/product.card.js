@@ -6,7 +6,7 @@ import Price from '../product.detail/product.price'
 const ProductCard = (props) => {
   const author = props.author.filter(item => item._id == props.product.id_author)[0]
   const category = props.category.filter(item => item._id == props.product.id_category)[0]
-  const publisher = props.publisher.filter(item => item._id == props.product.id_nsx)[0]
+  const publisher = props.publisher.filter(item => item._id == props.product.id_publisher)[0]
   const imageUrl = (props.product.img && props.product.img[0]) ? props.product.img[0] : '../../../assets/images/shop/placeholder-image.png'
   return (
     <div className={`${props.isCart ? 'd-flex gap-md-3 gap-2 py-2 py-md-3 align-items-center w-100' : 'product-card border'}`}>
