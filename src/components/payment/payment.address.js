@@ -50,7 +50,7 @@ const PaymentAddress = (props) => {
     }
   }
   const renderAddresses = () => {
-    if (checkNotEmpty(props.address)) {
+    if (!checkNotEmpty(props.addresses)) {
       return <AddressAddButton type={cartGridType.payment} history={props.history} />
     }
     else {

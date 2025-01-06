@@ -26,6 +26,7 @@ class HomeContainer extends Component {
             <Home
               category={this.props.category}
               banner={this.props.banner}
+              history={this.props.history}
             />
           </div>
           <Footer />

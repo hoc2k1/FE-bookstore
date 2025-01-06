@@ -26,6 +26,7 @@ const Bills = (props) => {
       )
     }
   }
+  console.log(props.bills)
   const renderBillItem = (item, index) => {
     let textStyle = ''
     switch (item.status) {
@@ -58,7 +59,7 @@ const Bills = (props) => {
       </div>
     )
   }
-  if (!props.bills?.length > 0) {
+  if (props.bills?.length > 0) {
     return (
       <div className='container'>
         <div className="d-flex p-0 width-small mx-auto header-login-register active align-items-center justify-content-center">

@@ -6,6 +6,9 @@ import AddToCart from "../global/add.to.cart";
 import ViewAll from "../global/view.all";
 import { checkNotEmpty } from "../../config/identify"
 import ProductGrid from "../products/product.grid";
+import "react-image-gallery/styles/css/image-gallery.css";
+import ImageGallery from "react-image-gallery";
+
 
 class ContentProductDetail extends Component {
   constructor(props) {
@@ -60,13 +63,27 @@ class ContentProductDetail extends Component {
     )
   }
   render() {
+    let images = []
+    if(this.props.productDetail.img?.length > 0) {
+      this.props.productDetail.img.map((item) => {
+        images.push({original: item, thumbnail: item})
+      })
+    }
+
     return (
       <div className="container my-md-4 my-2">
         <div className={`d-flex flex-column flex-md-row gap-md-4 mb-3 mb-md-5`}>
           <div className="w-100 w-md-50">
-            <img src={this.imageUrl} alt="" className="product-image"/>
+            {checkNotEmpty(images) && (
+              <div className="product-image">
+                <ImageGallery items={images} showPlayButton={false}/>;
+              </div>
+            )}
+             {!checkNotEmpty(images) && (
+              <img src={this.imageUrl} alt="" className="product-image"/>
+            )}
           </div>
-          <div className="flex-grow-1">
+          <div className="w-100 w-md-50">
             <div className="px-2 px-md-3">
               <div className="mt-1">
                 <span className="heading list-unstyled">{this.props.productDetail.name}</span>

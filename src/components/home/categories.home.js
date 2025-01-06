@@ -3,7 +3,7 @@ import React from "react";
 // Import Swiper React components
 import SlideCustom from "../slide.custom/slide.custom";
 
-const Categories = ({ categories }) => {
+const Categories = ({ categories, history }) => {
   const responsiveSettings = [
     {
       breakpoint: 1200,
@@ -37,7 +37,7 @@ const Categories = ({ categories }) => {
       >
         { categories.map((item, index) => {
           return (
-            <div key={index} className="category-item">
+            <div key={index} className="category-item cursor-pointer" onClick={() => history.push({pathname: '/products', search: `searchCategory=${item._id}` })}>
               <img className="w-100 ratio ratio-1x1 rounded-circle category-item-image" src={item.image}></img>
               <p className="mt-2 fw-bold fs-5">{item.name}</p>
             </div>

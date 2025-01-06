@@ -177,6 +177,7 @@ class AddressContainer extends Component {
     }
   }
 
+  
   render() {
     const { addresses } = this.props
     if (addresses) {

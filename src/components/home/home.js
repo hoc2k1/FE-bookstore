@@ -10,7 +10,7 @@ class ContentHome extends Component {
       <section>
         <div className="container">
           <Banner banners={this.props.banner} />
-          <Categories categories={this.props.category}/>
+          <Categories categories={this.props.category} history={this.props.history}/>
         </div>
       </section>
     );
