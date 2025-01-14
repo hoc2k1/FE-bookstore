@@ -37,12 +37,8 @@ const Footer = () => {
       key: 'payment',
       childrens: [
         {
-          name: "Liên hệ",
-          link: "/contact"
-        },
-        {
-          name: "Điều khoản ",
-          link: "/contact"
+          key: 'cod',
+          img: '/assets/images/shop/cod.png'
         }
       ]
     } 
@@ -68,13 +64,18 @@ const Footer = () => {
             case 'payment':
               return (
                 <div key={index} className='col-md-4'>
-                  <p className='heading-small'>{item.title}</p>
+                  <p className='heading-small mb-3'>{item.title}</p>
+                  <div className='d-flex flex-wrap gap-2'>
+                    {item.childrens.map((children, index) => (
+                      <img key={item.key} src={children.img} className="img-payment-method"/>
+                    ))}
+                  </div>
                 </div>
               )
             default: 
               return (
                 <div key={index} className='col-md-4'>
-                  <p className='heading-small'>{item.title}</p>
+                  <p className='heading-small mb-3'>{item.title}</p>
                   {item.childrens.map((children, index1) => (
                     <Link to={children.link} key={index1} className='text-link d-flex mb-3'>
                       {children.name}

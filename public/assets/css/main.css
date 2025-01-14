@@ -25,6 +25,11 @@
   --color-success: #008000;
 }
 
+.img-payment-method {
+  width: 40px;
+  height: 40px;
+}
+
 @media (min-width: 768px) {
   :root {
     --font-size-heading: 1.125rem;

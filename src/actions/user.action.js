@@ -47,8 +47,8 @@ export const login = (data) => async (dispatch, getState) => {
       let cart = getState().cartReducers.cart.data
       storeConfig.removeCartId()
       if (cart) {
-        dispatch(deleteCart(cart._id))
-        dispatch(addToCart({id_user: res.data.user.id, products: cart.products}))
+        await dispatch(deleteCart(cart._id))
+        await dispatch(addToCart({id_user: res.data.user.id, products: cart.products}))
       }
       if (!data.hiddenToast) {
         setTimeout(() => {
