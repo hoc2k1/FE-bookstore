@@ -14,6 +14,8 @@ import AddressContainer from './address.container'
 import ThankYouContainer from './thank.you.container'
 import BillContainer from './bill.container'
 import BillsContainer from './bills.container'
+import ContactContainer from './contact.container'
+import TermContainer from './term.container'
 import 'rsuite/dist/rsuite.min.css';
 const App = () => (
   <div className="w-100 h-100">
@@ -33,6 +35,8 @@ const App = () => (
         <Route exact path='/thankyou' component={ThankYouContainer} />
         <Route exact path='/bills' component={BillsContainer} />
         <Route exact path='/bill' component={BillContainer} />
+        <Route exact path='/contact' component={ContactContainer} />
+        <Route exact path='/term' component={TermContainer} />
       </Switch>
     </Router>
   </div>
