@@ -55,6 +55,7 @@ export const findOrAdd = (data) => async (dispatch, getState) => {
       status: billStatus.pending,
       total: data?.total,
       subtotal: data?.subtotal,
+      packTotal: data?.packTotal,
       discount: data?.discount
     })
   }

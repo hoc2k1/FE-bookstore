@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { keyFilter } from '../../constants/values' 
+import { currency, keyFilter, packPrice } from '../../constants/values' 
 import Price from '../product.detail/product.price'
 
 const ProductCard = (props) => {
@@ -17,6 +17,11 @@ const ProductCard = (props) => {
         <div className="mt-1">
           <a href={'/product/' + props.product._id} className="text-link heading list-unstyled"><span>{props.product.name}</span></a>
         </div>
+        {props.product.is_package && (
+          <div>
+            <span>Đóng gói ({packPrice}<sup>{currency}</sup> / 1 sản phẩm)</span>
+          </div>
+        )}
         <Price isSmall={props.isCart} price={props.product.price} sales={props.product.sales}/>
         {category && (<span><span className="fw-bold">Thể loại: </span><a className="text-link" href={`/products/?${keyFilter.SEARCH_CATEGORY}=${category._id}`}>{category.name}</a><br/></span>)}
         {author && (<span><span className="fw-bold">Tác giả: </span><a className="text-link" href={`/products?${keyFilter.SEARCH_AUTHOR}=${author._id}`}>{author.name}</a><br/></span>)}

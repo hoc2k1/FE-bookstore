@@ -5,7 +5,7 @@ import * as cartActions from '../../actions/cart.action'
 import * as billActions from '../../actions/bill.action'
 import ProductCard from '../products/product.card'
 import Price from '../product.detail/product.price'
-import { currency, cartGridType } from '../../constants/values'
+import { currency, cartGridType, packPrice } from '../../constants/values'
 import Button from '../button/button'
 import toast from "react-hot-toast";
 
@@ -72,7 +72,7 @@ const CartGrid = (props) => {
           ></i>
         </div>
         <div className={`${props.type == cartGridType.cart ? 'col-2' : 'col-3'} px-md-3 px-1 d-flex justify-content-center align-items-center`}>
-          <Price isSmall={true} times={item.count} multiLine={true} price={item.price} sales={item.sales} />
+          <Price isSmall={true} times={item.count} multiLine={true} price={item.price} sales={item.sales} isPackage={item.is_package}/>
         </div>
         <div className={`${props.type == cartGridType.cart ? 'd-flex' : 'd-none'} col-1 px-md-3 px-1 d-flex justify-content-center align-items-center`}>
           <span className='heading-small text-link' onClick={() => deleteProductInCart(item)}>Xoá</span>
@@ -122,11 +122,15 @@ const CartGrid = (props) => {
   const renderToTal = () => {
     let subtotal = 0;
     let discount = 0;
+    let packTotal = 0;
     products.map((item) => {
       discount += parseInt(item.count) * parseInt(item.price) * parseInt(item.sales) / 100;
       subtotal += parseInt(item.count) * parseInt(item.price);
+      if (item.is_package) {
+        packTotal += parseInt(item.count) * packPrice;
+      }
     })
-    const total = subtotal - discount;
+    const total = subtotal + packTotal - discount;
     let title = ''
     if (props.type == cartGridType.cart) {
       title = 'Mua hàng'
@@ -145,6 +149,10 @@ const CartGrid = (props) => {
             <span>{subtotal}<sup>{currency}</sup></span>
           </div>
           <div className='d-flex justify-content-between gap-2'>
+            <span className='heading-small'>Tổng tiền gói hàng</span>
+            <span>{packTotal}<sup>{currency}</sup></span>
+          </div>
+          <div className='d-flex justify-content-between gap-2'>
             <span className='heading-small'>Giảm giá</span>
             <span>-{discount}<sup>{currency}</sup></span>
           </div>
@@ -153,7 +161,7 @@ const CartGrid = (props) => {
             <Price price={total}/>
           </div>
           <div className='d-flex justify-content-end mt-md-3 mt-2'>
-            <Button onClick={() => onSubmit({total: total, subtotal: subtotal, discount: discount, products: products})}>
+            <Button onClick={() => onSubmit({total: total, subtotal: subtotal, packTotal: packTotal, discount: discount, products: products})}>
               <span className='heading'>{title}</span>
             </Button>
           </div>
