@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Banner from "./banner.home";
+import BannerGrid from "./banner.grid.home";
+import BannerSlide from "./banner.slide.home";
 import Categories from "./categories.home";
 class ContentHome extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class ContentHome extends Component {
     return (
       <section>
         <div className="container">
-          <Banner banners={this.props.banner} />
+          <BannerSlide banners={this.props.banner} />
+          <BannerGrid banners={this.props.banner} />
           <Categories categories={this.props.category} history={this.props.history}/>
         </div>
       </section>
