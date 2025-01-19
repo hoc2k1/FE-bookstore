@@ -1,49 +1,19 @@
 import React from "react";
 
-// Import Swiper React components
-import SlideCustom from "../slide.custom/slide.custom";
-
 const Categories = ({ categories, history }) => {
-  const responsiveSettings = [
-    {
-      breakpoint: 1200,
-      settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5
-      }
-    },
-    {
-      breakpoint: 768,
-      settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
-      }
-    },
-    {
-      breakpoint: 300,
-      settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-      }
-    }
-];
   return (
-    <div className="colleciton-list new-block">
-      <p className="mt-2 fw-bold fs-5">Các thể loại sách</p>
-      <SlideCustom
-        canSwipe
-        responsive={responsiveSettings}
-        arrows
-      >
+    <div className="colleciton-list mt-md-4 mt-3">
+      <span className="mt-2 fw-bold fs-5 heading-large">Các thể loại sách</span>
+      <div className="row mt-md-3 mt-2 gx-2 gx-md-3 gx-lg-4 gap-y-grid">
         { categories.map((item, index) => {
           return (
-            <div key={index} className="category-item cursor-pointer" onClick={() => history.push({pathname: '/products', search: `searchCategory=${item._id}` })}>
+            <div key={index} className="category-item cursor-pointer col-6 col-md-4 col-lg-3" onClick={() => history.push({pathname: '/products', search: `searchCategory=${item._id}` })}>
               <img className="w-100 ratio ratio-1x1 rounded-circle category-item-image" src={item.image}></img>
               <p className="mt-2 fw-bold fs-5">{item.name}</p>
             </div>
           )
         })}
-      </SlideCustom>
+      </div>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Home from '../components/home/home'
 import * as userActions from '../actions/user.action'
 import * as homeActions from '../actions/home.action'
+import * as productActions from '../actions/product.action'
 import Loading from '../components/loading/loading'
 import Header from '../components/header/header'
 import Footer from '../components/footer/footer'
@@ -12,8 +13,11 @@ class HomeContainer extends Component {
   componentWillMount() {
     this.props.actions.auth()
     this.props.homeActions.getCategory()
+    this.props.homeActions.getAuthor()  
+    this.props.homeActions.getPublisher()
     this.props.homeActions.getBanner()
     this.props.homeActions.getBook()
+    this.props.productActions.getBestSelling()
   }
 
   render() {
@@ -49,7 +53,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return ({
     actions: bindActionCreators(userActions, dispatch),
-    homeActions: bindActionCreators(homeActions, dispatch)
+    homeActions: bindActionCreators(homeActions, dispatch),
+    productActions: bindActionCreators(productActions, dispatch)
   })
 }
 export default connect(

@@ -20,7 +20,8 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "2.2.0",
-    "rsuite": "^5.75.0"
+    "rsuite": "^5.75.0",
+    "swiper": "^11.2.1"
   },
   "scripts": {
     "start": "react-scripts start"

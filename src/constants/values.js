@@ -9,6 +9,8 @@ export const baseFilter = {
   page: 1
 }
 
+export const packPrice = 3000;
+
 export const keyFilter = {
   SEARCH_TEXT: 'searchText',
   SEARCH_PUBLISHER: 'searchPublisher',

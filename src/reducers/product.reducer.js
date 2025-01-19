@@ -38,6 +38,12 @@ const product = (state = { productDetail: null, bookRelated: {}, comment: [], pa
         filter: action.data
       }
     }
+    case productTypes.SET_BEST_SELLING: {
+      return {
+        ...state,
+        bestSelling: action.data
+      }
+    }
     case productTypes.SET_ALL_BOOK: {
       return {
         ...state,
