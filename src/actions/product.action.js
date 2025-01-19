@@ -111,8 +111,24 @@ export const getCommentByIDBook = (id) => async (dispatch, getState) => {
   dispatch(setTotalPage(res.data.totalPage))
   dispatch(setComment(res.data.data))
 }
+export const getBestSelling = () => async (dispatch, getState) => {
+  let res
+  try {
+    res = await axios.post(`${url.URL_BE}book/bestselling`)
+  }
+  catch (err) {
+    console.log(JSON.stringify(err.response))
+    return
+  }
+  dispatch(setBestSelling(res.data.data))
+}
 export const setComment = (data) => ({
   type: productTypes.SET_COMMENT,
+  data
+})
+
+export const setBestSelling = data => ({
+  type: productTypes.SET_BEST_SELLING,
   data
 })
 

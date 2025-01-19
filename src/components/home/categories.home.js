@@ -3,7 +3,7 @@ import React from "react";
 const Categories = ({ categories, history }) => {
   return (
     <div className="colleciton-list mt-md-4 mt-3">
-      <p className="mt-2 fw-bold fs-5">Các thể loại sách</p>
+      <span className="mt-2 fw-bold fs-5 heading-large">Các thể loại sách</span>
       <div className="row mt-md-3 mt-2 gx-2 gx-md-3 gx-lg-4 gap-y-grid">
         { categories.map((item, index) => {
           return (

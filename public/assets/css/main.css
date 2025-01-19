@@ -323,6 +323,11 @@ body, input {
   transition: all 0.3s;
 }
 
+.heading-large {
+  font-size: calc(var(--font-size-heading) * 1.2);
+  font-weight: bold;
+  transition: all 0.3s;
+}
 .heading {
   font-size: var(--font-size-heading);
   font-weight: bold;

@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 const BannerSlide = ({ banners }) => {
   const data = banners.filter((item, index) => index % 2 == 0)
   return (
-    <div className='mt-4'>
+    <div className='mt-md-4 mt-3'>
       <Swiper
         pagination={{
           dynamicBullets: true,
